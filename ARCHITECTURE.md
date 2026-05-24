@@ -50,6 +50,7 @@ The Solaria ecosystem is built around a four-layer model with a clear separation
 │  │  • StackChan SSP firmware   │  │  • toio protocol lib                 │ │
 │  │  • Raspberry Pi SSP service │  │  • uGot protocol lib                 │ │
 │  │  • CyberBrick SSP firmware  │  │                                      │ │
+│  │  • mBot2/CyberPi SSP fw     │  │                                      │ │
 │  └─────────────────────────────┘  └──────────────────────────────────────┘ │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 0: Hardware                                                          │
@@ -76,6 +77,7 @@ TYPE 1 devices are hardware platforms where you **CAN flash custom firmware**. T
 | **StackChan (M5Stack)** | ESP32 | BLE + WiFi | Desktop companion robot, open firmware |
 | **Raspberry Pi** | ARM Linux | WiFi + BLE + Serial | Runs SSP as a systemd service |
 | **CyberBrick** | MicroPython (ESP32) | BLE + WiFi | Open-source controller core, modular building blocks |
+| **Makeblock mBot2 (CyberPi)** | ESP32 (Arduino/PlatformIO) | BLE + WiFi | Open-source Arduino library (GPL-3.0), popular in schools |
 
 ### How It Works
 
@@ -328,6 +330,7 @@ The Solaria ecosystem is modular. Each component lives in its own repository wit
 | `solaria-lib-toio` | Medium | Core toio BLE protocol translation |
 | `solaria-lib-ugot` | Lower | Core uGot protocol translation |
 | `solaria-fw-cyberbrick` | Lower | SSP firmware for CyberBrick Multi-Function Core Board |
+| `solaria-fw-mbot2` | Lower | SSP firmware for Makeblock mBot2 (CyberPi ESP32) |
 
 ---
 

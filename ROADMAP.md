@@ -108,8 +108,9 @@ These devices can be flashed with custom SSP firmware. Once firmware is built, A
 | 3 | **StackChan (M5Stack)** | ESP32 | BLE + WiFi | Desktop companion, active community | $1,500–$2,000 |
 | 4 | **Raspberry Pi** | ARM Linux | WiFi + BLE + Serial | Complex robots, Linux ecosystem | $1,500–$2,500 |
 | 5 | **CyberBrick** | MicroPython (ESP32) | BLE + WiFi | Modular building blocks, open-source core | $1,000–$2,000 |
+| 6 | **Makeblock mBot2 (CyberPi)** | ESP32 (Arduino) | BLE + WiFi | Open-source library (GPL-3.0), popular in schools | $1,000–$2,000 |
 
-**Total TYPE 1 firmware investment:** $6,500–$10,500
+**Total TYPE 1 firmware investment:** $7,500–$12,500
 
 ### TYPE 2: Protocol Bridge Hardware (Closed Firmware)
 
@@ -211,6 +212,7 @@ This is the complete integration matrix showing every possible hardware × clien
 | Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio` | Planned |
 | UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot` | Planned |
 | CyberBrick | 1 | Free (after FW) | 0 | $0 | `solaria-fw-cyberbrick` | Blocked on FW |
+| mBot2 (CyberPi) | 1 | Free (after FW) | 0 | $0 | `solaria-fw-mbot2` | Blocked on FW |
 
 #### Python (Universal Client: $1,200–$2,000)
 
@@ -225,6 +227,7 @@ This is the complete integration matrix showing every possible hardware × clien
 | Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-python` | Planned |
 | UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-python` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-python` | Planned |
+| mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-python` | Planned |
 
 #### Web / JavaScript (Universal Client: $1,200–$2,000)
 
@@ -239,6 +242,7 @@ This is the complete integration matrix showing every possible hardware × clien
 | Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-web` | Planned |
 | UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-web` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-web` | Planned |
+| mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-web` | Planned |
 
 #### MicroBlocks (Universal Client: $1,000–$1,500)
 
@@ -253,6 +257,7 @@ This is the complete integration matrix showing every possible hardware × clien
 | Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-microblocks` | Planned |
 | UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-microblocks` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-microblocks` | Planned |
+| mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-microblocks` | Planned |
 
 #### Scratch (Universal Client: $1,500–$2,000)
 
@@ -267,6 +272,7 @@ This is the complete integration matrix showing every possible hardware × clien
 | Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-scratch` | Planned |
 | UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-scratch` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-scratch` | Planned |
+| mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-scratch` | Planned |
 
 #### MakeCode (Universal Client: $1,200–$1,800)
 
@@ -281,6 +287,7 @@ This is the complete integration matrix showing every possible hardware × clien
 | Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-makecode` | Planned |
 | UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-makecode` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-makecode` | Planned |
+| mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-makecode` | Planned |
 
 ### Summary Matrix (Compact View)
 
@@ -297,6 +304,7 @@ This table shows the effort category for each combination at a glance:
 | **Sony toio** (T2) | Wrap | Wrap | Wrap | Wrap | Wrap | Wrap |
 | **UBTECH uGot** (T2) | Wrap | Wrap | Wrap | Wrap | Wrap | Wrap |
 | **CyberBrick** (T1) | Free | Free | Free | Free | Free | Free |
+| **mBot2 (CyberPi)** (T1) | Free | Free | Free | Free | Free | Free |
 
 **Reading this table:**
 - **Free** = Zero marginal cost once the firmware (row) and Universal Client (column) are built.
@@ -383,13 +391,13 @@ These items have the highest ROI because they are prerequisites for many downstr
 | Category | Count | Hours (range) | Cost (range) | Notes |
 |----------|-------|---------------|-------------|-------|
 | **Universal Clients** (remaining) | 5 | 400–750 hrs | $6,100–$9,300 | Python, Web, MicroBlocks, Scratch, MakeCode |
-| **Type 1 Firmware** | 5 | 500–1,000 hrs | $6,500–$10,500 | ESP32, micro:bit, StackChan, RPi, CyberBrick |
+| **Type 1 Firmware** | 6 | 600–1,200 hrs | $7,500–$12,500 | ESP32, micro:bit, StackChan, RPi, CyberBrick, mBot2 |
 | **Type 2 Protocol Libraries** (remaining) | 3 | 450–900 hrs | $6,000–$9,500 | Powered Up, toio, uGot |
 | **Type 2 Client Wrappers** | 23 | 920–1,840 hrs | $11,500–$27,600 | 4 hardware × 6 clients minus 1 shipped |
 | **Annual Maintenance** (all repos) | ~20 repos | 400–800 hrs/yr | $4,000–$10,000/yr | Ongoing |
 | | | | | |
-| **TOTAL (one-time build)** | — | **2,270–4,490 hrs** | **$30,100–$56,900** | |
-| **Midpoint estimate** | — | **~3,400 hrs** | **~$43,500** | |
+| **TOTAL (one-time build)** | — | **2,370–4,690 hrs** | **$31,100–$58,900** | |
+| **Midpoint estimate** | — | **~3,500 hrs** | **~$45,000** | |
 
 ### By Phase
 

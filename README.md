@@ -50,6 +50,7 @@ Solaria defines the **Solaria Standard Protocol (SSP)** — a communication laye
 | Generic ESP32 "Solaria Firmware" | 💡 Proposed | — |
 | Raspberry Pi | 💡 Proposed | — |
 | CyberBrick | 💡 Proposed | — |
+| Makeblock mBot2 (CyberPi) | 💡 Proposed | — |
 | LEGO Powered Up (LWP3 family) | 💡 Proposed | — |
 | UBTECH uGot | 📋 Planned | — |
 | Sony toio | 💡 Proposed | — |
