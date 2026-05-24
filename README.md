@@ -4,9 +4,9 @@
 
 # Solaria
 
-**An open-source platform that connects any programming environment to any robotics hardware through a single standard protocol.**
+**An open-source platform that connects open-source programming environments to open-source robotics hardware through a single standard protocol.**
 
-Solaria defines the **Solaria Standard Protocol (SSP)** — a universal communication layer that lets educators, makers, and developers control diverse robotics hardware from any client application. Write once, control any robot.
+Solaria defines the **Solaria Standard Protocol (SSP)** — a communication layer that lets educators, makers, and developers control diverse robotics hardware from supported client applications. Write once, control any robot.
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
@@ -55,6 +55,21 @@ Solaria defines the **Solaria Standard Protocol (SSP)** — a universal communic
 | Sony toio | 💡 Proposed | — |
 
 > **What's next?** The community decides. [Vote here →](#vote-for-the-next-integration)
+
+---
+
+## Client Platforms
+
+| Client Environment | Status | Notes |
+| :--- | :---: | :--- |
+| MIT App Inventor | ✅ Supported | Via .aix extension |
+| MicroBlocks | 📋 Planned | Open source, block-based |
+| Python | 📋 Planned | Via SDK/library |
+| Scratch | 💡 Proposed | Open source, block-based |
+| Web (JavaScript) | 💡 Proposed | Via Web Bluetooth SDK |
+| MakeCode | 💡 Proposed | Open source, Microsoft |
+
+> Solaria focuses on **open-source** client platforms to ensure the widest possible access without licensing barriers.
 
 ---
 

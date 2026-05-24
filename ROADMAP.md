@@ -43,6 +43,23 @@ The platform is proven. Now we widen hardware support. **You decide what gets bu
 
 ---
 
+## Client Platform Roadmap
+
+SSP is designed to be client-agnostic, but we prioritise **open-source** environments:
+
+| # | Client | Status | Notes |
+|---|--------|--------|-------|
+| 1 | MIT App Inventor | ✅ Shipped | .aix extension, block-based |
+| 2 | MicroBlocks | 📋 Planned | Open source, runs on-device, natural fit |
+| 3 | Python | 📋 Planned | SDK/library for advanced students and makers |
+| 4 | Scratch | 💡 Proposed | Open source, huge K-8 user base |
+| 5 | Web (JavaScript) | 💡 Proposed | Web Bluetooth API, zero-install |
+| 6 | MakeCode | 💡 Proposed | Open source, Microsoft-backed, micro:bit native |
+
+Client development will follow hardware bridge progress — each new bridge automatically works with all existing clients.
+
+---
+
 ## Phase 3 — AI / Agent Layer 🔮
 
 **Status:** Planned (after 3+ bridges are stable)
