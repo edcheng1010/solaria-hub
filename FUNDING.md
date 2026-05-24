@@ -6,21 +6,33 @@ Solaria is an independent open-source project created and maintained by Edward C
 
 ## Why Funding Matters
 
-Building bridges for new hardware requires:
-- **Purchasing hardware** — each new integration needs the physical device for development and testing
-- **Development time** — firmware, protocol work, and client extensions take sustained effort
-- **Documentation** — tutorials, guides, and translations make the platform accessible
+Each new hardware bridge requires significant investment:
+
+- **Hardware** — the physical device (and often accessories/cables/adapters) for development and testing
+- **AI-assisted development (vibe coding)** — Claude Code, Manus, and other AI tools are core to the development workflow. Subscriptions and API usage are a real recurring cost.
+- **Development time** — protocol reverse-engineering, firmware, transport profiles, client extensions, and testing. Each bridge represents **100–200 hours** of focused development work.
+- **Documentation** — tutorials, guides, API references, and translations
 - **Infrastructure** — CI/CD, hosting, and tooling
 
 ---
 
-## GitHub Sponsors
+## How to Support
 
-The simplest way to support Solaria:
+### GitHub Sponsors (primary)
 
-→ [Sponsor Edward Cheng on GitHub](#)
+The most direct way to support Solaria. Monthly or one-time contributions:
 
-Monthly or one-time contributions welcome. All sponsors are acknowledged in the project README.
+→ [Sponsor Edward Cheng on GitHub](https://github.com/sponsors/edcheng1010)
+
+### Ko-fi (one-time coffee donations)
+
+Quick one-time support if you find the project useful:
+
+→ [Buy me a coffee on Ko-fi](#)
+
+### Sponsor a Specific Bridge
+
+Want a particular hardware platform supported sooner? You can sponsor a bridge directly to move it up the queue. See [Sponsor a Bridge](#sponsor-a-bridge) below.
 
 ---
 
@@ -30,21 +42,41 @@ Want to see a specific hardware platform supported sooner? You can **sponsor a b
 
 **How it works:**
 
-1. Check the [ROADMAP.md](ROADMAP.md) for the list of planned/proposed integrations.
+1. Check the [ROADMAP.md](ROADMAP.md) for the list of planned integrations.
 2. Contact via GitHub Discussions or Sponsors with the platform you'd like prioritised.
-3. Sponsorship covers hardware purchase + development time for that specific bridge.
+3. Sponsorship covers hardware purchase + AI tooling + development time for that specific bridge.
 4. Progress is tracked publicly in the relevant bridge repo.
 5. You're credited as the bridge sponsor in the repo README.
 
 **Indicative costs per bridge:**
 
-| Complexity | Example | Estimated Cost |
-|-----------|---------|---------------|
-| Low | micro:bit (device ~$20, simple BLE) | $200–400 |
-| Medium | Petoi Bittle (~$300 device, moderate protocol) | $500–800 |
-| High | Complex multi-device system | $800–1500 |
+| Complexity | Example | Hardware | Dev Time | AI Tooling | Total Estimate |
+|-----------|---------|----------|----------|------------|---------------|
+| Low | BBC micro:bit (simple BLE, well-documented) | ~$30 | ~100 hrs | ~$50–100 | $500–800 |
+| Medium | StackChan / Generic ESP32 / CyberBrick | ~$50–150 | ~150 hrs | ~$100–150 | $800–1,500 |
+| High | LEGO Powered Up (multi-device, complex protocol) | ~$100–300 | ~200 hrs | ~$150–200 | $1,500–2,500 |
 
-These are estimates covering hardware + ~20–40 hours of development time.
+**What's included in these estimates:**
+
+- Physical hardware purchase and shipping
+- AI-assisted development tools (Claude Code subscription, API credits, Manus)
+- 100–200 hours of protocol research, firmware development, client integration, and testing
+- Documentation, examples, and App Inventor sample projects
+- Ongoing maintenance for 12 months post-release
+
+---
+
+## Funding Per Repository
+
+Each Solaria repository can receive funding independently:
+
+| Repository | What funding supports |
+|-----------|----------------------|
+| **solaria-hub** (this repo) | SSP spec development, ecosystem coordination, documentation |
+| **solaria-bridge-spike-prime** | SPIKE Prime bridge maintenance, new features, bug fixes |
+| *Future bridge repos* | Hardware-specific development and testing |
+
+All repos have a Sponsor button linking to the same GitHub Sponsors profile.
 
 ---
 
@@ -52,10 +84,16 @@ These are estimates covering hardware + ~20–40 hours of development time.
 
 - All sponsorship funds are used exclusively for Solaria development
 - Hardware purchases and development milestones are reported publicly
-- If we adopt Open Collective in future, full financial transparency will be available
+- Bridge sponsors are credited in the relevant repo README
+- Monthly development updates posted in GitHub Discussions
 
 ---
 
 ## For Organizations
 
-If your school, makerspace, or company would like to sponsor multiple bridges or become a sustaining partner, please open a Discussion thread or reach out directly.
+If your school, makerspace, or company would like to:
+- Sponsor multiple bridges
+- Become a sustaining partner
+- Commission a custom integration for your hardware
+
+Please open a Discussion thread or reach out directly via GitHub Sponsors.
