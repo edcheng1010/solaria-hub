@@ -4,7 +4,7 @@
 
 # Solaria
 
-**An open-source platform that connects open-source programming environments to open-source robotics hardware through a single standard protocol.**
+**An open-source platform that connects open-source programming environments to popular robotics hardware — prioritising open-source options — through a single standard protocol.**
 
 Solaria defines the **Solaria Standard Protocol (SSP)** — a communication layer that lets educators, makers, and developers control diverse robotics hardware from supported client applications. Write once, control any robot.
 
