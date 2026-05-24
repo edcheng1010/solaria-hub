@@ -32,11 +32,11 @@ Solaria defines the **Solaria Standard Protocol (SSP)** — a universal communic
                             │
 ┌───────────────────────────┴─────────────────────────────┐
 │  Layer 0: Hardware                                      │
-│  LEGO SPIKE · micro:bit · OpenCat · ESP32 · …          │
+│  LEGO SPIKE · micro:bit · OpenCat · ESP32 · …           │
 └─────────────────────────────────────────────────────────┘
 ```
 
-**You own Layer 1.** The protocol and firmware bridges are what Solaria standardises. Clients above and hardware below can be anything.
+**Layer 1.** The protocol and firmware bridges are what Solaria standardises. Clients above and hardware below can be anything.
 
 ---
 
