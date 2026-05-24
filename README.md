@@ -43,15 +43,12 @@ Solaria defines the **Solaria Standard Protocol (SSP)** — a universal communic
 | LEGO SPIKE Prime | ✅ Available | [appinventor-lego-spike-prime-extension](https://github.com/edcheng1010/appinventor-lego-spike-prime-extension) |
 | BBC micro:bit / MicroBlocks | 📋 Planned | — |
 | StackChan (M5Stack) | 📋 Planned | — |
+| Generic ESP32 "Solaria Firmware" | 📋 Planned | — |
 | Raspberry Pi | 📋 Planned | — |
 | CyberBrick | 📋 Planned | — |
-| UBTECH uGot | 📋 Planned | — |
-| Generic ESP32 "Solaria Firmware" | 💡 Proposed | — |
-| LEGO Powered Up (LWP3 family) | 💡 Proposed | — |
-| Petoi OpenCat (Bittle / Nybble) | 💡 Proposed | — |
-| Makeblock mBot2 | 💡 Proposed | — |
-| Sony toio | 💡 Proposed | — |
-| DFRobot UNIHIKER | 💡 Proposed | — |
+| LEGO Powered Up (LWP3 family) | 📋 Planned | — |
+| Makeblock mBot2 | 📋 Planned | — |
+| Sony toio | 📋 Planned | — |
 
 > **What's next?** The community decides. [Vote here →](#vote-for-the-next-integration)
 

@@ -27,16 +27,13 @@ The platform is proven. Now we widen hardware support. **You decide what gets bu
 | # | Platform | Why it matters | Effort |
 |---|----------|---------------|--------|
 | 1 | BBC micro:bit / MicroBlocks | Millions deployed in schools globally. Near-zero integration effort (BLE extension path exists). | Low |
-| 2 | Petoi OpenCat (Bittle / Nybble) | Walking robot dog — high wow factor, documented BLE protocol, 4.8k GitHub stars. | Medium |
-| 3 | LEGO Powered Up (full LWP3) | Extends SPIKE work to Boost, Robot Inventor, all Powered Up hubs. Huge user base. | Low–Med |
-| 4 | StackChan (M5Stack) | Desktop companion robot. ESP32-based, BLE/WiFi. Aligns with Solaria's long-term vision. | Medium |
-| 5 | Generic ESP32 "Solaria Firmware" | Flash onto ANY cheap robot car from AliExpress/Amazon. Democratises access. | Medium |
-| 6 | Makeblock mBot2 | Popular in schools. ESP32-based CyberPi brain, documented BLE. | Medium |
-| 7 | Sony toio | Precision cubes with published BLE spec. Great for K-6. | Low–Med |
-| 8 | DFRobot UNIHIKER | ESP32-S3 + Linux hybrid. Big in Asian maker community. | Medium |
-| 9 | Raspberry Pi | WiFi/BLE bridge for complex Linux-based robots. | Medium |
-| 10 | CyberBrick | Modular electronic building blocks. | Medium |
-| 11 | UBTECH uGot | Modular AI robotics kit with servo/sensor blocks. Popular in Asian education. | Medium |
+| 2 | StackChan (M5Stack) | Desktop companion robot. ESP32-based, BLE/WiFi. Aligns with Solaria's long-term vision. | Medium |
+| 3 | Generic ESP32 "Solaria Firmware" | Flash onto ANY cheap robot car from AliExpress/Amazon. Democratises access. | Medium |
+| 4 | Raspberry Pi | WiFi/BLE bridge for complex Linux-based robots. | Medium |
+| 5 | CyberBrick | Modular electronic building blocks. | Medium |
+| 6 | LEGO Powered Up (full LWP3) | Extends SPIKE work to Boost, Robot Inventor, all Powered Up hubs. Huge user base. | Low–Med |
+| 7 | Makeblock mBot2 | Popular in schools. ESP32-based CyberPi brain, documented BLE. | Medium |
+| 8 | Sony toio | Precision cubes with published BLE spec. Great for K-6. | Low–Med |
 
 ### How voting works:
 
