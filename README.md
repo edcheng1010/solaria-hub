@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Solaria" width="200" />
+</p>
+
 # Solaria
 
 **An open-source platform that connects any programming environment to any robotics hardware through a single standard protocol.**
