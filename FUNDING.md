@@ -6,12 +6,18 @@ Solaria is an independent open-source project created and maintained by Edward C
 
 ## Why Funding Matters
 
-Each new hardware bridge requires significant investment:
+Solaria's hybrid architecture means different types of work have different costs:
+
+- **TYPE 1 firmware** (open-firmware hardware like ESP32, micro:bit, CyberBrick, mBot2, StackChan, Raspberry Pi) — requires writing SSP firmware that runs directly on the device. Once built, ALL client platforms get support for free.
+- **TYPE 2 protocol libraries** (closed-firmware hardware like LEGO SPIKE Prime, Powered Up, Sony toio, UBTECH uGot) — requires reverse-engineering the proprietary protocol and building a translation library. Each client platform then needs a thin wrapper to integrate it.
+- **Universal clients** (App Inventor, Python, Web, MicroBlocks, Scratch, MakeCode) — requires building the SSP client logic for each programming environment. Once built, all TYPE 1 hardware is automatically supported.
+
+**Common costs across all work:**
 
 - **Hardware** — the physical device (and often accessories/cables/adapters) for development and testing
-- **AI-assisted development (vibe coding)** — Claude Code, Manus, and other AI tools are core to the development workflow. Subscriptions and API usage are a real recurring cost.
-- **Development time** — protocol reverse-engineering, firmware, transport profiles, client extensions, and testing. Each bridge represents **100–200 hours** of focused development work.
-- **Documentation** — tutorials, guides, API references, and translations
+- **AI-assisted development (vibe coding)** — Claude Code, Manus, and other AI tools are core to the development workflow. Subscriptions and API usage are a real, significant recurring cost.
+- **Development time** — protocol research, firmware/library development, client integration, and testing. Each integration represents **100–300 hours** of focused development work.
+- **Documentation** — tutorials, guides, API references, sample projects, and translations
 - **Infrastructure** — CI/CD, hosting, and tooling
 
 ---
@@ -30,41 +36,59 @@ Quick one-time support if you find the project useful:
 
 → [Buy me a coffee on Ko-fi](#)
 
-### Sponsor a Specific Bridge
+### Sponsor a Specific Integration
 
-Want a particular hardware platform supported sooner? You can sponsor a bridge directly to move it up the queue. See [Sponsor a Bridge](#sponsor-a-bridge) below.
+Want a particular hardware platform or client supported sooner? You can sponsor it directly to move it up the queue. See below.
 
 ---
 
-## Sponsor a Bridge
+## Sponsor a Bridge / Client
 
-Want to see a specific hardware platform supported sooner? You can **sponsor a bridge** to move it up the development queue.
+Want to see a specific integration sooner? You can **sponsor it** to move it up the development queue.
 
 **How it works:**
 
-1. Check the [ROADMAP.md](ROADMAP.md) for the list of planned integrations.
-2. Contact via GitHub Discussions or Sponsors with the platform you'd like prioritised.
-3. Sponsorship covers hardware purchase + AI tooling + development time for that specific bridge.
-4. Progress is tracked publicly in the relevant bridge repo.
-5. You're credited as the bridge sponsor in the repo README.
+1. Check the [ROADMAP.md](ROADMAP.md) for the full list of planned integrations with cost estimates.
+2. Contact via GitHub Discussions or Sponsors with the integration you'd like prioritised.
+3. Sponsorship covers hardware purchase + AI tooling + development time.
+4. Progress is tracked publicly in the relevant repo.
+5. You're credited as the sponsor in the repo README.
 
-**Indicative costs per bridge:**
+### TYPE 1: Firmware (open-firmware hardware)
 
-| Complexity | Example | Hardware | Dev Time | AI Tooling | Total Estimate |
-|-----------|---------|----------|----------|------------|---------------|
-| Low | BBC micro:bit (simple BLE, well-documented) | ~$50–100 | ~100–150 hrs | ~$300–500 | $1,500–2,500 |
-| Medium | StackChan / Generic ESP32 / CyberBrick | ~$100–300 | ~150–200 hrs | ~$500–800 | $2,500–4,000 |
-| High | LEGO Powered Up (multi-device, complex protocol) | ~$300–600 | ~200–300 hrs | ~$800–1,200 | $4,000–6,000 |
+You're sponsoring SSP firmware for a device. Once complete, every existing client automatically supports it.
 
-*Based on actual costs from the SPIKE Prime bridge (Phase 1): $500+ in AI tooling, $400+ in hardware, 100+ hours of development — and that was a single-device MVP.*
+| Complexity | Example | Hardware Cost | Dev Time | AI Tooling | Total Estimate |
+|-----------|---------|:---:|:---:|:---:|:---:|
+| Low | BBC micro:bit (simple BLE, well-documented) | ~$50–100 | ~100–150 hrs | ~$300–500 | **$1,000–$1,500** |
+| Medium | CyberBrick / mBot2 (ESP32, open library) | ~$100–200 | ~100–200 hrs | ~$400–700 | **$1,000–$2,000** |
+| High | StackChan / Raspberry Pi (complex peripherals) | ~$150–400 | ~150–250 hrs | ~$500–1,000 | **$1,500–$2,500** |
 
-**What's included in these estimates:**
+### TYPE 2: Protocol Library (closed-firmware hardware)
 
-- Physical hardware purchase and shipping
-- AI-assisted development tools (Claude Code subscription, API credits, Manus)
-- 100–300 hours of protocol research, firmware development, client integration, and testing
-- Documentation, examples, and App Inventor sample projects
-- Ongoing maintenance for 12 months post-release
+You're sponsoring reverse-engineering of a proprietary protocol. The library is built once, but each client needs a wrapper (~$500–$1,200 per client).
+
+| Complexity | Example | Hardware Cost | Dev Time | AI Tooling | Total Estimate (lib only) |
+|-----------|---------|:---:|:---:|:---:|:---:|
+| Medium | LEGO Powered Up (documented LWP3 protocol) | ~$200–400 | ~150–250 hrs | ~$500–1,000 | **$2,000–$3,000** |
+| Medium | Sony toio (published BLE spec) | ~$100–200 | ~100–200 hrs | ~$400–800 | **$1,500–$2,500** |
+| High | UBTECH uGot (undocumented, reverse-eng. needed) | ~$300–600 | ~200–300 hrs | ~$800–1,200 | **$2,500–$4,000** |
+
+**Plus per-client wrappers:** $500–$1,200 each (App Inventor, Python, Web, MicroBlocks, Scratch, MakeCode)
+
+### Universal Client
+
+You're sponsoring a new programming environment. Once built, all TYPE 1 hardware is automatically supported.
+
+| Client | Dev Time | AI Tooling | Total Estimate |
+|--------|:---:|:---:|:---:|
+| Python SDK | ~100–150 hrs | ~$400–700 | **$1,200–$2,000** |
+| Web (JavaScript) | ~100–150 hrs | ~$400–700 | **$1,200–$2,000** |
+| MicroBlocks | ~80–120 hrs | ~$300–500 | **$1,000–$1,500** |
+| Scratch | ~120–180 hrs | ~$500–800 | **$1,500–$2,000** |
+| MakeCode | ~100–150 hrs | ~$400–700 | **$1,200–$1,800** |
+
+*Based on actual costs from the SPIKE Prime bridge (Phase 1): $500+ in AI tooling, $400+ in hardware, 100+ hours of development — and that was a single-device MVP with one client.*
 
 ---
 
@@ -72,11 +96,13 @@ Want to see a specific hardware platform supported sooner? You can **sponsor a b
 
 Each Solaria repository can receive funding independently:
 
-| Repository | What funding supports |
-|-----------|----------------------|
-| **solaria-hub** (this repo) | SSP spec development, ecosystem coordination, documentation |
-| **solaria-bridge-spike-prime** | SPIKE Prime bridge maintenance, new features, bug fixes |
-| *Future bridge repos* | Hardware-specific development and testing |
+| Repository | Type | What funding supports |
+|-----------|------|----------------------|
+| **solaria-hub** (this repo) | Hub | SSP spec development, ecosystem coordination, documentation |
+| **appinventor-lego-spike-prime-extension** | TYPE 2 wrapper | SPIKE Prime bridge maintenance, new features, bug fixes |
+| *Future `solaria-fw-*` repos* | TYPE 1 | Hardware-specific SSP firmware |
+| *Future `solaria-lib-*` repos* | TYPE 2 | Protocol translation libraries |
+| *Future `solaria-client-*` repos* | Client | Programming environment integrations |
 
 All repos have a Sponsor button linking to the same GitHub Sponsors profile.
 
@@ -86,7 +112,7 @@ All repos have a Sponsor button linking to the same GitHub Sponsors profile.
 
 - All sponsorship funds are used exclusively for Solaria development
 - Hardware purchases and development milestones are reported publicly
-- Bridge sponsors are credited in the relevant repo README
+- Sponsors are credited in the relevant repo README
 - Monthly development updates posted in GitHub Discussions
 
 ---
@@ -94,8 +120,9 @@ All repos have a Sponsor button linking to the same GitHub Sponsors profile.
 ## For Organizations
 
 If your school, makerspace, or company would like to:
-- Sponsor multiple bridges
+- Sponsor multiple integrations
 - Become a sustaining partner
 - Commission a custom integration for your hardware
+- Bundle Solaria support into a curriculum package
 
 Please open a Discussion thread or reach out directly via GitHub Sponsors.

@@ -36,7 +36,12 @@ Solaria defines the **Solaria Standard Protocol (SSP)** — a communication laye
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Layer 1.** The protocol and firmware bridges are what Solaria standardises. Clients above and hardware below can be anything.
+**Hybrid architecture:** Solaria supports two types of hardware:
+
+- **TYPE 1 (Open Firmware)** — devices you can flash with SSP firmware directly (ESP32, micro:bit, StackChan, Raspberry Pi, CyberBrick, mBot2). Once firmware is built, ALL clients work automatically.
+- **TYPE 2 (Closed Firmware)** — devices with proprietary firmware (LEGO, Sony toio, UBTECH uGot). A protocol translation library converts SSP ↔ proprietary commands, then each client needs a thin wrapper.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow diagrams and cost implications.
 
 ---
 
