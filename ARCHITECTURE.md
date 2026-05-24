@@ -39,19 +39,19 @@ The Solaria ecosystem is built around a four-layer model with a clear separation
 │  Natural language → SSP commands. Hardware-agnostic intelligence.           │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 2: Clients                                                           │
-│  App Inventor │ MicroBlocks │ Python │ Scratch │ Web (JS) │ MakeCode       │
+│  App Inventor │ MicroBlocks │ Python │ Scratch │ Web (JS) │ MakeCode        │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 1: SSP + Bridge Layer                                                │
-│  ┌─────────────────────────────┐  ┌──────────────────────────────────────┐ │
-│  │  TYPE 1: Native SSP FW      │  │  TYPE 2: Protocol Bridge Libraries   │ │
-│  │  (Runs on open hardware)    │  │  (Translates SSP ↔ proprietary)     │ │
-│  │  • ESP32 Solaria Firmware   │  │  • SPIKE Prime protocol lib          │ │
-│  │  • micro:bit SSP firmware   │  │  • Powered Up (LWP3) protocol lib    │ │
-│  │  • StackChan SSP firmware   │  │  • toio protocol lib                 │ │
-│  │  • Raspberry Pi SSP service │  │  • uGot protocol lib                 │ │
-│  │  • CyberBrick SSP firmware  │  │                                      │ │
-│  │  • mBot2/CyberPi SSP fw     │  │                                      │ │
-│  └─────────────────────────────┘  └──────────────────────────────────────┘ │
+│  ┌─────────────────────────────┐  ┌──────────────────────────────────────┐  │
+│  │  TYPE 1: Native SSP FW      │  │  TYPE 2: Protocol Bridge Libraries   │  │
+│  │  (Runs on open hardware)    │  │  (Translates SSP ↔ proprietary)      │  │
+│  │  • ESP32 Solaria Firmware   │  │  • SPIKE Prime protocol lib          │  │
+│  │  • micro:bit SSP firmware   │  │  • Powered Up (LWP3) protocol lib    │  │
+│  │  • StackChan SSP firmware   │  │  • toio protocol lib                 │  │
+│  │  • Raspberry Pi SSP service │  │  • uGot protocol lib                 │  │
+│  │  • CyberBrick SSP firmware  │  │                                      │  │
+│  │  • mBot2/CyberPi SSP fw     │  │                                      │  │
+│  └─────────────────────────────┘  └──────────────────────────────────────┘  │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 0: Hardware                                                          │
 │  Motors │ Sensors │ Actuators │ LEDs │ Speakers │ Displays                  │
@@ -209,11 +209,11 @@ Device → client, continuous or on-change:
 ### TYPE 1: Native SSP (Direct Connection)
 
 ```
-┌──────────────────┐         SSP over BLE/WiFi/Serial         ┌──────────────────┐
-│                  │ ════════════════════════════════════════>  │                  │
+┌──────────────────┐         SSP over BLE/WiFi/Serial          ┌──────────────────┐
+│                  │ ════════════════════════════════════════> │                  │
 │   CLIENT         │                                           │   HARDWARE       │
-│   (Any platform) │ <════════════════════════════════════════  │   (SSP Firmware) │
-│                  │         SSP sensor events                  │                  │
+│   (Any platform) │ <════════════════════════════════════════ │   (SSP Firmware) │
+│                  │         SSP sensor events                 │                  │
 └──────────────────┘                                           └──────────────────┘
 
 Example: Python SDK ←→ ESP32 Robot Car running Solaria Firmware
@@ -228,12 +228,12 @@ Step 5: Client receives: {"event": "sensor", "port": "C", "type": "distance", "v
 ### TYPE 2: Protocol Bridge (Translated Connection)
 
 ```
-┌──────────────────┐    SSP     ┌──────────────────┐   Proprietary    ┌──────────────────┐
+┌──────────────────┐    SSP     ┌───────────────────┐   Proprietary    ┌──────────────────┐
 │                  │ ────────>  │  PROTOCOL BRIDGE  │ ═══════════════> │                  │
 │   CLIENT CORE    │            │  (inside client)  │                  │   CLOSED         │
 │   (SSP logic)    │ <────────  │  Translates:      │ <═══════════════ │   HARDWARE       │
 │                  │   SSP      │  SSP ↔ Proprietary│   Proprietary    │                  │
-└──────────────────┘            └──────────────────┘                  └──────────────────┘
+└──────────────────┘            └───────────────────┘                  └──────────────────┘
 
 Example: App Inventor + SolariaSpikePrime.aix ←→ LEGO SPIKE Prime Hub
 
@@ -250,27 +250,27 @@ Step 7: Client receives standard SSP event (identical format to TYPE 1)
 
 ```
                     ┌─────────────────────────────────────────────────┐
-                    │              CLIENT PLATFORM                     │
+                    │              CLIENT PLATFORM                    │
                     │  ┌───────────────────────────────────────────┐  │
-                    │  │  Universal SSP Client Module               │  │
-                    │  │  (connects to ANY Type 1 device)           │  │
+                    │  │  Universal SSP Client Module              │  │
+                    │  │  (connects to ANY Type 1 device)          │  │
                     │  └───────────────────┬───────────────────────┘  │
-                    │                      │                           │
-                    │  ┌──────────┐ ┌──────────┐ ┌──────────┐        │
-                    │  │SPIKE     │ │Powered Up│ │toio      │ ...    │
-                    │  │Wrapper   │ │Wrapper   │ │Wrapper   │        │
-                    │  └────┬─────┘ └────┬─────┘ └────┬─────┘        │
+                    │                      │                          │
+                    │  ┌──────────┐ ┌──────────┐ ┌──────────┐         │
+                    │  │SPIKE     │ │Powered Up│ │toio      │ ...     │
+                    │  │Wrapper   │ │Wrapper   │ │Wrapper   │         │
+                    │  └────┬─────┘ └────┬─────┘ └────┬─────┘         │
                     └───────┼────────────┼────────────┼───────────────┘
                             │            │            │
-            ┌───────────────┼────────────┼────────────┼────────────────┐
-            │               ▼            ▼            ▼                │
-            │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐    │
-            │  │ESP32    │  │SPIKE    │  │Powered  │  │toio     │    │
-            │  │(Type 1) │  │Prime    │  │Up Hub   │  │Cube     │    │
-            │  │SSP FW   │  │(Type 2) │  │(Type 2) │  │(Type 2) │    │
-            │  └─────────┘  └─────────┘  └─────────┘  └─────────┘    │
-            │                     HARDWARE LAYER                       │
-            └──────────────────────────────────────────────────────────┘
+            ┌───────────────┼────────────┼────────────┼───────────────┐
+            │               ▼            ▼            ▼               │
+            │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐     │
+            │  │ESP32    │  │SPIKE    │  │Powered  │  │toio     │     │
+            │  │(Type 1) │  │Prime    │  │Up Hub   │  │Cube     │     │
+            │  │SSP FW   │  │(Type 2) │  │(Type 2) │  │(Type 2) │     │
+            │  └─────────┘  └─────────┘  └─────────┘  └─────────┘     │
+            │                     HARDWARE LAYER                      │
+            └─────────────────────────────────────────────────────────┘
 ```
 
 ---
