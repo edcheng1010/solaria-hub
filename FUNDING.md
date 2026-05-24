@@ -52,15 +52,17 @@ Want to see a specific hardware platform supported sooner? You can **sponsor a b
 
 | Complexity | Example | Hardware | Dev Time | AI Tooling | Total Estimate |
 |-----------|---------|----------|----------|------------|---------------|
-| Low | BBC micro:bit (simple BLE, well-documented) | ~$30 | ~100 hrs | ~$50–100 | $500–800 |
-| Medium | StackChan / Generic ESP32 / CyberBrick | ~$50–150 | ~150 hrs | ~$100–150 | $800–1,500 |
-| High | LEGO Powered Up (multi-device, complex protocol) | ~$100–300 | ~200 hrs | ~$150–200 | $1,500–2,500 |
+| Low | BBC micro:bit (simple BLE, well-documented) | ~$50–100 | ~100–150 hrs | ~$300–500 | $1,500–2,500 |
+| Medium | StackChan / Generic ESP32 / CyberBrick | ~$100–300 | ~150–200 hrs | ~$500–800 | $2,500–4,000 |
+| High | LEGO Powered Up (multi-device, complex protocol) | ~$300–600 | ~200–300 hrs | ~$800–1,200 | $4,000–6,000 |
+
+*Based on actual costs from the SPIKE Prime bridge (Phase 1): $500+ in AI tooling, $400+ in hardware, 100+ hours of development — and that was a single-device MVP.*
 
 **What's included in these estimates:**
 
 - Physical hardware purchase and shipping
 - AI-assisted development tools (Claude Code subscription, API credits, Manus)
-- 100–200 hours of protocol research, firmware development, client integration, and testing
+- 100–300 hours of protocol research, firmware development, client integration, and testing
 - Documentation, examples, and App Inventor sample projects
 - Ongoing maintenance for 12 months post-release
 
