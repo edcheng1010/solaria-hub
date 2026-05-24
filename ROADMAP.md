@@ -36,6 +36,7 @@ The platform is proven. Now we widen hardware support. **You decide what gets bu
 | 8 | DFRobot UNIHIKER | ESP32-S3 + Linux hybrid. Big in Asian maker community. | Medium |
 | 9 | Raspberry Pi | WiFi/BLE bridge for complex Linux-based robots. | Medium |
 | 10 | CyberBrick | Modular electronic building blocks. | Medium |
+| 11 | UBTECH uGot | Modular AI robotics kit with servo/sensor blocks. Popular in Asian education. | Medium |
 
 ### How voting works:
 

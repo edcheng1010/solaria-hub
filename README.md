@@ -51,6 +51,7 @@ Solaria defines the **Solaria Standard Protocol (SSP)** — a universal communic
 | DFRobot UNIHIKER | 💡 Proposed | — |
 | Raspberry Pi | 💡 Proposed | — |
 | CyberBrick | 💡 Proposed | — |
+| UBTECH uGot | 💡 Proposed | — |
 
 > **What's next?** The community decides. [Vote here →](#vote-for-the-next-integration)
 
