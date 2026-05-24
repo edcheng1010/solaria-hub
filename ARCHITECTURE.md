@@ -61,7 +61,7 @@ Bridge → client, continuous or on-change:
 {"event": "sensor", "port": "D", "type": "distance", "value": 23.5, "unit": "cm"}
 ```
 
-> Full specification: [spec/SSP-v0.1.md](spec/SSP-v0.1.md)
+> Full specification: [spec/SSP-v0.6.md](spec/SSP-v0.6.md)
 
 ---
 
@@ -83,24 +83,26 @@ This means:
 
 ## Building a New Bridge
 
-1. Read [spec/SSP-v0.1.md](spec/SSP-v0.1.md)
+1. Read [spec/SSP-v0.6.md](spec/SSP-v0.6.md)
 2. Create repo: `solaria-bridge-<hardware>`
-3. Implement transport (BLE/WiFi/Serial listener)
-4. Parse incoming SSP commands → map to hardware API
-5. Implement capability declaration (report ports/features on connect)
-6. Implement sensor streaming (push data back to client)
-7. Test with the reference App Inventor client
-8. Submit PR to add your bridge to the hub README
+3. Pick or define a transport profile (§2.1)
+4. Implement transport (BLE/WiFi/Serial/RFCOMM listener)
+5. Parse incoming SSP commands → map to hardware API
+6. Implement capability declaration with constraints (§5)
+7. Implement sensor streaming and system metrics (§6.4, §6.5)
+8. Test with the reference App Inventor client
+9. Submit PR to add your bridge to the hub README
 
 ---
 
 ## Building a New Client
 
-1. Read [spec/SSP-v0.1.md](spec/SSP-v0.1.md)
+1. Read [spec/SSP-v0.6.md](spec/SSP-v0.6.md)
 2. Create repo: `solaria-client-<platform>`
-3. Implement transport (connect to bridge over BLE/WiFi/Serial)
-4. Parse capability declaration → build dynamic interface
+3. Implement transport profiles (connect to bridge over BLE/WiFi/Serial/RFCOMM)
+4. Parse capability declaration + constraints → build dynamic interface
 5. Expose user-facing API or blocks that generate SSP commands
-6. Handle incoming sensor events
-7. Test with the reference SPIKE Prime bridge
-8. Submit PR to add your client to the hub README
+6. Handle incoming sensor events and system metrics
+7. Implement heartbeat (§4.1) and batch support (§6.4)
+8. Test with the reference SPIKE Prime bridge
+9. Submit PR to add your client to the hub README

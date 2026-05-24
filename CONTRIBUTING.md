@@ -22,7 +22,7 @@ Have a robotics platform you'd like to see supported?
 
 You're a firmware developer and want to add support for a specific robot:
 
-1. Read the [SSP v0.1 specification](spec/SSP-v0.1.md).
+1. Read the [SSP v0.6 specification](spec/SSP-v0.6.md).
 2. Read the [Architecture guide](ARCHITECTURE.md#building-a-new-bridge).
 3. Fork and create a new repo: `solaria-bridge-<hardware>`.
 4. Implement the bridge following SSP conventions.
@@ -33,7 +33,7 @@ You're a firmware developer and want to add support for a specific robot:
 
 You want Solaria to work in a new programming environment:
 
-1. Read the [SSP v0.1 specification](spec/SSP-v0.1.md).
+1. Read the [SSP v0.6 specification](spec/SSP-v0.6.md).
 2. Read the [Architecture guide](ARCHITECTURE.md#building-a-new-client).
 3. Fork and create a new repo: `solaria-client-<platform>`.
 4. Implement SSP message generation and sensor event handling.

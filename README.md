@@ -79,7 +79,7 @@ You can also **sponsor a specific integration** to accelerate its development. S
 | :--- | :--- |
 | [ROADMAP.md](ROADMAP.md) | Project phases and community voting |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Layer model and SSP overview |
-| [spec/SSP-v0.1.md](spec/SSP-v0.1.md) | Full protocol specification |
+| [spec/SSP-v0.6.md](spec/SSP-v0.6.md) | Full protocol specification (latest) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to propose, build, and submit |
 | [FUNDING.md](FUNDING.md) | Sponsorship and "Sponsor a Bridge" |
 
