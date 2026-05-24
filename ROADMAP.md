@@ -32,7 +32,7 @@ The platform is proven. Now we widen hardware support. **You decide what gets bu
 | 4 | Raspberry Pi | WiFi/BLE bridge for complex Linux-based robots. | Medium |
 | 5 | CyberBrick | Modular electronic building blocks. | Medium |
 | 6 | LEGO Powered Up (full LWP3) | Extends SPIKE work to Boost, Robot Inventor, all Powered Up hubs. Huge user base. | Low–Med |
-| 7 | Makeblock mBot2 | Popular in schools. ESP32-based CyberPi brain, documented BLE. | Medium |
+| 7 | UBTECH uGot | Modular AI robotics kit with servo/sensor blocks. Popular in Asian education. | Medium |
 | 8 | Sony toio | Precision cubes with published BLE spec. Great for K-6. | Low–Med |
 
 ### How voting works:

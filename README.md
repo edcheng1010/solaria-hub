@@ -47,7 +47,7 @@ Solaria defines the **Solaria Standard Protocol (SSP)** — a universal communic
 | Raspberry Pi | 📋 Planned | — |
 | CyberBrick | 📋 Planned | — |
 | LEGO Powered Up (LWP3 family) | 📋 Planned | — |
-| Makeblock mBot2 | 📋 Planned | — |
+| UBTECH uGot | 📋 Planned | — |
 | Sony toio | 📋 Planned | — |
 
 > **What's next?** The community decides. [Vote here →](#vote-for-the-next-integration)
