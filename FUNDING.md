@@ -117,6 +117,17 @@ All repos have a Sponsor button linking to the same GitHub Sponsors profile.
 
 ---
 
+## Future Sustainability: AI Layer SaaS Model
+
+In addition to community sponsorship, Solaria plans a future SaaS model for the AI/Agent layer (Phase 3) that will complement the current funding approach:
+
+- **Free tier (BYOK):** Users bring their own LLM API key. Full AI features, zero cost to Solaria.
+- **Hosted paid tier (for schools):** Solaria-managed inference with curated prompts, school dashboard, usage analytics, and curriculum integration. One invoice, no API key friction for teachers.
+
+Sponsorship funds the open-source build (protocol, firmware, clients). The hosted tier is a future revenue stream that sustains ongoing maintenance and expansion without gating the core platform.
+
+---
+
 ## For Organizations
 
 If your school, makerspace, or company would like to:

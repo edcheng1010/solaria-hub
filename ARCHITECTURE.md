@@ -37,6 +37,7 @@ The Solaria ecosystem is built around a four-layer model with a clear separation
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  Layer 3: AI / Agent Layer (Future)                                         │
 │  Natural language → SSP commands. Hardware-agnostic intelligence.           │
+│  GUI Electronics Configuration: visual drag-and-drop hardware setup.       │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 2: Clients                                                           │
 │  App Inventor │ MicroBlocks │ Python │ Scratch │ Web (JS) │ MakeCode        │
@@ -287,6 +288,7 @@ Each client platform implements the same logical structure, adapted to the platf
 | Scratch | Scratch extension | JavaScript | Web Bluetooth | Solaria extension | Sub-extensions per hardware |
 | Web (JavaScript) | JS library / npm | JavaScript | Web Bluetooth API | `solaria.js` | Modules per hardware |
 | MakeCode | MakeCode extension | TypeScript | micro:bit radio/BLE | Solaria package | Packages per hardware |
+| Arduino IDE | Arduino library | C/C++ | Serial / BLE | `SolariaSSP` library | Modules per hardware |
 
 ---
 
@@ -363,7 +365,7 @@ The layered architecture enforces strict separation of concerns:
 | **SSP Protocol** | Message format, transport framing, capability schema | Specific hardware registers, specific client UI |
 | **Client Extension** | User-facing blocks/API, SSP generation, transport connection | Hardware internals, motor driver registers |
 | **Protocol Bridge (Type 2)** | Both SSP format AND proprietary protocol format | Client UI, other hardware types |
-| **AI Agent (Future)** | Intent parsing, goal decomposition, SSP command generation | Transport details, hardware registers, client UI |
+| **AI Agent (Future)** | Intent parsing, goal decomposition, SSP command generation, GUI electronics configuration | Transport details, hardware registers, client UI |
 
 **Architectural guarantees:**
 

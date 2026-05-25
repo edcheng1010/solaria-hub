@@ -39,7 +39,9 @@ Solaria is designed to integrate with the most widely used educational and maker
 - **Scratch**
 - **MakeCode**
 - **Arduino IDE**
-- **Python & Web/JavaScript**
+- **Python**
+- **Web (JavaScript)**
+- **MicroBlocks**
 
 ### Hardware Platforms
 Solaria supports a wide range of hardware through a hybrid architecture defined in the [ARCHITECTURE.md](ARCHITECTURE.md):

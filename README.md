@@ -74,6 +74,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 | Scratch | 💡 Proposed | Open source, block-based |
 | Web (JavaScript) | 💡 Proposed | Via Web Bluetooth SDK |
 | MakeCode | 💡 Proposed | Open source, Microsoft |
+| Arduino IDE | 💡 Proposed | C/C++ library for advanced users |
 
 > Solaria focuses on **open-source** client platforms to ensure the widest possible access without licensing barriers.
 
@@ -106,6 +107,7 @@ You can also **sponsor a specific integration** to accelerate its development. S
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Layer model and SSP overview |
 | [spec/SSP-v0.6.md](spec/SSP-v0.6.md) | Full protocol specification (latest) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to propose, build, and submit |
+| [VISION.md](VISION.md) | Product vision and sustainability model |
 | [FUNDING.md](FUNDING.md) | Sponsorship and "Sponsor a Bridge" |
 
 ---

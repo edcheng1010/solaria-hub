@@ -139,6 +139,7 @@ SSP is designed to be client-agnostic. Each Universal Client is a one-time inves
 | 4 | **MicroBlocks** | Built-in library | MicroBlocks | 📋 Planned | $1,000–$1,500 | Medium |
 | 5 | **Scratch** | Scratch extension | JavaScript | 💡 Proposed | $1,500–$2,000 | Medium |
 | 6 | **MakeCode** | MakeCode package | TypeScript | 💡 Proposed | $1,200–$1,800 | Lower |
+| 7 | **Arduino IDE** | Arduino library | C/C++ | 💡 Proposed | $1,000–$1,500 | Proposed |
 
 **Total Universal Client investment (remaining 5):** $6,100–$9,300
 
