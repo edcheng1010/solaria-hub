@@ -67,10 +67,12 @@ The full scope, costs, and dependencies are detailed in the [Hardware × Client 
 
 Introducing hardware-agnostic intelligence on top of SSP:
 
-- Natural language → SSP command translation (e.g., "Drive forward until you see a red object" → motor + color sensor commands)
-- LLM-powered processing: local (M5Stack Module LLM) or cloud-based
-- Works with ANY bridge + ANY client combination because it generates standard SSP
-- Potential integration with MIT App Inventor's AI components
+- **Vibe Coding:** Natural language → SSP command translation (e.g., "Drive forward until you see a red object" → motor + color sensor commands)
+- **GUI Electronics Configuration:** Visual drag-and-drop interface for hardware setup — select your microcontroller, sensors, and motors; Solaria generates the correct wiring diagrams, pin mappings, and code scaffolding automatically. No more hunting through datasheets.
+- **LLM-powered processing:** Local (M5Stack Module LLM) or cloud-based inference
+- **Cross-platform intelligence:** Works with ANY bridge + ANY client combination because it generates standard SSP
+- **Platform integration:** Potential integration with MIT App Inventor's AI components
+- **Agentic AI overlay:** Context-aware assistant that understands the full hardware × software matrix and guides users through building, debugging, and extending projects
 
 **Prerequisites:** At least 3 stable hardware bridges and 2 stable client platforms.
 
