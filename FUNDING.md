@@ -34,7 +34,7 @@ The most direct way to support Solaria. Monthly or one-time contributions:
 
 Quick one-time support if you find the project useful:
 
-→ [Buy me a coffee on Ko-fi](#)
+→ [Buy me a coffee on Ko-fi](https://ko-fi.com/edcheng1010)
 
 ### Sponsor a Specific Integration
 
