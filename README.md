@@ -54,10 +54,10 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 | StackChan (M5Stack) | 📋 Planned | — |
 | Generic ESP32 "Solaria Firmware" | 💡 Proposed | — |
 | Raspberry Pi | 💡 Proposed | — |
-| CyberBrick | 💡 Proposed | — |
+| CyberBrick | 📋 Planned | — |
 | Makeblock mBot2 (CyberPi) | 💡 Proposed | — |
 | LEGO Powered Up (LWP3 family) | 💡 Proposed | — |
-| UBTECH uGot | 📋 Planned | — |
+| UBTECH uGot | 💡 Proposed | — |
 | Sony toio | 💡 Proposed | — |
 
 > **What's next?** The community decides. [Vote here →](#vote-for-the-next-integration)
