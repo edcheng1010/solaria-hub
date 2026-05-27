@@ -1,12 +1,4 @@
----
-# Solaria Standard Protocol (SSP) — v0.6
-  
-**Author:** Edward Cheng  
-**License:** Apache 2.0  
-**Status:** Draft  
-**Date:** 2026-05-24
 
----
 
 ## 1. Overview
 
