@@ -1,5 +1,6 @@
----
+
 # Solaria Standard Protocol (SSP) — v0.8
+---
 
 **Author:** Edward Cheng  
 **License:** Apache 2.0  
