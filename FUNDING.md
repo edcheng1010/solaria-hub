@@ -60,21 +60,21 @@ You're sponsoring SSP firmware for a device. Once complete, every existing clien
 
 | Complexity | Example | Hardware Cost | Dev Time | AI Tooling | Total Estimate |
 |-----------|---------|:---:|:---:|:---:|:---:|
-| Low | BBC micro:bit™ (simple BLE, well-documented) | ~$50–100 | ~100–150 hrs | ~$300–500 | **$1,000–$1,500** |
-| Medium | CyberBrick / mBot2 (ESP32, open library) | ~$100–200 | ~100–200 hrs | ~$400–700 | **$1,000–$2,000** |
-| High | StackChan / Raspberry Pi (complex peripherals) | ~$150–400 | ~150–250 hrs | ~$500–1,000 | **$1,500–$2,500** |
+| Low | BBC micro:bit™ (simple BLE, well-documented) | ~$50–100 | ~120–180 hrs | ~$400–700 | **$1,500–$2,000** |
+| Medium | CyberBrick / mBot2 (ESP32, open library) | ~$100–200 | ~120–250 hrs | ~$500–900 | **$1,500–$2,500** |
+| High | StackChan / Raspberry Pi (complex peripherals) | ~$150–400 | ~180–300 hrs | ~$700–1,200 | **$2,000–$3,500** |
 
 ### TYPE 2: Protocol Library (closed-firmware hardware)
 
-You're sponsoring reverse-engineering of a proprietary protocol. The library is built once, but each client needs a wrapper (~$500–$1,200 per client).
+You're sponsoring reverse-engineering of a proprietary protocol. The library is built once, but each client needs a wrapper (~$700–$1,600 per client).
 
 | Complexity | Example | Hardware Cost | Dev Time | AI Tooling | Total Estimate (lib only) |
 |-----------|---------|:---:|:---:|:---:|:---:|
-| Medium | LEGO Powered Up (documented LWP3 protocol) | ~$200–400 | ~150–250 hrs | ~$500–1,000 | **$2,000–$3,000** |
-| Medium | Sony® toio™ (published BLE spec) | ~$100–200 | ~100–200 hrs | ~$400–800 | **$1,500–$2,500** |
-| High | UBTECH® uGot (undocumented, reverse-eng. needed) | ~$300–600 | ~200–300 hrs | ~$800–1,200 | **$2,500–$4,000** |
+| Medium | LEGO Powered Up (documented LWP3 protocol) | ~$200–400 | ~200–300 hrs | ~$700–1,200 | **$2,500–$4,000** |
+| Medium | Sony® toio™ (published BLE spec) | ~$100–200 | ~150–250 hrs | ~$500–1,000 | **$2,000–$3,500** |
+| High | UBTECH® uGot (undocumented, reverse-eng. needed) | ~$300–600 | ~250–350 hrs | ~$1,000–1,500 | **$3,500–$5,500** |
 
-**Plus per-client wrappers:** $500–$1,200 each (App Inventor, Python, Web, MicroBlocks, Scratch™, MakeCode®)
+**Plus per-client wrappers:** $700–$1,600 each (App Inventor, Python, Web, MicroBlocks, Scratch™, MakeCode®)
 
 ### Universal Client
 
@@ -82,13 +82,13 @@ You're sponsoring a new programming environment. Once built, all TYPE 1 hardware
 
 | Client | Dev Time | AI Tooling | Total Estimate |
 |--------|:---:|:---:|:---:|
-| Python SDK | ~100–150 hrs | ~$400–700 | **$1,200–$2,000** |
-| Web (JavaScript) | ~100–150 hrs | ~$400–700 | **$1,200–$2,000** |
-| MicroBlocks | ~80–120 hrs | ~$300–500 | **$1,000–$1,500** |
-| Scratch™ | ~120–180 hrs | ~$500–800 | **$1,500–$2,000** |
-| MakeCode® | ~100–150 hrs | ~$400–700 | **$1,200–$1,800** |
+| Python SDK | ~140–200 hrs | ~$600–1,000 | **$1,800–$3,000** |
+| Web (JavaScript) | ~140–200 hrs | ~$600–1,000 | **$1,800–$3,000** |
+| MicroBlocks | ~120–170 hrs | ~$500–800 | **$1,500–$2,200** |
+| Scratch™ | ~150–220 hrs | ~$700–1,100 | **$2,000–$3,000** |
+| MakeCode® | ~130–180 hrs | ~$600–900 | **$1,800–$2,500** |
 
-*Based on actual costs from the SPIKE Prime bridge (Phase 1): $500+ in AI tooling, $400+ in hardware, 100+ hours of development — and that was a single-device MVP with one client.*
+*Based on actual costs from the SPIKE™ Prime bridge (Phases 1–3): $1,200+ in AI tooling, $400+ in hardware, 200+ hours of development = $1,600+ total — and that was a single TYPE 2 device with one client. Future integrations will benefit from reusable SSP patterns but should still be budgeted at 1.3–1.6× the original estimates to reflect real-world complexity.*
 
 ---
 
