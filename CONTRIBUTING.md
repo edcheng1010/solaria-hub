@@ -21,11 +21,11 @@ Have a robotics platform you'd like to see supported?
 
 ### 2. Build a Hardware Bridge (TYPE 1 — Open Firmware)
 
-If the hardware allows you to **flash custom firmware** (e.g., ESP32, micro:bit, Raspberry Pi, CyberBrick, mBot2/CyberPi, StackChan):
+If the hardware allows you to **flash custom firmware** (e.g., ESP32, micro:bit™, Raspberry Pi, CyberBrick, mBot2/CyberPi, StackChan):
 
-1. Read the [SSP v0.6 specification](spec/SSP-v0.6.md).
+1. Read the [SSP v0.8 specification](spec/SSP-v0.6.md).
 2. Read the [Architecture guide](ARCHITECTURE.md) — specifically the TYPE 1 section.
-3. Fork and create a new repo: `solaria-fw-<hardware>`.
+3. Fork and create a new repo: `solaria-fw-<hardware>` (Note: These are PLANNED/FUTURE repos, not yet existing).
 4. Implement SSP firmware that:
    - Advertises SSP capability over BLE/WiFi
    - Publishes a capability declaration (ports, features, constraints)
@@ -38,11 +38,11 @@ If the hardware allows you to **flash custom firmware** (e.g., ESP32, micro:bit,
 
 ### 3. Build a Protocol Library (TYPE 2 — Closed Firmware)
 
-If the hardware has **proprietary firmware you cannot replace** (e.g., LEGO SPIKE Prime, LEGO Powered Up, Sony toio, UBTECH uGot):
+If the hardware has **proprietary firmware you cannot replace** (e.g., LEGO® SPIKE™ Prime, LEGO Powered Up, Sony® toio™, UBTECH® uGot):
 
-1. Read the [SSP v0.6 specification](spec/SSP-v0.6.md).
+1. Read the [SSP v0.8 specification](spec/SSP-v0.6.md).
 2. Read the [Architecture guide](ARCHITECTURE.md) — specifically the TYPE 2 section.
-3. Fork and create a new repo: `solaria-lib-<hardware>`.
+3. Fork and create a new repo: `solaria-lib-<hardware>` (Note: These are PLANNED/FUTURE repos, not yet existing).
 4. Implement a **protocol translation library** that:
    - Converts SSP commands → hardware's proprietary BLE/WiFi protocol
    - Converts hardware's sensor data → SSP sensor events
@@ -58,7 +58,7 @@ If the hardware has **proprietary firmware you cannot replace** (e.g., LEGO SPIK
 If a protocol library already exists for a TYPE 2 hardware platform:
 
 1. Read the protocol library's API documentation.
-2. Create a wrapper that integrates the library into a specific client (e.g., an .aix extension for App Inventor, a MakeCode extension, a Scratch plugin).
+2. Create a wrapper that integrates the library into a specific client (e.g., an .aix extension for App Inventor, a MakeCode® extension, a Scratch™ plugin).
 3. The wrapper should present the same SSP-style interface that the universal client uses for TYPE 1 hardware.
 4. Test against the actual hardware.
 5. Open a PR.
@@ -67,9 +67,9 @@ If a protocol library already exists for a TYPE 2 hardware platform:
 
 You want Solaria to work in a new programming environment:
 
-1. Read the [SSP v0.6 specification](spec/SSP-v0.6.md).
+1. Read the [SSP v0.8 specification](spec/SSP-v0.6.md).
 2. Read the [Architecture guide](ARCHITECTURE.md) — specifically the client section.
-3. Fork and create a new repo: `solaria-client-<platform>`.
+3. Fork and create a new repo: `solaria-client-<platform>` (Note: These are PLANNED/FUTURE repos, not yet existing).
 4. Implement:
    - SSP device discovery (BLE scan for SSP advertisements)
    - Capability parsing (read the device's port/feature/constraint declarations)
@@ -102,7 +102,7 @@ You want Solaria to work in a new programming environment:
 | **Repo naming** | `solaria-fw-<hardware>` | `solaria-lib-<hardware>` |
 | **What you build** | SSP firmware | Protocol translation library |
 | **Client effort** | Zero (universal client works) | Thin wrapper per client |
-| **Examples** | ESP32, micro:bit, StackChan, RPi, CyberBrick, mBot2 | LEGO SPIKE, Powered Up, Sony toio, UBTECH uGot |
+| **Examples** | ESP32, micro:bit™, StackChan, RPi, CyberBrick, mBot2 | LEGO SPIKE, Powered Up, Sony® toio™, UBTECH® uGot |
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow diagrams.
 

@@ -28,13 +28,13 @@
 **Status:** Shipped  
 **Delivered:** 2025–2026
 
-The core architecture is proven end-to-end. A student can open MIT App Inventor on their phone, connect to a LEGO SPIKE Prime hub over BLE, and control motors and read sensors using the Solaria Standard Protocol.
+The core architecture is proven end-to-end. A student can open MIT App Inventor on their phone, connect to a LEGO® SPIKE™ Prime hub over BLE, and control motors and read sensors using the Solaria Standard Protocol.
 
 | Deliverable | Status | Repository |
 |-------------|--------|------------|
-| SSP v0.1 specification | ✅ Complete | `solaria-hub/spec/` |
-| LEGO SPIKE Prime BLE bridge | ✅ Released | `solaria-bridge-spike-prime` |
-| App Inventor client extension (.aix) | ✅ Released | `solaria-bridge-spike-prime` |
+| SSP v0.8 specification | ✅ Complete | `solaria-hub/spec/` |
+| LEGO® SPIKE™ Prime BLE bridge | ✅ Released | `appinventor-lego-spike-prime-extension` |
+| App Inventor client extension (.aix) | ✅ Released | `appinventor-lego-spike-prime-extension` |
 | End-to-end demo | ✅ Working | — |
 
 **Actual Phase 1 costs (reference baseline):**
@@ -106,7 +106,7 @@ These devices can be flashed with custom SSP firmware. Once firmware is built, A
 | # | Platform | MCU / Base | Transport | Key Advantage | Est. FW Cost |
 |---|----------|-----------|-----------|---------------|-------------|
 | 1 | **Generic ESP32 "Solaria Firmware"** | ESP32 / ESP32-S3 | BLE + WiFi | Universal — works with any cheap robot | $1,500–$2,500 |
-| 2 | **BBC micro:bit / MicroBlocks** | nRF52833 | BLE | Millions in schools, open source | $1,000–$1,500 |
+| 2 | **BBC micro:bit™ / MicroBlocks** | nRF52833 | BLE | Millions in schools, open source | $1,000–$1,500 |
 | 3 | **StackChan (M5Stack)** | ESP32 | BLE + WiFi | Desktop companion, active community | $1,500–$2,000 |
 | 4 | **Raspberry Pi** | ARM Linux | WiFi + BLE + Serial | Complex robots, Linux ecosystem | $1,500–$2,500 |
 | 5 | **CyberBrick** | MicroPython (ESP32) | BLE + WiFi | Modular building blocks, open-source core | $1,000–$2,000 |
@@ -120,10 +120,10 @@ These devices have proprietary firmware. A protocol library must be reverse-engi
 
 | # | Platform | Protocol | Transport | Documentation Status | Est. Lib Cost |
 |---|----------|----------|-----------|---------------------|--------------|
-| 5 | **LEGO SPIKE Prime** | Proprietary BLE | BLE | Partially documented | ✅ Done ($1,000+) |
+| 5 | **LEGO® SPIKE™ Prime** | Proprietary BLE | BLE | Partially documented | ✅ Done ($1,000+) |
 | 6 | **LEGO Powered Up (LWP3)** | LEGO Wireless Protocol 3 | BLE | Well-documented | $2,000–$3,000 |
-| 7 | **Sony toio** | Published BLE spec | BLE | Fully documented | $1,500–$2,500 |
-| 8 | **UBTECH uGot** | Proprietary | BLE / WiFi | Undocumented (reverse-eng. needed) | $2,500–$4,000 |
+| 7 | **Sony® toio™** | Published BLE spec | BLE | Fully documented | $1,500–$2,500 |
+| 8 | **UBTECH® uGot** | Proprietary | BLE / WiFi | Undocumented (reverse-eng. needed) | $2,500–$4,000 |
 
 **Total TYPE 2 protocol library investment (remaining 3):** $6,000–$9,500
 
@@ -139,8 +139,8 @@ SSP is designed to be client-agnostic. Each Universal Client is a one-time inves
 | 2 | **Python** | `pip` package | Python | 📋 Planned | $1,200–$2,000 | High |
 | 3 | **Web (JavaScript)** | npm / CDN library | JavaScript | 📋 Planned | $1,200–$2,000 | High |
 | 4 | **MicroBlocks** | Built-in library | MicroBlocks | 📋 Planned | $1,000–$1,500 | Medium |
-| 5 | **Scratch** | Scratch extension | JavaScript | 💡 Proposed | $1,500–$2,000 | Medium |
-| 6 | **MakeCode** | MakeCode package | TypeScript | 💡 Proposed | $1,200–$1,800 | Lower |
+| 5 | **Scratch™** | Scratch™ extension | JavaScript | 💡 Proposed | $1,500–$2,000 | Medium |
+| 6 | **MakeCode®** | MakeCode® package | TypeScript | 💡 Proposed | $1,200–$1,800 | Lower |
 | 7 | **Arduino IDE** | Arduino library | C/C++ | 💡 Proposed | $1,000–$1,500 | Proposed |
 
 **Total Universal Client investment (remaining 5):** $6,100–$9,300
@@ -149,9 +149,9 @@ SSP is designed to be client-agnostic. Each Universal Client is a one-time inves
 
 - **Python** is highest priority because it serves advanced students, university courses, and the maker community. It also enables scripting and automation workflows.
 - **Web (JavaScript)** is equally high priority because Web Bluetooth enables zero-install experiences — students just open a URL and connect to their robot.
-- **MicroBlocks** is a natural fit because it already runs on micro:bit and ESP32, and the MicroBlocks team is aligned with open education.
-- **Scratch** has the largest K-8 user base globally but requires more complex integration (Scratch Link or custom extension server).
-- **MakeCode** is lower priority because its user base overlaps heavily with micro:bit (which already gets MicroBlocks support).
+- **MicroBlocks** is a natural fit because it already runs on micro:bit™ and ESP32, and the MicroBlocks team is aligned with open education.
+- **Scratch™** has the largest K-8 user base globally but requires more complex integration (Scratch™ Link or custom extension server).
+- **MakeCode®** is lower priority because its user base overlaps heavily with micro:bit™ (which already gets MicroBlocks support).
 
 ---
 
@@ -207,13 +207,13 @@ This is the complete integration matrix showing every possible hardware × clien
 | Hardware | Type | Effort | Hours | Cost | Dependencies | Status |
 |----------|------|--------|-------|------|--------------|--------|
 | Generic ESP32 | 1 | Free (after FW) | 0 | $0 | `solaria-fw-esp32` | Blocked on FW |
-| BBC micro:bit | 1 | Free (after FW) | 0 | $0 | `solaria-fw-microbit` | Blocked on FW |
+| BBC micro:bit™ | 1 | Free (after FW) | 0 | $0 | `solaria-fw-microbit` | Blocked on FW |
 | StackChan | 1 | Free (after FW) | 0 | $0 | `solaria-fw-stackchan` | Blocked on FW |
 | Raspberry Pi | 1 | Free (after FW) | 0 | $0 | `solaria-fw-rpi` | Blocked on FW |
-| LEGO SPIKE Prime | 2 | Wrapper | — | — | — | ✅ Shipped |
+| LEGO® SPIKE™ Prime | 2 | Wrapper | — | — | — | ✅ Shipped |
 | LEGO Powered Up | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-powered-up` | Planned |
-| Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio` | Planned |
-| UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot` | Planned |
+| Sony® toio™ | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio` | Planned |
+| UBTECH® uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot` | Planned |
 | CyberBrick | 1 | Free (after FW) | 0 | $0 | `solaria-fw-cyberbrick` | Blocked on FW |
 | mBot2 (CyberPi) | 1 | Free (after FW) | 0 | $0 | `solaria-fw-mbot2` | Blocked on FW |
 
@@ -222,13 +222,13 @@ This is the complete integration matrix showing every possible hardware × clien
 | Hardware | Type | Effort | Hours | Cost | Dependencies | Status |
 |----------|------|--------|-------|------|--------------|--------|
 | Generic ESP32 | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-esp32`, `solaria-client-python` | Planned |
-| BBC micro:bit | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-python` | Planned |
+| BBC micro:bit™ | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-python` | Planned |
 | StackChan | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-stackchan`, `solaria-client-python` | Planned |
 | Raspberry Pi | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-rpi`, `solaria-client-python` | Planned |
-| LEGO SPIKE Prime | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-spike-prime`, `solaria-client-python` | Planned |
+| LEGO® SPIKE™ Prime | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-spike-prime`, `solaria-client-python` | Planned |
 | LEGO Powered Up | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-powered-up`, `solaria-client-python` | Planned |
-| Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-python` | Planned |
-| UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-python` | Planned |
+| Sony® toio™ | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-python` | Planned |
+| UBTECH® uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-python` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-python` | Planned |
 | mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-python` | Planned |
 
@@ -237,13 +237,13 @@ This is the complete integration matrix showing every possible hardware × clien
 | Hardware | Type | Effort | Hours | Cost | Dependencies | Status |
 |----------|------|--------|-------|------|--------------|--------|
 | Generic ESP32 | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-esp32`, `solaria-client-web` | Planned |
-| BBC micro:bit | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-web` | Planned |
+| BBC micro:bit™ | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-web` | Planned |
 | StackChan | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-stackchan`, `solaria-client-web` | Planned |
 | Raspberry Pi | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-rpi`, `solaria-client-web` | Planned |
-| LEGO SPIKE Prime | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-spike-prime`, `solaria-client-web` | Planned |
+| LEGO® SPIKE™ Prime | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-spike-prime`, `solaria-client-web` | Planned |
 | LEGO Powered Up | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-powered-up`, `solaria-client-web` | Planned |
-| Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-web` | Planned |
-| UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-web` | Planned |
+| Sony® toio™ | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-web` | Planned |
+| UBTECH® uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-web` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-web` | Planned |
 | mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-web` | Planned |
 
@@ -252,43 +252,43 @@ This is the complete integration matrix showing every possible hardware × clien
 | Hardware | Type | Effort | Hours | Cost | Dependencies | Status |
 |----------|------|--------|-------|------|--------------|--------|
 | Generic ESP32 | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-esp32`, `solaria-client-microblocks` | Planned |
-| BBC micro:bit | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-microblocks` | Planned |
+| BBC micro:bit™ | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-microblocks` | Planned |
 | StackChan | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-stackchan`, `solaria-client-microblocks` | Planned |
 | Raspberry Pi | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-rpi`, `solaria-client-microblocks` | Planned |
-| LEGO SPIKE Prime | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-spike-prime`, `solaria-client-microblocks` | Planned |
+| LEGO® SPIKE™ Prime | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-spike-prime`, `solaria-client-microblocks` | Planned |
 | LEGO Powered Up | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-powered-up`, `solaria-client-microblocks` | Planned |
-| Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-microblocks` | Planned |
-| UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-microblocks` | Planned |
+| Sony® toio™ | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-microblocks` | Planned |
+| UBTECH® uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-microblocks` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-microblocks` | Planned |
 | mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-microblocks` | Planned |
 
-#### Scratch (Universal Client: $1,500–$2,000)
+#### Scratch™ (Universal Client: $1,500–$2,000)
 
 | Hardware | Type | Effort | Hours | Cost | Dependencies | Status |
 |----------|------|--------|-------|------|--------------|--------|
 | Generic ESP32 | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-esp32`, `solaria-client-scratch` | Planned |
-| BBC micro:bit | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-scratch` | Planned |
+| BBC micro:bit™ | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-scratch` | Planned |
 | StackChan | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-stackchan`, `solaria-client-scratch` | Planned |
 | Raspberry Pi | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-rpi`, `solaria-client-scratch` | Planned |
-| LEGO SPIKE Prime | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-spike-prime`, `solaria-client-scratch` | Planned |
+| LEGO® SPIKE™ Prime | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-spike-prime`, `solaria-client-scratch` | Planned |
 | LEGO Powered Up | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-powered-up`, `solaria-client-scratch` | Planned |
-| Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-scratch` | Planned |
-| UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-scratch` | Planned |
+| Sony® toio™ | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-scratch` | Planned |
+| UBTECH® uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-scratch` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-scratch` | Planned |
 | mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-scratch` | Planned |
 
-#### MakeCode (Universal Client: $1,200–$1,800)
+#### MakeCode® (Universal Client: $1,200–$1,800)
 
 | Hardware | Type | Effort | Hours | Cost | Dependencies | Status |
 |----------|------|--------|-------|------|--------------|--------|
 | Generic ESP32 | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-esp32`, `solaria-client-makecode` | Planned |
-| BBC micro:bit | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-makecode` | Planned |
+| BBC micro:bit™ | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-microbit`, `solaria-client-makecode` | Planned |
 | StackChan | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-stackchan`, `solaria-client-makecode` | Planned |
 | Raspberry Pi | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-rpi`, `solaria-client-makecode` | Planned |
-| LEGO SPIKE Prime | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-spike-prime`, `solaria-client-makecode` | Planned |
+| LEGO® SPIKE™ Prime | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-spike-prime`, `solaria-client-makecode` | Planned |
 | LEGO Powered Up | 2 | Wrapper | 40–80 | $500–$1,200 | `solaria-lib-powered-up`, `solaria-client-makecode` | Planned |
-| Sony toio | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-makecode` | Planned |
-| UBTECH uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-makecode` | Planned |
+| Sony® toio™ | 2 | Wrapper | 40–60 | $500–$900 | `solaria-lib-toio`, `solaria-client-makecode` | Planned |
+| UBTECH® uGot | 2 | Wrapper | 50–80 | $600–$1,200 | `solaria-lib-ugot`, `solaria-client-makecode` | Planned |
 | CyberBrick | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-cyberbrick`, `solaria-client-makecode` | Planned |
 | mBot2 (CyberPi) | 1 | Free (after FW + UC) | 0 | $0 | `solaria-fw-mbot2`, `solaria-client-makecode` | Planned |
 
@@ -296,16 +296,16 @@ This is the complete integration matrix showing every possible hardware × clien
 
 This table shows the effort category for each combination at a glance:
 
-| Hardware \ Client | App Inventor | Python | Web (JS) | MicroBlocks | Scratch | MakeCode |
+| Hardware \ Client | App Inventor | Python | Web (JS) | MicroBlocks | Scratch™ | MakeCode® |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|
 | **Generic ESP32** (T1) | Free | Free | Free | Free | Free | Free |
-| **BBC micro:bit** (T1) | Free | Free | Free | Free | Free | Free |
+| **BBC micro:bit™** (T1) | Free | Free | Free | Free | Free | Free |
 | **StackChan** (T1) | Free | Free | Free | Free | Free | Free |
 | **Raspberry Pi** (T1) | Free | Free | Free | Free | Free | Free |
 | **SPIKE Prime** (T2) | ✅ Done | Wrap | Wrap | Wrap | Wrap | Wrap |
 | **Powered Up** (T2) | Wrap | Wrap | Wrap | Wrap | Wrap | Wrap |
-| **Sony toio** (T2) | Wrap | Wrap | Wrap | Wrap | Wrap | Wrap |
-| **UBTECH uGot** (T2) | Wrap | Wrap | Wrap | Wrap | Wrap | Wrap |
+| **Sony® toio™** (T2) | Wrap | Wrap | Wrap | Wrap | Wrap | Wrap |
+| **UBTECH® uGot** (T2) | Wrap | Wrap | Wrap | Wrap | Wrap | Wrap |
 | **CyberBrick** (T1) | Free | Free | Free | Free | Free | Free |
 | **mBot2 (CyberPi)** (T1) | Free | Free | Free | Free | Free | Free |
 
@@ -393,8 +393,8 @@ These items have the highest ROI because they are prerequisites for many downstr
 
 | Category | Count | Hours (range) | Cost (range) | Notes |
 |----------|-------|---------------|-------------|-------|
-| **Universal Clients** (remaining) | 5 | 400–750 hrs | $6,100–$9,300 | Python, Web, MicroBlocks, Scratch, MakeCode |
-| **Type 1 Firmware** | 6 | 600–1,200 hrs | $7,500–$12,500 | ESP32, micro:bit, StackChan, RPi, CyberBrick, mBot2 |
+| **Universal Clients** (remaining) | 5 | 400–750 hrs | $6,100–$9,300 | Python, Web, MicroBlocks, Scratch™, MakeCode® |
+| **Type 1 Firmware** | 6 | 600–1,200 hrs | $7,500–$12,500 | ESP32, micro:bit™, StackChan, RPi, CyberBrick, mBot2 |
 | **Type 2 Protocol Libraries** (remaining) | 3 | 450–900 hrs | $6,000–$9,500 | Powered Up, toio, uGot |
 | **Type 2 Client Wrappers** | 23 | 920–1,840 hrs | $11,500–$27,600 | 4 hardware × 6 clients minus 1 shipped |
 | **Annual Maintenance** (all repos) | ~20 repos | 400–800 hrs/yr | $4,000–$10,000/yr | Ongoing |
@@ -446,11 +446,11 @@ Based on dependency analysis, leverage calculations, and community impact:
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
-| 4 | **BBC micro:bit Firmware** | Type 1 FW | $1,200 | Millions in schools, easy win |
-| 5 | **MicroBlocks Universal Client** | Client | $1,200 | Natural partner for micro:bit, on-device |
+| 4 | **BBC micro:bit™ Firmware** | Type 1 FW | $1,200 | Millions in schools, easy win |
+| 5 | **MicroBlocks Universal Client** | Client | $1,200 | Natural partner for micro:bit™, on-device |
 | 6 | **LEGO Powered Up Protocol Lib** | Type 2 Lib | $2,500 | Huge user base (Boost, Robot Inventor, all PU hubs) |
 | 7 | **StackChan Firmware** | Type 1 FW | $1,800 | Active community, compelling demo |
-| 8 | **Scratch Universal Client** | Client | $1,800 | Largest K-8 programming platform |
+| 8 | **Scratch™ Universal Client** | Client | $1,800 | Largest K-8 programming platform |
 
 **Phase 2b total: ~$8,500** → Unlocks: 12+ new working combinations
 
@@ -459,8 +459,8 @@ Based on dependency analysis, leverage calculations, and community impact:
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
 | 9 | **Raspberry Pi Firmware** | Type 1 FW | $2,000 | Complex robots, Linux ecosystem |
-| 10 | **Sony toio Protocol Lib** | Type 2 Lib | $2,000 | Well-documented, K-6 market |
-| 11 | **MakeCode Universal Client** | Client | $1,500 | Microsoft ecosystem, micro:bit native |
+| 10 | **Sony® toio™ Protocol Lib** | Type 2 Lib | $2,000 | Well-documented, K-6 market |
+| 11 | **MakeCode® Universal Client** | Client | $1,500 | Microsoft ecosystem, micro:bit™ native |
 | 12 | **Powered Up wrappers** (×6) | Wrappers | $4,800 | Wrappers for all clients |
 | 13 | **toio wrappers** (×6) | Wrappers | $4,200 | Wrappers for all clients |
 
@@ -470,7 +470,7 @@ Based on dependency analysis, leverage calculations, and community impact:
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
-| 14 | **UBTECH uGot Protocol Lib** | Type 2 Lib | $3,500 | Asian education market |
+| 14 | **UBTECH® uGot Protocol Lib** | Type 2 Lib | $3,500 | Asian education market |
 | 15 | **CyberBrick Protocol Lib** | Type 2 Lib | $3,000 | Modular electronics |
 | 16 | **Remaining wrappers** (×12) | Wrappers | $8,400 | Complete the matrix |
 | 17 | **SPIKE Prime wrappers** (×5) | Wrappers | $4,500 | Expand SPIKE to all clients |

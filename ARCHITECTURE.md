@@ -40,14 +40,14 @@ The Solaria ecosystem is built around a four-layer model with a clear separation
 │  GUI Electronics Configuration: visual drag-and-drop hardware setup.       │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 2: Clients                                                           │
-│  App Inventor │ MicroBlocks │ Python │ Scratch │ Web (JS) │ MakeCode        │
+│  App Inventor │ MicroBlocks │ Python │ Scratch™ │ Web (JS) │ MakeCode®        │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 1: SSP + Bridge Layer                                                │
 │  ┌─────────────────────────────┐  ┌──────────────────────────────────────┐  │
 │  │  TYPE 1: Native SSP FW      │  │  TYPE 2: Protocol Bridge Libraries   │  │
 │  │  (Runs on open hardware)    │  │  (Translates SSP ↔ proprietary)      │  │
 │  │  • ESP32 Solaria Firmware   │  │  • SPIKE Prime protocol lib          │  │
-│  │  • micro:bit SSP firmware   │  │  • Powered Up (LWP3) protocol lib    │  │
+│  │  • micro:bit™ SSP firmware   │  │  • Powered Up (LWP3) protocol lib    │  │
 │  │  • StackChan SSP firmware   │  │  • toio protocol lib                 │  │
 │  │  • Raspberry Pi SSP service │  │  • uGot protocol lib                 │  │
 │  │  • CyberBrick SSP firmware  │  │                                      │  │
@@ -74,7 +74,7 @@ TYPE 1 devices are hardware platforms where you **CAN flash custom firmware**. T
 | Platform | MCU / Base | Transport | Notes |
 |----------|-----------|-----------|-------|
 | **Generic ESP32 "Solaria Firmware"** | ESP32 / ESP32-S3 | BLE + WiFi | Universal firmware for any cheap robot chassis |
-| **BBC micro:bit / MicroBlocks** | nRF52833 | BLE | Open source, millions deployed in schools globally |
+| **BBC micro:bit™ / MicroBlocks** | nRF52833 | BLE | Open source, millions deployed in schools globally |
 | **StackChan (M5Stack)** | ESP32 | BLE + WiFi | Desktop companion robot, open firmware |
 | **Raspberry Pi** | ARM Linux | WiFi + BLE + Serial | Runs SSP as a systemd service |
 | **CyberBrick** | MicroPython (ESP32) | BLE + WiFi | Open-source controller core, modular building blocks |
@@ -110,10 +110,10 @@ TYPE 2 devices have **CLOSED firmware that you CANNOT modify**. They use proprie
 
 | Platform | Protocol Type | Transport | Notes |
 |----------|--------------|-----------|-------|
-| **LEGO SPIKE Prime** | Proprietary BLE protocol | BLE | Closed firmware, partially documented |
+| **LEGO® SPIKE™ Prime** | Proprietary BLE protocol | BLE | Closed firmware, partially documented |
 | **LEGO Powered Up (LWP3)** | LEGO Wireless Protocol 3 | BLE | Documented BLE protocol, multiple hub types |
-| **Sony toio** | Published BLE specification | BLE | Precision cubes, well-documented spec |
-| **UBTECH uGot** | Proprietary protocol | BLE / WiFi | Modular AI robotics kit, undocumented |
+| **Sony® toio™** | Published BLE specification | BLE | Precision cubes, well-documented spec |
+| **UBTECH® uGot** | Proprietary protocol | BLE / WiFi | Modular AI robotics kit, undocumented |
 
 ### How It Works
 
@@ -137,7 +137,7 @@ For MIT App Inventor specifically, TYPE 2 hardware results in **separate `.aix` 
 - `Solaria.aix` — Universal SSP client (connects to any TYPE 1 device)
 - `SolariaSpikePrime.aix` — SPIKE Prime protocol bridge wrapper
 - `SolariaPoweredUp.aix` — Powered Up protocol bridge wrapper
-- `SolariaToio.aix` — Sony toio protocol bridge wrapper
+- `SolariaToio.aix` — Sony® toio™ protocol bridge wrapper
 - *(etc.)*
 
 The recommendation is **multiple `.aix` files** rather than one monolithic extension, for modularity and download size.
@@ -201,7 +201,7 @@ Device → client, continuous or on-change:
 {"event": "button", "port": "btn", "state": "pressed"}
 ```
 
-> Full specification: [spec/SSP-v0.6.md](spec/SSP-v0.6.md)
+> Full specification: [spec/SSP-v0.8.md](spec/SSP-v0.8.md)
 
 ---
 
@@ -236,7 +236,7 @@ Step 5: Client receives: {"event": "sensor", "port": "C", "type": "distance", "v
 │                  │   SSP      │  SSP ↔ Proprietary│   Proprietary    │                  │
 └──────────────────┘            └───────────────────┘                  └──────────────────┘
 
-Example: App Inventor + SolariaSpikePrime.aix ←→ LEGO SPIKE Prime Hub
+Example: App Inventor + SolariaSpikePrime.aix ←→ LEGO® SPIKE™ Prime Hub
 
 Step 1: Wrapper scans for SPIKE Prime hub (proprietary BLE advertising)
 Step 2: Wrapper connects using SPIKE Prime's proprietary handshake
@@ -285,9 +285,9 @@ Each client platform implements the same logical structure, adapted to the platf
 | MIT App Inventor | `.aix` Java extension | Java | Android BLE API | `Solaria.aix` | Separate `.aix` per hardware |
 | MicroBlocks | Built-in library | MicroBlocks | On-device BLE | Native blocks | Wrapper blocks per hardware |
 | Python | `pip` package | Python | `bleak` / `socket` | `solaria` package | Sub-modules per hardware |
-| Scratch | Scratch extension | JavaScript | Web Bluetooth | Solaria extension | Sub-extensions per hardware |
+| Scratch™ | Scratch™ extension | JavaScript | Web Bluetooth | Solaria extension | Sub-extensions per hardware |
 | Web (JavaScript) | JS library / npm | JavaScript | Web Bluetooth API | `solaria.js` | Modules per hardware |
-| MakeCode | MakeCode extension | TypeScript | micro:bit radio/BLE | Solaria package | Packages per hardware |
+| MakeCode® | MakeCode® extension | TypeScript | micro:bit™ radio/BLE | Solaria package | Packages per hardware |
 | Arduino IDE | Arduino library | C/C++ | Serial / BLE | `SolariaSSP` library | Modules per hardware |
 
 ---
@@ -313,21 +313,21 @@ The Solaria ecosystem is modular. Each component lives in its own repository wit
 | Repository | Status | Description |
 |------------|--------|-------------|
 | `solaria-hub` | Active | Central coordination, SSP spec, docs |
-| `solaria-bridge-spike-prime` | Released (Phase 1) | SPIKE Prime integration (combined lib + App Inventor wrapper) |
+| `appinventor-lego-spike-prime-extension` | Released (Phase 1) | SPIKE Prime integration (combined lib + App Inventor wrapper) |
 
 ### Planned Repositories (Phase 2+)
 
 | Repository | Priority | Unlocks |
 |------------|----------|---------|
 | `solaria-fw-esp32` | **Highest** | All 6 clients × Generic ESP32 (free) |
-| `solaria-fw-microbit` | High | All 6 clients × micro:bit (free) |
+| `solaria-fw-microbit` | High | All 6 clients × micro:bit™ (free) |
 | `solaria-fw-stackchan` | Medium | All 6 clients × StackChan (free) |
 | `solaria-fw-rpi` | Medium | All 6 clients × Raspberry Pi (free) |
 | `solaria-client-python` | High | Python access to all Type 1 hardware |
 | `solaria-client-web` | High | Browser access to all Type 1 hardware |
-| `solaria-client-scratch` | Medium | Scratch access to all Type 1 hardware |
+| `solaria-client-scratch` | Medium | Scratch™ access to all Type 1 hardware |
 | `solaria-client-microblocks` | Medium | MicroBlocks access to all Type 1 hardware |
-| `solaria-client-makecode` | Lower | MakeCode access to all Type 1 hardware |
+| `solaria-client-makecode` | Lower | MakeCode® access to all Type 1 hardware |
 | `solaria-lib-powered-up` | Medium | Core LWP3 protocol translation |
 | `solaria-lib-toio` | Medium | Core toio BLE protocol translation |
 | `solaria-lib-ugot` | Lower | Core uGot protocol translation |
@@ -342,7 +342,7 @@ The Generic ESP32 "Solaria Firmware" (`solaria-fw-esp32`) is the single highest-
 
 **The Problem:** Most affordable robot kits ($15–$50 from AliExpress, Amazon, etc.) ship with proprietary apps or require Arduino IDE knowledge. Students and educators cannot easily connect them to visual programming environments.
 
-**The Solution:** Flash the Solaria Firmware onto the ESP32 inside any cheap robot. It instantly becomes a native SSP device, connectable from App Inventor, Python, Scratch, Web Bluetooth, or any other SSP client — with zero additional development.
+**The Solution:** Flash the Solaria Firmware onto the ESP32 inside any cheap robot. It instantly becomes a native SSP device, connectable from App Inventor, Python, Scratch™, Web Bluetooth, or any other SSP client — with zero additional development.
 
 **The Math:**
 - Cost to build: ~$2,000 (one-time)

@@ -8,9 +8,9 @@ Solaria is an independent open-source project created and maintained by Edward C
 
 Solaria's hybrid architecture means different types of work have different costs:
 
-- **TYPE 1 firmware** (open-firmware hardware like ESP32, micro:bit, CyberBrick, mBot2, StackChan, Raspberry Pi) — requires writing SSP firmware that runs directly on the device. Once built, ALL client platforms get support for free.
-- **TYPE 2 protocol libraries** (closed-firmware hardware like LEGO SPIKE Prime, Powered Up, Sony toio, UBTECH uGot) — requires reverse-engineering the proprietary protocol and building a translation library. Each client platform then needs a thin wrapper to integrate it.
-- **Universal clients** (App Inventor, Python, Web, MicroBlocks, Scratch, MakeCode) — requires building the SSP client logic for each programming environment. Once built, all TYPE 1 hardware is automatically supported.
+- **TYPE 1 firmware** (open-firmware hardware like ESP32, micro:bit™, CyberBrick, mBot2, StackChan, Raspberry Pi) — requires writing SSP firmware that runs directly on the device. Once built, ALL client platforms get support for free.
+- **TYPE 2 protocol libraries** (closed-firmware hardware like LEGO® SPIKE™ Prime, Powered Up, Sony® toio™, UBTECH® uGot) — requires reverse-engineering the proprietary protocol and building a translation library. Each client platform then needs a thin wrapper to integrate it.
+- **Universal clients** (App Inventor, Python, Web, MicroBlocks, Scratch™, MakeCode®) — requires building the SSP client logic for each programming environment. Once built, all TYPE 1 hardware is automatically supported.
 
 **Common costs across all work:**
 
@@ -60,7 +60,7 @@ You're sponsoring SSP firmware for a device. Once complete, every existing clien
 
 | Complexity | Example | Hardware Cost | Dev Time | AI Tooling | Total Estimate |
 |-----------|---------|:---:|:---:|:---:|:---:|
-| Low | BBC micro:bit (simple BLE, well-documented) | ~$50–100 | ~100–150 hrs | ~$300–500 | **$1,000–$1,500** |
+| Low | BBC micro:bit™ (simple BLE, well-documented) | ~$50–100 | ~100–150 hrs | ~$300–500 | **$1,000–$1,500** |
 | Medium | CyberBrick / mBot2 (ESP32, open library) | ~$100–200 | ~100–200 hrs | ~$400–700 | **$1,000–$2,000** |
 | High | StackChan / Raspberry Pi (complex peripherals) | ~$150–400 | ~150–250 hrs | ~$500–1,000 | **$1,500–$2,500** |
 
@@ -71,10 +71,10 @@ You're sponsoring reverse-engineering of a proprietary protocol. The library is 
 | Complexity | Example | Hardware Cost | Dev Time | AI Tooling | Total Estimate (lib only) |
 |-----------|---------|:---:|:---:|:---:|:---:|
 | Medium | LEGO Powered Up (documented LWP3 protocol) | ~$200–400 | ~150–250 hrs | ~$500–1,000 | **$2,000–$3,000** |
-| Medium | Sony toio (published BLE spec) | ~$100–200 | ~100–200 hrs | ~$400–800 | **$1,500–$2,500** |
-| High | UBTECH uGot (undocumented, reverse-eng. needed) | ~$300–600 | ~200–300 hrs | ~$800–1,200 | **$2,500–$4,000** |
+| Medium | Sony® toio™ (published BLE spec) | ~$100–200 | ~100–200 hrs | ~$400–800 | **$1,500–$2,500** |
+| High | UBTECH® uGot (undocumented, reverse-eng. needed) | ~$300–600 | ~200–300 hrs | ~$800–1,200 | **$2,500–$4,000** |
 
-**Plus per-client wrappers:** $500–$1,200 each (App Inventor, Python, Web, MicroBlocks, Scratch, MakeCode)
+**Plus per-client wrappers:** $500–$1,200 each (App Inventor, Python, Web, MicroBlocks, Scratch™, MakeCode®)
 
 ### Universal Client
 
@@ -85,8 +85,8 @@ You're sponsoring a new programming environment. Once built, all TYPE 1 hardware
 | Python SDK | ~100–150 hrs | ~$400–700 | **$1,200–$2,000** |
 | Web (JavaScript) | ~100–150 hrs | ~$400–700 | **$1,200–$2,000** |
 | MicroBlocks | ~80–120 hrs | ~$300–500 | **$1,000–$1,500** |
-| Scratch | ~120–180 hrs | ~$500–800 | **$1,500–$2,000** |
-| MakeCode | ~100–150 hrs | ~$400–700 | **$1,200–$1,800** |
+| Scratch™ | ~120–180 hrs | ~$500–800 | **$1,500–$2,000** |
+| MakeCode® | ~100–150 hrs | ~$400–700 | **$1,200–$1,800** |
 
 *Based on actual costs from the SPIKE Prime bridge (Phase 1): $500+ in AI tooling, $400+ in hardware, 100+ hours of development — and that was a single-device MVP with one client.*
 

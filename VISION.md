@@ -5,7 +5,7 @@
 
 ## The Core Idea: An Agentic AI Overlay
 
-Solaria Hub is not designed to replace existing coding platforms. Instead, it is strategically positioned as an **infrastructure layer**—an intelligent overlay that sits on top of established environments like MIT App Inventor, Scratch, MakeCode, and Arduino IDE.
+Solaria Hub is not designed to replace existing coding platforms. Instead, it is strategically positioned as an **infrastructure layer**—an intelligent overlay that sits on top of established environments like MIT App Inventor, Scratch™, MakeCode®, and Arduino IDE.
 
 The goal is to augment these platforms with an agentic AI layer that deeply understands the **hardware × software matrix**. By operating as an overlay, Solaria ensures that users can remain in the coding environments they already know and love, while gaining powerful new capabilities to interact with physical hardware.
 
@@ -36,8 +36,8 @@ By building Solaria as an infrastructure layer, we adopt a philosophy of **augme
 ### Software Platforms
 Solaria is designed to integrate with the most widely used educational and maker platforms:
 - **MIT App Inventor**
-- **Scratch**
-- **MakeCode**
+- **Scratch™**
+- **MakeCode®**
 - **Arduino IDE**
 - **Python**
 - **Web (JavaScript)**
@@ -45,12 +45,12 @@ Solaria is designed to integrate with the most widely used educational and maker
 
 ### Hardware Platforms
 Solaria supports a wide range of hardware through a hybrid architecture defined in the [ARCHITECTURE.md](ARCHITECTURE.md):
-- **Type 1 (Native SSP):** Open hardware that can be flashed with Solaria firmware (e.g., ESP32, BBC micro:bit, StackChan, Raspberry Pi, CyberBrick).
-- **Type 2 (Protocol Bridges):** Closed hardware that requires a translation library (e.g., LEGO SPIKE Prime, LEGO Powered Up, Sony toio, UBTECH uGot).
+- **Type 1 (Native SSP):** Open hardware that can be flashed with Solaria firmware (e.g., ESP32, BBC micro:bit™, StackChan, Raspberry Pi, CyberBrick).
+- **Type 2 (Protocol Bridges):** Closed hardware that requires a translation library (e.g., LEGO® SPIKE™ Prime, LEGO Powered Up, Sony® toio™, UBTECH® uGot).
 
 ## Proof of Concept: Bridge Suite
 
-The first implementation of this vision is the **Bridge Suite**, which successfully connects MIT App Inventor to the LEGO SPIKE Prime hub via Bluetooth. 
+The first implementation of this vision is the **Bridge Suite**, which successfully connects MIT App Inventor to the LEGO® SPIKE™ Prime hub via Bluetooth. 
 
 This Phase 1 MVP proves the core architecture: a user can open App Inventor, connect to a closed-ecosystem robot using a Solaria wrapper, and control it using standard blocks. It serves as the foundation upon which the AI overlay will be built.
 
