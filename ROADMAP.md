@@ -138,10 +138,10 @@ SSP is designed to be client-agnostic. Each Universal Client is a one-time inves
 | # | Client Platform | Format | Language | Status | Est. Cost | Priority |
 |---|----------------|--------|----------|--------|-----------|----------|
 | 1 | **MIT App Inventor** | `.aix` extension | Java | ✅ Shipped | Done | — |
-| 2 | **Python** | `pip` package | Python | 📋 Planned | $1,800–$3,000 | High |
-| 3 | **Web (JavaScript)** | npm / CDN library | JavaScript | 📋 Planned | $1,800–$3,000 | High |
-| 4 | **MicroBlocks** | Built-in library | MicroBlocks | 📋 Planned | $1,500–$2,200 | Medium |
-| 5 | **Scratch™** | Scratch™ extension | JavaScript | 💡 Proposed | $2,000–$3,000 | Medium |
+| 2 | **Scratch™** | Scratch™ extension | JavaScript | 📋 Planned | $2,000–$3,000 | High (next) |
+| 3 | **Python** | `pip` package | Python | 📋 Planned | $1,800–$3,000 | High |
+| 4 | **Web (JavaScript)** | npm / CDN library | JavaScript | 📋 Planned | $1,800–$3,000 | High |
+| 5 | **MicroBlocks** | Built-in library | MicroBlocks | 📋 Planned | $1,500–$2,200 | Medium |
 | 6 | **MakeCode®** | MakeCode® package | TypeScript | 💡 Proposed | $1,800–$2,500 | Lower |
 | 7 | **Arduino IDE** | Arduino library | C/C++ | 💡 Proposed | $1,500–$2,200 | Proposed |
 
@@ -149,10 +149,19 @@ SSP is designed to be client-agnostic. Each Universal Client is a one-time inves
 
 ### Client Priority Rationale
 
-- **Python** is highest priority because it serves advanced students, university courses, and the maker community. It also enables scripting and automation workflows.
-- **Web (JavaScript)** is equally high priority because Web Bluetooth enables zero-install experiences — students just open a URL and connect to their robot.
+Sequencing after App Inventor: **Scratch → Python → Web.** Building the JS/Web Bluetooth core for
+Scratch first produces a reusable bridge that the standalone Web client (item 4) largely inherits.
+
+- **Scratch™** is the immediate next client: it has the largest K-8 user base globally, and modern
+  Web Bluetooth (Chrome/Edge, e.g. via TurboWarp) lets a Scratch extension talk to the hub directly —
+  **no Scratch™ Link or custom extension server required** — giving a true zero-install classroom
+  experience. Shipping Scratch also validates the language-agnostic SSP client contract before further
+  ports.
+- **Python** serves advanced students, university courses, and the maker community, and enables
+  scripting/automation workflows (cross-platform BLE via `bleak`).
+- **Web (JavaScript)** promotes the Scratch JS/Web Bluetooth core into a standalone npm/CDN library —
+  mostly falls out of the Scratch work.
 - **MicroBlocks** is a natural fit because it already runs on micro:bit™ and ESP32, and the MicroBlocks team is aligned with open education.
-- **Scratch™** has the largest K-8 user base globally but requires more complex integration (Scratch™ Link or custom extension server).
 - **MakeCode®** is lower priority because its user base overlaps heavily with micro:bit™ (which already gets MicroBlocks support).
 
 ---
@@ -436,6 +445,12 @@ The hybrid architecture creates dramatically different cost profiles:
 
 Based on dependency analysis, leverage calculations, and community impact:
 
+> **Note (2026-06-03):** Client *sequencing* has been set to **Scratch → Python → Web** (see
+> [Client Platform Roadmap](#client-platform-roadmap)) — Scratch is now the immediate next client
+> because Web Bluetooth removes the Scratch™ Link dependency and gives zero-install K-8 reach, and its
+> JS core is reused by the Web client. The cost-leverage ordering below predates that decision and is
+> pending re-costing; treat the Client Platform Roadmap as authoritative for client priority.
+
 ### Immediate Priority (Phase 2a)
 
 | # | Item | Type | Cost | Rationale |
@@ -510,6 +525,7 @@ See [FUNDING.md](FUNDING.md) for full details on sponsorship tiers and transpare
 
 | Date | Update |
 |------|--------|
+| 2026-06-03 | Client sequencing set to Scratch → Python → Web. Scratch elevated to next client (Web Bluetooth removes Scratch™ Link dependency; JS core reused by Web client). Client Platform Roadmap priorities updated. |
 | 2026-06-03 | Cost recalibration: All estimates scaled 1.3–1.6× based on actual Phase 1–3 SPIKE™ Prime costs ($1,600+ actual vs $1,000 original estimate). Midpoint total ecosystem cost: ~$64,000. |
 | 2026-05-25 | Roadmap v2.0: Added hybrid architecture types, full hardware × client matrix, detailed cost estimates, dependency map, and build order recommendations. |
 | 2026-05-24 | Initial roadmap published. Phase 1 shipped. Phase 2 voting open. |
