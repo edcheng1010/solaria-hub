@@ -49,7 +49,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 
 | Hardware Platform | Status | Repository |
 | :--- | :---: | :--- |
-| LEGO® SPIKE™ Prime | ✅ Available | [appinventor-lego-spike-prime-extension](https://github.com/edcheng1010/appinventor-lego-spike-prime-extension) |
+| LEGO® SPIKE™ Prime | ✅ Available | [solaria-appinventor-spike-prime](https://github.com/edcheng1010/solaria-appinventor-spike-prime) |
 | BBC micro:bit™ / MicroBlocks | 📋 Planned | — |
 | StackChan (M5Stack) | 📋 Planned | — |
 | Generic ESP32 "Solaria Firmware" | 💡 Proposed | — |
@@ -82,7 +82,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 
 ## Quick Start
 
-1. **Pick a bridge** — clone the bridge repo for your hardware (e.g., `appinventor-lego-spike-prime-extension`).
+1. **Pick a bridge** — clone the bridge repo for your hardware (e.g., `solaria-appinventor-spike-prime`).
 2. **Flash or run** — follow the bridge README to get SSP running on your device.
 3. **Connect a client** — open your preferred environment (App Inventor, Python, etc.) and use the corresponding Solaria client library to send commands.
 

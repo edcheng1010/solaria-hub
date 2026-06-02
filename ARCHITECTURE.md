@@ -313,7 +313,7 @@ The Solaria ecosystem is modular. Each component lives in its own repository wit
 | Repository | Status | Description |
 |------------|--------|-------------|
 | `solaria-hub` | Active | Central coordination, SSP spec, docs |
-| `appinventor-lego-spike-prime-extension` | Released (Phase 1) | SPIKE Prime integration (combined lib + App Inventor wrapper) |
+| `solaria-appinventor-spike-prime` | Released (Phase 1) | SPIKE Prime integration (combined lib + App Inventor wrapper) |
 
 ### Planned Repositories (Phase 2+)
 

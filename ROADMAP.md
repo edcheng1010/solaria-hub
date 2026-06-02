@@ -33,8 +33,8 @@ The core architecture is proven end-to-end. A student can open MIT App Inventor 
 | Deliverable | Status | Repository |
 |-------------|--------|------------|
 | SSP v0.8 specification | ✅ Complete | `solaria-hub/spec/` |
-| LEGO® SPIKE™ Prime BLE bridge | ✅ Released | `appinventor-lego-spike-prime-extension` |
-| App Inventor client extension (.aix) | ✅ Released | `appinventor-lego-spike-prime-extension` |
+| LEGO® SPIKE™ Prime BLE bridge | ✅ Released | `solaria-appinventor-spike-prime` |
+| App Inventor client extension (.aix) | ✅ Released | `solaria-appinventor-spike-prime` |
 | End-to-end demo | ✅ Working | — |
 
 **Actual Phase 1–3 costs (SPIKE™ Prime bridge, reference baseline):**

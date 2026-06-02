@@ -99,7 +99,7 @@ Each Solaria repository can receive funding independently:
 | Repository | Type | What funding supports |
 |-----------|------|----------------------|
 | **solaria-hub** (this repo) | Hub | SSP spec development, ecosystem coordination, documentation |
-| **appinventor-lego-spike-prime-extension** | TYPE 2 wrapper | SPIKE Prime bridge maintenance, new features, bug fixes |
+| **solaria-appinventor-spike-prime** | TYPE 2 wrapper | SPIKE Prime bridge maintenance, new features, bug fixes |
 | *Future `solaria-fw-*` repos* | TYPE 1 | Hardware-specific SSP firmware |
 | *Future `solaria-lib-*` repos* | TYPE 2 | Protocol translation libraries |
 | *Future `solaria-client-*` repos* | Client | Programming environment integrations |
