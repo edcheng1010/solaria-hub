@@ -5,11 +5,23 @@
 **Author:** Edward Cheng  
 **License:** Apache 2.0  
 **Status:** Draft  
-**Date:** 2026-05-26
+**Date:** 2026-06-03
 
 ---
 
 ## Changelog for v0.8
+
+### Revision 2 (2026-06-03) — conformance alignment with the SPIKE Prime reference bridge
+These are draft corrections that make v0.8 accurately describe its own reference implementation; no behavioural change is required of an existing v0.8 bridge.
+- Added canonical **`timer`** command category (`timer.get`, `timer.reset`) for hub-side elapsed time (§6.9).
+- Documented `sound.beep` parameters (`freq`, `duration`) and its optional `wait` blocking behaviour (§6.3).
+- Added the canonical **composite orientation read** (`sensor.read type=orientation` → `{pitch, roll, yaw}`) (§6.4.1).
+- Clarified that `led.set` `color` MAY be an enum string when the port constraint declares `enum`, not only an RGB array (§3.1.1, §5.1).
+- Clarified that `connection_rssi` is transport-provided and MAY be unavailable to the bridge itself (§6.7).
+- Relaxed the non-standard-extension rule: extensions MUST be **either** registered in a published profile-extension appendix **or** `x_`-prefixed (§5.1).
+- Added **Appendix §11 — Profile Extensions (SPIKE Prime 3.x)** documenting registered bridge-specific commands and predicate sensor reads.
+
+### Revision 1 (2026-05-26) — initial v0.8
 - Added `motor.set_acceleration` and `movement.set_acceleration` commands as canonical features.
 - Added optional `wait` parameter to `sound.play` to control blocking behavior, with corresponding `sound_complete` event.
 - Added MIDI/music canonical schema including note formatting, chords, and instrument/drum enums.
@@ -108,6 +120,7 @@ Commands may optionally include a `request_id` field to enable pipelined command
 {"cmd": "motor.run", "port": "A", "speed": 75, "duration": 2000, "duration_unit": "ms", "request_id": "req-1"}
 {"cmd": "motor.stop", "port": "A", "stop_action": "coast"}
 {"cmd": "led.set", "port": "status", "color": [255, 0, 0]}
+{"cmd": "led.set", "port": "status", "color": "red"}
 {"cmd": "led.matrix.pixel", "port": "display", "x": 2, "y": 2, "brightness": 100}
 {"cmd": "sound.play", "sound": "giggle"}
 {"cmd": "sensor.subscribe", "port": "C", "interval": 100, "mode": "on_change", "min_change": 5}
@@ -260,7 +273,7 @@ Clients SHOULD use this declaration to dynamically configure their interface.
 
 ### 5.1 Canonical Feature Schema
 
-To ensure consistency, feature names MUST use the canonical names defined below based on the port type. Non-standard extensions MUST be prefixed with `x_`.
+To ensure consistency, feature names MUST use the canonical names defined below based on the port type. Non-standard extensions MUST be **either** (a) registered in a published profile-extension appendix (e.g. Appendix §11 for the SPIKE Prime 3.x profile), **or** (b) prefixed with `x_`. Registration in a profile appendix lets a vendor profile expose ergonomic bare-named commands while keeping them clearly scoped and discoverable; the `x_` prefix remains the path for unregistered, experimental, or one-off extensions.
 
 - **motor:** `speed`, `position`, `absolute_position`, `stall`, `load`, `power`, `acceleration`
 - **color_sensor:** `color`, `reflected`, `ambient`, `rgb`
@@ -290,6 +303,8 @@ To allow clients to build dynamic UIs (such as sliders with correct min/max valu
 - `depth: "grayscale"` implies `brightness ∈ [0, 100]`
 - `depth: "rgb"` implies a `color: [r, g, b]` parameter (each 0-255) instead of `brightness`
 
+*Note on `led.set` color: the `color` parameter accepts an **RGB array** `[r, g, b]` by default, or an **enum string** (e.g. `"red"`, `"off"`) when the port declares a `color` constraint of type `enum`. Clients SHOULD inspect the constraint to decide which form to send. Discrete-colour status LEDs (such as the SPIKE Prime hub light) declare the enum form.*
+
 #### 5.2.1 Sensor-attached LED Displays
 
 Sensor-attached LED displays are treated as `display` ports with specific dimensions and color depths. For example:
@@ -309,6 +324,7 @@ Sensor-attached LED displays are treated as `display` ports with specific dimens
 | `sensor` | `subscribe`, `unsubscribe`, `read` | Sensor data management |
 | `system` | `ping`, `info`, `reset`, `dfu`, `subscribe`, `read` | Bridge management and metrics |
 | `orientation` | `set_yaw`, `reset_yaw`, `set_reference` | Hub orientation configuration |
+| `timer` | `get`, `reset` | Hub-side elapsed timer |
 | `batch` | N/A | Execute multiple commands |
 
 ### 6.1 `motor` and `movement` Enhancements
@@ -352,6 +368,15 @@ For addressable pixel/text displays, the `led.matrix` sub-commands are available
 - `led.matrix.orientation`: Set the display orientation (e.g., `{"cmd": "led.matrix.orientation", "port": "display", "rotation": 90}`).
 
 ### 6.3 `sound` Category Enhancements
+
+**`sound.beep`** plays a single tone (requires the `beep` feature):
+- `freq` (int, Hz) — tone frequency. Default 440.
+- `duration` (int, ms) — tone length. If `duration` is omitted, the tone plays indefinitely until `sound.stop`.
+- `wait` (bool, default `false`) — when `true`, playback blocks until the tone finishes, so successive beeps play sequentially (used for note/melody sequencing). When `false`, the call returns immediately. Bridges that cannot block MUST declare `"sound_wait_supported": false`.
+```json
+{"cmd": "sound.beep", "freq": 440, "duration": 500}
+{"cmd": "sound.beep", "freq": 880, "duration": 250, "wait": true}
+```
 
 The `sound.play` command accepts different payload shapes depending on the supported features of the `speaker` port:
 - **Built-in sounds:** `{"cmd": "sound.play", "sound": "giggle"}` (requires `builtin` feature).
@@ -399,6 +424,17 @@ The `orientation` port provides spatial tracking and configuration:
 - `orientation.reset_yaw`: Reset the yaw to zero (e.g., `{"cmd": "orientation.reset_yaw"}`).
 - `orientation.set_reference`: Configure the hub's mounting orientation. Takes a `face` parameter matching the `face_orientation` enum values (e.g., `{"cmd": "orientation.set_reference", "face": "face_up"}`).
 
+#### 6.4.1 Composite Orientation Read
+
+In addition to reading `pitch`, `roll`, and `yaw` individually, an `orientation` port MAY support a **composite read** that returns all three Euler angles in a single event. This avoids three round-trips when a client needs a full attitude snapshot. Supported via `sensor.read` (and `sensor.subscribe`) with `type: "orientation"`:
+```json
+{"cmd": "sensor.read", "port": "imu", "type": "orientation"}
+```
+```json
+{"event": "sensor", "port": "imu", "type": "orientation", "value": {"pitch": 12, "roll": -3, "yaw": 90}}
+```
+Angles are degrees. A bridge advertising `pitch`, `roll`, and `yaw` features MAY also accept `type: "orientation"`; clients SHOULD fall back to individual reads if a composite read returns an error.
+
 ### 6.5 Batch Commands
 
 The `batch` category allows clients to send multiple commands in a single message. A single `request_id` correlates to the entire batch.
@@ -442,7 +478,7 @@ Standard metrics include:
 | `charging` | bool | |
 | `temperature` | float | °C |
 | `button.<name>` | enum | `pressed`, `released`, `held` (namespace: `left`, `right`, `center`) |
-| `connection_rssi` | int | dBm, for BLE |
+| `connection_rssi` | int | dBm, for BLE. **Transport-provided:** this is the link signal strength measured by whichever peer can read it — typically the BLE central (the client side), not the bridge firmware. A bridge that cannot read its own RSSI MAY omit this metric or report it as unavailable; the client SHOULD source it from the transport layer instead. |
 
 ### 6.8 Feature-to-Command Mapping
 
@@ -468,6 +504,23 @@ Clients can verify support before sending commands using the following mapping b
 | `beep` | `sound.beep` |
 | `builtin` / `file` / `midi` | `sound.play` |
 | `volume` | `sound.set_volume`, `sound.read` |
+
+### 6.9 `timer` Category
+
+Bridges MAY provide a hub-side elapsed timer, useful when the client wants timing measured by the device rather than by the (possibly throttled or backgrounded) client clock. A bridge supporting this declares no special port; the timer is a bridge-level facility.
+
+- `timer.get`: Request the current elapsed time. The bridge responds with a `sensor` event on the synthetic `timer` port:
+  ```json
+  {"cmd": "timer.get", "request_id": "t1"}
+  ```
+  ```json
+  {"event": "sensor", "port": "timer", "type": "elapsed", "value": 42, "request_id": "t1"}
+  ```
+  `value` is whole seconds since the last reset (bridges MAY define a finer unit; the SPIKE Prime profile uses seconds).
+- `timer.reset`: Reset the elapsed time to zero. No event is emitted.
+  ```json
+  {"cmd": "timer.reset"}
+  ```
 
 ---
 
@@ -506,8 +559,68 @@ SSP follows semantic versioning. This document defines v0.8 (draft). Breaking ch
 
 | Component | Repository |
 |-----------|-----------|
-| SPIKE Prime Bridge | [solaria-bridge-spike-prime](#) |
-| App Inventor Client | [solaria-client-appinventor](#) |
+| SPIKE Prime Bridge + App Inventor Client | [solaria-appinventor-spike-prime](https://github.com/edcheng1010/solaria-appinventor-spike-prime) |
+| SPIKE Prime client library (TypeScript / Web Bluetooth) | [solaria-lib-spike-prime](https://github.com/edcheng1010/solaria-lib-spike-prime) |
+| Scratch (TurboWarp) client | [solaria-scratch-spike-prime](https://github.com/edcheng1010/solaria-scratch-spike-prime) |
+
+---
+
+## 11. Appendix — Profile Extensions (SPIKE Prime 3.x)
+
+These commands and sensor-read types are **registered extensions** of the `spike-prime-3.x` transport profile. They are not part of the core canonical surface (§6), but are published here so that any client targeting a SPIKE Prime bridge can implement them interoperably. Per §5.1, registration in this appendix exempts them from the `x_` prefix requirement. Bridges for other hardware are not required to implement them; clients SHOULD gate their use on `device == "spike-prime"` in the capability declaration.
+
+### 11.1 Predicate sensor reads (hub-side comparison)
+
+Block-based environments (App Inventor, Scratch) benefit from a hub-side boolean test rather than reading a value and comparing client-side. These are issued via `sensor.read` (one-shot) or `sensor.subscribe`, and emit a standard `sensor` event whose `type` echoes the predicate. The canonical value reads (`color`, `distance`, `reflected`, etc.) remain available for clients that prefer to compare client-side.
+
+| `type` | Extra params | Event `value` shape |
+|--------|--------------|---------------------|
+| `is_color` | `color` (enum string) | `{"match": <bool>, "color": "<queried>"}` |
+| `is_closer` | `mm` (int) | `<bool>` |
+| `is_reflected_above` | `percent` (int) | `<bool>` |
+| `is_tilted` | `direction` (`forward`/`backward`/`left`/`right`/`any`) | `{"tilted": <bool>, "direction": "<dir>"}` |
+| `is_orientation` | `face` (face_orientation enum) | `{"match": <bool>, "face": "<queried>"}` |
+| `is_shaking` | — | `<bool>` |
+
+```json
+{"cmd": "sensor.read", "port": "C", "type": "is_color", "color": "red", "request_id": "q1"}
+{"event": "sensor", "port": "C", "type": "is_color", "value": {"match": true, "color": "red"}, "request_id": "q1"}
+```
+
+Tilt threshold is ±20° on the relevant axis. `is_tilted`, `is_orientation`, and `is_shaking` are read on the `imu` port.
+
+### 11.2 `system.read` predicate metric
+
+| Metric | Extra params | Event |
+|--------|--------------|-------|
+| `is_button_pressed` | `button` (`left`/`right`/`center`) | `{"event": "system", "metric": "is_button_pressed", "value": {"button": "<name>", "pressed": <bool>}}` |
+
+Distinct from the canonical `button.<name>` metric (§6.7), which reports the `pressed`/`released`/`held` enum. This predicate form answers a single yes/no query and is convenient for block-based polling.
+
+### 11.3 `led.distance` — distance-sensor 4-LED indicator
+
+Sets the four indicator LEDs on a SPIKE Prime distance sensor directly. (The §5.2.1 canonical approach models this as a `display` port driven by `led.matrix.pixel`; `led.distance` is the bridge's ergonomic shortcut.)
+
+```json
+{"cmd": "led.distance", "port": "B", "tl": 100, "tr": 100, "bl": 0, "br": 0}
+```
+`tl`/`tr`/`bl`/`br` are top-left/top-right/bottom-left/bottom-right brightness, 0–100.
+
+### 11.4 `led.matrix.rotate` — incremental rotation
+
+Rotates the 5×5 matrix by a relative amount, complementing the canonical absolute `led.matrix.orientation` (§6.2).
+```json
+{"cmd": "led.matrix.rotate", "degrees": 90}
+```
+`degrees` is added to the current orientation (mod 360).
+
+### 11.5 `sound.rest` — blocking silence
+
+Inserts a timed silence, used for melody/rhythm sequencing alongside `sound.beep` with `wait: true`.
+```json
+{"cmd": "sound.rest", "duration": 250}
+```
+`duration` is in milliseconds; the call blocks for that interval.
 
 ---
 
