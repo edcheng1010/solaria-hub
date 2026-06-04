@@ -334,7 +334,7 @@ Sensor-attached LED displays are treated as `display` ports with specific dimens
   {"cmd": "motor.run", "port": "A", "speed": 75, "mode": "speed"}
   {"cmd": "motor.run", "port": "A", "speed": 50, "mode": "power"}
   ```
-- **Duration on Run Commands:** `motor.run` and `movement.drive` support optional `duration` (number) and `duration_unit` (`"ms"`, `"degrees"`, `"rotations"`). When `duration` is omitted, the motor runs indefinitely until a `motor.stop` is issued. Bridges MUST treat the absence of `duration` as indefinite. `duration: 0` and negative durations are reserved and SHOULD be treated as `motor.stop` (zero-length run).
+- **Duration on Run Commands:** `motor.run` and `movement.drive` support optional `duration` (number) and `duration_unit` (`"ms"`, `"degrees"`, `"rotations"`). When `duration` is omitted, the motor runs indefinitely until a `motor.stop` is issued. Bridges MUST treat the absence of `duration` as indefinite. `duration: 0` and negative durations are reserved and SHOULD be treated as `motor.stop` (zero-length run). Real-world distance units (cm, inches) are a **client-side convenience** — a client converts distance to degrees using a configured wheel circumference before sending; the wire carries only `ms`, `degrees`, or `rotations`.
   ```json
   {"cmd": "motor.run", "port": "A", "speed": 75, "duration": 360, "duration_unit": "degrees"}
   ```
