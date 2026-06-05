@@ -138,27 +138,26 @@ SSP is designed to be client-agnostic. Each Universal Client is a one-time inves
 | # | Client Platform | Format | Language | Status | Est. Cost | Priority |
 |---|----------------|--------|----------|--------|-----------|----------|
 | 1 | **MIT App Inventor** | `.aix` extension | Java | ✅ Shipped | Done | — |
-| 2 | **Scratch™** | Scratch™ extension | JavaScript | 📋 Planned | $2,000–$3,000 | High (next) |
+| 2 | **Scratch™** | Scratch™ extension | JavaScript | ✅ Shipped | Done | — |
 | 3 | **Python** | `pip` package | Python | 📋 Planned | $1,800–$3,000 | High |
 | 4 | **Web (JavaScript)** | npm / CDN library | JavaScript | 📋 Planned | $1,800–$3,000 | High |
 | 5 | **MicroBlocks** | Built-in library | MicroBlocks | 📋 Planned | $1,500–$2,200 | Medium |
 | 6 | **MakeCode®** | MakeCode® package | TypeScript | 💡 Proposed | $1,800–$2,500 | Lower |
 | 7 | **Arduino IDE** | Arduino library | C/C++ | 💡 Proposed | $1,500–$2,200 | Proposed |
 
-**Total Universal Client investment (remaining 6):** $10,400–$15,900
+**Total Universal Client investment (remaining 5):** $8,400–$13,100
 
 ### Client Priority Rationale
 
-Sequencing after App Inventor: **Scratch → Python → Web.** Building the JS/Web Bluetooth core for
-Scratch first produces a reusable bridge that the standalone Web client (item 4) largely inherits.
+App Inventor and Scratch are shipped. Sequencing for remaining clients: **Python → Web → MicroBlocks.**
+Building the Python BLE core produces patterns that benefit the Web (JavaScript) client, which largely
+inherits the Web Bluetooth logic already proven by the Scratch extension.
 
-- **Scratch™** is the immediate next client: it has the largest K-8 user base globally, and modern
-  Web Bluetooth (Chrome/Edge, e.g. via TurboWarp) lets a Scratch extension talk to the hub directly —
-  **no Scratch™ Link or custom extension server required** — giving a true zero-install classroom
-  experience. Shipping Scratch also validates the language-agnostic SSP client contract before further
-  ports.
-- **Python** serves advanced students, university courses, and the maker community, and enables
-  scripting/automation workflows (cross-platform BLE via `bleak`).
+- **Scratch™** shipped (Phase 4a) as a TurboWarp/PenguinMod unsandboxed extension using Web Bluetooth
+  directly — **no Scratch™ Link or custom extension server required** — giving a true zero-install
+  classroom experience. The JS/Web Bluetooth bridge built for Scratch is reused by the Web client.
+- **Python** is the next priority: serves advanced students, university courses, and the maker community,
+  and enables scripting/automation workflows (cross-platform BLE via `bleak`).
 - **Web (JavaScript)** promotes the Scratch JS/Web Bluetooth core into a standalone npm/CDN library —
   mostly falls out of the Scratch work.
 - **MicroBlocks** is a natural fit because it already runs on micro:bit™ and ESP32, and the MicroBlocks team is aligned with open education.

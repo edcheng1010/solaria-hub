@@ -290,6 +290,45 @@ Each client platform implements the same logical structure, adapted to the platf
 | MakeCode® | MakeCode® extension | TypeScript | micro:bit™ radio/BLE | Solaria package | Packages per hardware |
 | Arduino IDE | Arduino library | C/C++ | Serial / BLE | `SolariaSSP` library | Modules per hardware |
 
+### Client Programming Models & Platform Constraints
+
+While the SSP **wire format** is unified across all clients, the **user-facing block logic and
+programming model** differs by host environment. "Write once, run everywhere" applies to the protocol,
+not necessarily the block UX.
+
+#### Two programming models
+
+| Model | Platform | Pattern | Example |
+|---|---|---|---|
+| **Event-driven** | App Inventor | Fire-and-forget command + `When…Read` event handler block | `GetColor()` fires `sensor.read`; `When ColorRead` block receives the value |
+| **Synchronous reporter** | Scratch (TurboWarp) | `async` reporter awaits the SSP response via `requestEvent` before returning | `color` reporter sends `sensor.read` and awaits the matching event |
+
+System metrics (battery, temperature, charging) in Scratch use a **command + cache** variant: a
+`request*` command fires `system.read`; `routeSSP` caches the value; the reporter returns the cache
+synchronously. This is a workaround for the latency of battery reads and mirrors the App Inventor
+fire-and-forget pattern most closely.
+
+A client code block cannot be translated 1:1 across these models; the underlying protocol messages are
+identical, but the host-environment interaction pattern differs.
+
+#### Platform-specific hard limits
+
+| Capability | App Inventor | Scratch (Web Bluetooth) | Reason |
+|---|---|---|---|
+| BLE device scanning | `StartScanning`, `HubList`, `ConnectToHub(index)` | Browser-native chooser replaces all scanning blocks | Web Bluetooth prohibits programmatic scan/enumeration for security |
+| RSSI (signal strength) | `GetRSSI` / `RSSIRead` (Android BLE stack) | Not available | Web Bluetooth API does not expose connected-device RSSI |
+| Named connection flow | Explicit index-based `ConnectToHub` | Single user-gesture connect | Same browser security model |
+
+These are platform constraints, not SSP gaps. The wire protocol is identical; only the host API
+differs.
+
+#### Naming note
+
+The App Inventor component is named **`Connectivity`** (a software-object class name:
+`LegoSpikeConnectivity`). The Scratch palette label is **`Connection`** (a user-facing section header
+for students). This is an intentional, platform-appropriate difference — the Java class cannot be
+renamed without breaking existing `.aia` project files.
+
 ---
 
 ## Repository Structure

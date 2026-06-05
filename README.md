@@ -71,7 +71,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 | MIT App Inventor | ✅ Supported | Via .aix extension |
 | MicroBlocks | 📋 Planned | Open source, block-based |
 | Python | 📋 Planned | Via SDK/library |
-| Scratch™ | 💡 Proposed | Open source, block-based |
+| Scratch™ | ✅ Supported | TurboWarp/PenguinMod via Web Bluetooth (Phase 4a) |
 | Web (JavaScript) | 💡 Proposed | Via Web Bluetooth SDK |
 | MakeCode® | 💡 Proposed | Open source, Microsoft |
 | Arduino IDE | 💡 Proposed | C/C++ library for advanced users |
@@ -128,7 +128,7 @@ We welcome contributions from hardware makers, app developers, educators, and st
 Solaria is an independent open-source project. Development is sustained by community support — hardware purchases, development time, and documentation all cost real resources.
 
 → [GitHub Sponsors](#)  
-→ [Sponsor a Bridge](FUNDING.md#sponsor-a-bridge)
+→ [Sponsor a Bridge](FUNDING.md#sponsor-a-bridge--client)
 
 ---
 
