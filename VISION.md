@@ -52,7 +52,7 @@ Solaria supports a wide range of hardware through a hybrid architecture defined 
 
 The first implementation of this vision is the **Bridge Suite**, which successfully connects MIT App Inventor to the LEGO® SPIKE™ Prime hub via Bluetooth. 
 
-This Phase 1 MVP proves the core architecture: a user can open App Inventor, connect to a closed-ecosystem robot using a Solaria wrapper, and control it using standard blocks. It serves as the foundation upon which the AI overlay will be built.
+This Gen 1 MVP proves the core architecture: a user can open App Inventor, connect to a closed-ecosystem robot using a Solaria wrapper, and control it using standard blocks. It serves as the foundation upon which the AI overlay will be built.
 
 ## Sustainability: Open Core, Hosted Cloud
 

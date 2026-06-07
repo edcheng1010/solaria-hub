@@ -4,9 +4,9 @@
 
 # Solaria
 
-**An open-source platform that connects open-source programming environments to popular robotics hardware — prioritising open-source options — through a single standard protocol.**
+**An open-source ecosystem of robotics extensions for visual programming platforms — same capabilities, every platform.**
 
-Solaria defines the **Solaria Standard Protocol (SSP)** — a communication layer that lets educators, makers, and developers control diverse robotics hardware from supported client applications. Write once, control any robot.
+Solaria defines the **Solaria Standard Protocol (SSP)** — a shared communication specification that connects supported programming environments (App Inventor, Scratch/TurboWarp, and more) to diverse robotics hardware. Each platform has its own purpose-built extension with blocks that feel native to that environment; SSP is what ensures the underlying robot capabilities — motor control, sensor reading, real-time feedback, and AI integration — are consistent across every supported combination.
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
@@ -71,7 +71,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 | MIT App Inventor | ✅ Supported | Via .aix extension |
 | MicroBlocks | 📋 Planned | Open source, block-based |
 | Python | 📋 Planned | Via SDK/library |
-| Scratch™ | ✅ Supported | TurboWarp/PenguinMod via Web Bluetooth (Phase 4a) |
+| Scratch™ / TurboWarp | ✅ Supported | Unsandboxed TurboWarp extension via Web Bluetooth — no Scratch Link required. Works on physical SPIKE Prime hubs. |
 | Web (JavaScript) | 💡 Proposed | Via Web Bluetooth SDK |
 | MakeCode® | 💡 Proposed | Open source, Microsoft |
 | Arduino IDE | 💡 Proposed | C/C++ library for advanced users |
@@ -92,7 +92,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 
 Solaria's roadmap is community-driven. We use **GitHub Discussions polls** to decide which hardware gets integrated next.
 
-→ [Cast your vote in Discussions](#)  
+→ [Cast your vote in Discussions](https://github.com/edcheng1010/solaria-hub/discussions)  
 → [View the full Roadmap](ROADMAP.md)
 
 You can also **sponsor a specific integration** to accelerate its development. See [FUNDING.md](FUNDING.md).
@@ -103,12 +103,28 @@ You can also **sponsor a specific integration** to accelerate its development. S
 
 | Document | Description |
 | :--- | :--- |
-| [ROADMAP.md](ROADMAP.md) | Project phases and community voting |
+| [ROADMAP.md](ROADMAP.md) | Project generations (Gen 1–4) and community voting |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Layer model and SSP overview |
 | [spec/SSP-v0.8.md](spec/SSP-v0.8.md) | Full protocol specification (latest) |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to propose, build, and submit |
 | [VISION.md](VISION.md) | Product vision and sustainability model |
 | [FUNDING.md](FUNDING.md) | Sponsorship and "Sponsor a Bridge" |
+
+---
+
+## Vision
+
+Solaria is built in generations.
+
+**Gen 1 (Foundation)** proved the architecture end-to-end: a student opens MIT App Inventor, connects to a LEGO® SPIKE™ Prime hub over Bluetooth, and controls motors and reads sensors using SSP. The protocol works.
+
+**Gen 2 (Ecosystem Expansion)** grows the matrix of supported hardware and software platforms. Each new platform gets its own purpose-built extension — blocks that feel native to that environment — while SSP ensures the robot capabilities remain consistent. A student learning on App Inventor and a student learning on Scratch are building the same conceptual skills, even though their code looks different.
+
+**Gen 3 (AI Agent Layer)** is where the experience truly converges. When the natural language interface is complete, students will describe what they want their robot to do in plain language — "drive forward until you see something red, then stop and flash the lights." The AI agent translates that intent into SSP commands, and the same prompt works regardless of whether the student is using App Inventor, Scratch, Python, or a future platform we haven't built yet. Platform differences fade behind the interaction model.
+
+**Gen 4 (Solaria Flagship Robot)** is a reference hardware design — a purpose-built robot that ships with SSP firmware pre-flashed and works out of the box with every Solaria client. The "iPhone of the ecosystem."
+
+The near-term goal is honest and practical: pick the software your students know, pick the hardware your budget allows, and Solaria has a curriculum-ready extension that works. The long-term goal is a unified learning experience where the robot responds to what you mean, not just what you type.
 
 ---
 
@@ -127,7 +143,7 @@ We welcome contributions from hardware makers, app developers, educators, and st
 
 Solaria is an independent open-source project. Development is sustained by community support — hardware purchases, development time, and documentation all cost real resources.
 
-→ [GitHub Sponsors](#)  
+→ [GitHub Sponsors](https://github.com/sponsors/edcheng1010)  
 → [Sponsor a Bridge](FUNDING.md#sponsor-a-bridge--client)
 
 ---

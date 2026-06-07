@@ -8,7 +8,7 @@
 
 ## Table of Contents
 
-1. [Strategic Phases](#strategic-phases)
+1. [Strategic Generations](#strategic-generations)
 2. [Hardware Target List](#hardware-target-list)
 3. [Client Platform Roadmap](#client-platform-roadmap)
 4. [Cost Estimation Framework](#cost-estimation-framework)
@@ -21,9 +21,14 @@
 
 ---
 
-## Strategic Phases
+## Strategic Generations
 
-### Phase 1 — Foundation ✅
+> **Naming convention:** This roadmap uses "Generation" (Gen 1–4) for ecosystem-wide strategic eras.
+> Individual repositories use "Epic" prefixed with the repo name (e.g., "SPIKE-4a") for internal
+> milestones. These are independent numbering systems — Gen 2 work may involve completing SPIKE-4a
+> internally.
+
+### Gen 1 — Foundation ✅
 
 **Status:** Shipped  
 **Delivered:** 2025–2026
@@ -37,24 +42,33 @@ The core architecture is proven end-to-end. A student can open MIT App Inventor 
 | App Inventor client extension (.aix) | ✅ Released | `solaria-appinventor-spike-prime` |
 | End-to-end demo | ✅ Working | — |
 
-**Actual Phase 1–3 costs (SPIKE™ Prime bridge, reference baseline):**
+**Actual Gen 1 costs (SPIKE™ Prime bridge, reference baseline):**
 
 | Category | Cost |
 |----------|------|
 | AI tooling (Claude Code, Manus, API credits) | $1,200+ |
 | Hardware (SPIKE™ Prime hub, motors, sensors, cables) | $400+ |
 | Development time | 200+ hours |
-| **Total** | **>$1,600 (Phases 1–3 complete)** |
+| **Total** | **>$1,600 (Gen 1 complete)** |
 
 *Note: This is for a single TYPE 2 bridge (1 hardware × 1 client) built from scratch, including SSP spec development, architecture establishment, and full test coverage (103 test cases). Subsequent integrations will benefit from reusable patterns but should still be budgeted conservatively.*
 
 ---
 
-### Phase 2 — Ecosystem Expansion 🚧
+### Gen 2 — Ecosystem Expansion 🚧
 
 **Status:** Active Development & Community Voting
 
-Phase 2 expands the ecosystem along two axes simultaneously:
+Gen 2 expands the ecosystem along two axes simultaneously:
+
+#### Core Track: Client/Bridge Architecture Split
+
+The SPIKE Prime repos' internal "Epic SPIKE-4" extracts shared protocol libraries from the App Inventor
+reference implementation into `solaria-lib-spike-prime`. This extraction enabled the Scratch extension
+(Epic SPIKE-4a, shipped) and enables future Python/Web clients. The shared library is consumed by all
+downstream clients.
+
+Gen 2 expands along two axes simultaneously:
 
 1. **Hardware axis:** Adding new TYPE 1 firmware and TYPE 2 protocol libraries.
 2. **Client axis:** Building Universal SSP Clients for new programming platforms.
@@ -63,24 +77,27 @@ The full scope, costs, and dependencies are detailed in the [Hardware × Client 
 
 ---
 
-### Phase 3 — AI / Agent Layer 🔮
+### Gen 3 — AI / Agent Layer 🔮
 
 **Status:** Planned (target: after 3+ bridges are stable)
 
-Introducing hardware-agnostic intelligence on top of SSP:
+Gen 3 is the convergence point for the Solaria ecosystem. In Gen 1 and Gen 2, each platform has its own purpose-built extension with its own blocks and interaction patterns — App Inventor is stateful and component-based; Scratch is event-driven and block-sequential. Student code looks different across platforms, even when the robot capabilities are the same. Gen 3 resolves this by introducing a natural language interaction layer on top of SSP.
 
-- **Vibe Coding:** Natural language → SSP command translation (e.g., "Drive forward until you see a red object" → motor + color sensor commands)
-- **GUI Electronics Configuration:** Visual drag-and-drop interface for hardware setup — select your microcontroller, sensors, and motors; Solaria generates the correct wiring diagrams, pin mappings, and code scaffolding automatically. No more hunting through datasheets.
-- **LLM-powered processing:** Local (M5Stack Module LLM) or cloud-based inference
-- **Cross-platform intelligence:** Works with ANY bridge + ANY client combination because it generates standard SSP
-- **Platform integration:** Potential integration with MIT App Inventor's AI components
-- **Agentic AI overlay:** Context-aware assistant that understands the full hardware × software matrix and guides users through building, debugging, and extending projects
+When the AI agent layer is complete, students will describe their intent in plain language ("drive forward until you see something red, then stop and flash the lights"), and the agent will translate that into SSP commands. Because SSP is the shared language for all hardware, the same natural language prompt works regardless of whether the student is using App Inventor, Scratch, Python, or any future client. Platform differences fade behind the interaction model.
+
+**Gen 3 capabilities:**
+
+- **Natural language → SSP:** Intent parsing and goal decomposition into motor, sensor, and actuator commands.
+- **GUI Electronics Configuration:** Visual drag-and-drop hardware setup — select your microcontroller, sensors, and motors; Solaria generates the correct wiring diagrams, pin mappings, and code scaffolding automatically.
+- **LLM-powered processing:** Local (M5Stack Module LLM) or cloud-based inference, depending on deployment context.
+- **Agentic overlay:** Context-aware assistant that understands the full hardware × software matrix and guides students through building, debugging, and extending projects.
+- **Platform integration:** Potential integration with MIT App Inventor's AI components.
 
 **Prerequisites:** At least 3 stable hardware bridges and 2 stable client platforms.
 
 ---
 
-### Phase 4 — Solaria Flagship Robot 🌱
+### Gen 4 — Solaria Flagship Robot 🌱
 
 **Status:** Vision
 
@@ -153,7 +170,7 @@ App Inventor and Scratch are shipped. Sequencing for remaining clients: **Python
 Building the Python BLE core produces patterns that benefit the Web (JavaScript) client, which largely
 inherits the Web Bluetooth logic already proven by the Scratch extension.
 
-- **Scratch™** shipped (Phase 4a) as a TurboWarp/PenguinMod unsandboxed extension using Web Bluetooth
+- **Scratch™** is shipped as a TurboWarp/PenguinMod unsandboxed extension using Web Bluetooth
   directly — **no Scratch™ Link or custom extension server required** — giving a true zero-install
   classroom experience. The JS/Web Bluetooth bridge built for Scratch is reused by the Web client.
 - **Python** is the next priority: serves advanced students, university courses, and the maker community,
@@ -169,7 +186,7 @@ inherits the Web Bluetooth logic already proven by the Scratch extension.
 
 ### Baseline Reference
 
-All estimates are calibrated against the actual SPIKE™ Prime development (Phases 1–3 complete):
+All estimates are calibrated against the actual SPIKE™ Prime development (Gen 1 complete):
 
 > **SPIKE™ Prime (1 hardware × 1 client, full feature set):** $1,200+ AI tooling + $400+ hardware + 200+ hours dev time = **>$1,600 total**
 >
@@ -332,20 +349,20 @@ This table shows the effort category for each combination at a glance:
 
 Development must follow a strict dependency chain. Nothing can be built out of order.
 
-### Tier 0: Foundation (✅ Complete)
+### Gen 1: Foundation (✅ Complete)
 
 ```
 SSP Specification v0.1 ──> SPIKE Prime Protocol Lib ──> App Inventor Wrapper
-                                                         (= Phase 1 shipped)
+                                                         (= Gen 1 shipped)
 ```
 
-### Tier 1: Infrastructure (Unlocks Everything)
+### Gen 2a: Core Infrastructure (Unlocks Everything)
 
 These items have the highest ROI because they are prerequisites for many downstream items:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  TIER 1: Build these FIRST (each unlocks multiple downstream items) │
+│  GEN 2a: Build these FIRST (each unlocks multiple downstream items) │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  solaria-fw-esp32          ──> Unlocks 6 client connections (Free)  │
@@ -355,11 +372,11 @@ These items have the highest ROI because they are prerequisites for many downstr
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-### Tier 2: Expansion
+### Gen 2b: Expansion
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  TIER 2: Build after Tier 1 (expands coverage)                      │
+│  GEN 2b: Build after Gen 2a (expands coverage)                      │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  solaria-fw-microbit       ──> Unlocks 6 client connections (Free)  │
@@ -373,11 +390,11 @@ These items have the highest ROI because they are prerequisites for many downstr
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-### Tier 3: Long Tail
+### Gen 2c–2d: Long Tail
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  TIER 3: Build on demand (community-driven)                         │
+│  GEN 2c–2d: Build on demand (community-driven)                      │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  solaria-lib-ugot          ──> Unlocks 6 wrappers                   │
@@ -414,16 +431,16 @@ These items have the highest ROI because they are prerequisites for many downstr
 | **TOTAL (one-time build)** | — | **3,170–5,920 hrs** | **$45,000–$82,700** | |
 | **Midpoint estimate** | — | **~4,500 hrs** | **~$64,000** | |
 
-### By Phase
+### By Generation
 
-| Phase | Scope | Est. Cost | Cumulative |
-|-------|-------|-----------|-----------|
-| Phase 1–3 (✅ Done) | 1 hardware × 1 client (full feature set) | $1,600+ | $1,600+ |
-| Phase 2a (Tier 1) | ESP32 FW + Python UC + Web UC | $5,600–$9,500 | $7,200–$11,100 |
-| Phase 2b (Tier 2) | 3 more FW + 2 more UC + 2 protocol libs | $14,000–$22,000 | $21,200–$33,100 |
-| Phase 2c (Tier 3) | Remaining libs + all wrappers | $24,000–$56,000 | $45,200–$89,100 |
-| Phase 3 (AI) | Agent layer development | $5,000–$10,000 | $50,200–$99,100 |
-| Phase 4 (Flagship) | Hardware design + production | $15,000–$25,000 | $65,200–$124,100 |
+| Generation | Scope | Est. Cost | Cumulative |
+|------------|-------|-----------|-----------|
+| Gen 1 (✅ Done) | 1 hardware × 1 client (full feature set) | $1,600+ | $1,600+ |
+| Gen 2a (Core Infrastructure) | ESP32 FW + Python UC + Web UC | $5,600–$9,500 | $7,200–$11,100 |
+| Gen 2b (Expansion) | 3 more FW + 2 more UC + 2 protocol libs | $14,000–$22,000 | $21,200–$33,100 |
+| Gen 2c (Completion) | Remaining libs + all wrappers | $24,000–$56,000 | $45,200–$89,100 |
+| Gen 3 (Intelligence) | Agent layer development | $5,000–$10,000 | $50,200–$99,100 |
+| Gen 4 (Flagship) | Hardware design + production | $15,000–$25,000 | $65,200–$124,100 |
 
 ### The Leverage Insight
 
@@ -444,13 +461,9 @@ The hybrid architecture creates dramatically different cost profiles:
 
 Based on dependency analysis, leverage calculations, and community impact:
 
-> **Note (2026-06-03):** Client *sequencing* has been set to **Scratch → Python → Web** (see
-> [Client Platform Roadmap](#client-platform-roadmap)) — Scratch is now the immediate next client
-> because Web Bluetooth removes the Scratch™ Link dependency and gives zero-install K-8 reach, and its
-> JS core is reused by the Web client. The cost-leverage ordering below predates that decision and is
-> pending re-costing; treat the Client Platform Roadmap as authoritative for client priority.
+> **Note (2026-06-06):** Scratch is now shipped (see [Client Platform Roadmap](#client-platform-roadmap)). Client sequencing for remaining platforms is **Python → Web → MicroBlocks**. The cost-leverage ordering below predates the Scratch completion and is pending re-costing; treat the Client Platform Roadmap as authoritative for client priority.
 
-### Immediate Priority (Phase 2a)
+### Immediate Priority (Gen 2a)
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
@@ -458,9 +471,9 @@ Based on dependency analysis, leverage calculations, and community impact:
 | 2 | **Python Universal Client** | Client | $2,200 | Serves advanced users, universities, enables scripting |
 | 3 | **Web (JS) Universal Client** | Client | $2,200 | Zero-install browser experience, Web Bluetooth |
 
-**Phase 2a total: ~$7,000** → Unlocks: ESP32 + Python, ESP32 + Web, ESP32 + App Inventor (3 new working combinations)
+**Gen 2a total: ~$7,000** → Unlocks: ESP32 + Python, ESP32 + Web, ESP32 + App Inventor (3 new working combinations)
 
-### Near-Term (Phase 2b)
+### Near-Term (Gen 2b)
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
@@ -470,9 +483,9 @@ Based on dependency analysis, leverage calculations, and community impact:
 | 7 | **StackChan Firmware** | Type 1 FW | $2,500 | Active community, compelling demo |
 | 8 | **Scratch™ Universal Client** | Client | $2,500 | Largest K-8 programming platform |
 
-**Phase 2b total: ~$11,700** → Unlocks: 12+ new working combinations
+**Gen 2b total: ~$11,700** → Unlocks: 12+ new working combinations
 
-### Medium-Term (Phase 2c)
+### Medium-Term (Gen 2c)
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
@@ -482,7 +495,7 @@ Based on dependency analysis, leverage calculations, and community impact:
 | 12 | **Powered Up wrappers** (×6) | Wrappers | $6,600 | Wrappers for all clients |
 | 13 | **toio wrappers** (×6) | Wrappers | $5,700 | Wrappers for all clients |
 
-**Phase 2c total: ~$19,800**
+**Gen 2c total: ~$19,800**
 
 ### Long-Term (Community-Driven)
 
@@ -524,6 +537,7 @@ See [FUNDING.md](FUNDING.md) for full details on sponsorship tiers and transpare
 
 | Date | Update |
 |------|--------|
+| 2026-06-07 | Messaging update: "Phases" renamed to "Generations" (Gen 1–4) throughout. Removed "code once, run everywhere" framing; replaced with "same capabilities, every platform." Gen 3 reframed as the ecosystem convergence point via natural language interaction. Scratch status confirmed as ✅ Shipped. Disambiguation note added between ecosystem Generations and repo-internal Epics. |
 | 2026-06-03 | Client sequencing set to Scratch → Python → Web. Scratch elevated to next client (Web Bluetooth removes Scratch™ Link dependency; JS core reused by Web client). Client Platform Roadmap priorities updated. |
 | 2026-06-03 | Cost recalibration: All estimates scaled 1.3–1.6× based on actual Phase 1–3 SPIKE™ Prime costs ($1,600+ actual vs $1,000 original estimate). Midpoint total ecosystem cost: ~$64,000. |
 | 2026-05-25 | Roadmap v2.0: Added hybrid architecture types, full hardware × client matrix, detailed cost estimates, dependency map, and build order recommendations. |

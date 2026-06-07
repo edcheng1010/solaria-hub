@@ -8,7 +8,9 @@
 
 ## Overview
 
-Solaria defines the **Solaria Standard Protocol (SSP)** — a universal communication layer between programming environments (clients) and robotics hardware (bridges). The project's mission is to let any student, maker, or educator connect any robot to any programming tool using a single, open standard.
+Solaria defines the **Solaria Standard Protocol (SSP)** — a shared communication specification between programming environments (clients) and robotics hardware (bridges). SSP is a **developer and infrastructure unification layer**: it ensures that any Solaria client can talk to any SSP-compatible firmware, and that the robot capabilities available to students are consistent across every supported platform combination.
+
+SSP does **not** make student code portable. A student's App Inventor blocks are stateful and component-based; a student's Scratch blocks are event-driven and sequential. The code looks different, the logic patterns differ, and the blocks are platform-specific. What SSP guarantees is that the underlying robot capabilities — motor control, sensor reading, real-time feedback, AI integration — are the same regardless of which client and hardware combination a school chooses. The project's mission is **capability parity, not code portability**.
 
 To support the vast diversity of robotics hardware — from open-source microcontrollers to closed-ecosystem commercial products — Solaria uses a **Hybrid Architecture**. This document explains the two hardware integration types, how clients interact with each, the data flow through the system, and the repository structure that organizes the codebase.
 
@@ -59,7 +61,7 @@ The Solaria ecosystem is built around a four-layer model with a clear separation
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-**The key insight:** Solaria owns Layer 1. Everything above (clients) and below (hardware) is interchangeable. The Hybrid Architecture ensures that both open and closed hardware can participate in the ecosystem, while maximizing the leverage of each development dollar spent.
+**The key insight:** Solaria owns Layer 1. Everything above (clients) and below (hardware) is interchangeable from the protocol's perspective. The Hybrid Architecture ensures that both open and closed hardware can participate in the ecosystem, while maximizing the leverage of each development dollar spent. Importantly, "interchangeable" applies at the infrastructure level — a developer building firmware or a client extension only needs to speak SSP. It does not mean student code is portable across client platforms; each platform has its own blocks and interaction model, designed to feel native to that environment.
 
 ---
 
@@ -292,9 +294,7 @@ Each client platform implements the same logical structure, adapted to the platf
 
 ### Client Programming Models & Platform Constraints
 
-While the SSP **wire format** is unified across all clients, the **user-facing block logic and
-programming model** differs by host environment. "Write once, run everywhere" applies to the protocol,
-not necessarily the block UX.
+While the SSP **wire format** is unified across all clients, the **user-facing block logic and programming model** differs by host environment. "Same capabilities, every platform" is the accurate framing: the robot can do the same things regardless of which client a student uses, but the blocks, event patterns, and code structure are intentionally platform-specific. SSP unifies the infrastructure; each client extension is designed to feel native to its host environment.
 
 #### Two programming models
 
@@ -352,9 +352,9 @@ The Solaria ecosystem is modular. Each component lives in its own repository wit
 | Repository | Status | Description |
 |------------|--------|-------------|
 | `solaria-hub` | Active | Central coordination, SSP spec, docs |
-| `solaria-appinventor-spike-prime` | Released (Phase 1) | SPIKE Prime integration (combined lib + App Inventor wrapper) |
+| `solaria-appinventor-spike-prime` | Released (Gen 1) | SPIKE Prime integration (combined lib + App Inventor wrapper) |
 
-### Planned Repositories (Phase 2+)
+### Planned Repositories (Gen 2+)
 
 | Repository | Priority | Unlocks |
 |------------|----------|---------|
@@ -390,7 +390,7 @@ The Generic ESP32 "Solaria Firmware" (`solaria-fw-esp32`) is the single highest-
 - Per-client wrapper cost: $0 (it's TYPE 1)
 - Effective integrations created: 6 clients × unlimited hardware = ∞
 
-This is why the ESP32 firmware is the recommended **first priority** for Phase 2 development.
+This is why the ESP32 firmware is the recommended **first priority** for Gen 2 development.
 
 ---
 
@@ -402,16 +402,19 @@ The layered architecture enforces strict separation of concerns:
 |-------|-------------|---------------------|
 | **Hardware / Firmware** | Hardware registers, GPIO, motor drivers, SSP parsing | Which client sent the command, UI details |
 | **SSP Protocol** | Message format, transport framing, capability schema | Specific hardware registers, specific client UI |
-| **Client Extension** | User-facing blocks/API, SSP generation, transport connection | Hardware internals, motor driver registers |
+| **Client Extension** | User-facing blocks/API, SSP generation, transport connection — **platform-specific by design** | Hardware internals, motor driver registers, other clients' block patterns |
 | **Protocol Bridge (Type 2)** | Both SSP format AND proprietary protocol format | Client UI, other hardware types |
-| **AI Agent (Future)** | Intent parsing, goal decomposition, SSP command generation, GUI electronics configuration | Transport details, hardware registers, client UI |
+| **Student Code** | Platform-native blocks and interaction patterns (stateful in App Inventor, event-driven in Scratch) | SSP wire format, hardware registers — **student code is not portable across clients** |
+| **AI Agent (Gen 3)** | Intent parsing, goal decomposition, SSP command generation, GUI electronics configuration | Transport details, hardware registers, client UI — **this layer is where platform differences fade** |
 
 **Architectural guarantees:**
 
 - A new TYPE 1 firmware requires **ZERO changes** to existing clients.
 - A new Universal Client requires **ZERO changes** to existing firmware.
 - A new TYPE 2 protocol library requires wrappers per client, but **ZERO changes** to the client's core SSP logic.
-- The AI agent (Phase 3) will work with **ANY** bridge + **ANY** client combination.
+- The AI agent (Gen 3) will work with **ANY** bridge + **ANY** client combination — and is the layer where platform-specific block differences become invisible to the student.
+
+**What SSP does not guarantee:** Student code written for App Inventor cannot be run on Scratch without rewriting. Each client platform has its own blocks, its own event model, and its own interaction patterns. SSP guarantees that the robot capabilities are consistent; it does not make code portable.
 
 ---
 
@@ -463,3 +466,5 @@ The Solaria Hybrid Architecture maximizes development efficiency by recognizing 
 - **TYPE 2 (Protocol Bridge):** Closed hardware requiring per-client wrappers, with costs scaling linearly.
 
 This insight drives the project's strategic priorities: invest in TYPE 1 firmware first (especially the Generic ESP32) to create maximum ecosystem value, then selectively build TYPE 2 integrations based on community demand and funding.
+
+**The ecosystem promise:** Every supported hardware/software combination exposes the same robot capabilities. A teacher can choose App Inventor because their students know it, or Scratch because it is already in the curriculum, and the learning goals are consistent. A student who learns motor control and sensor reading on one platform understands the concepts that transfer to any other. When Gen 3 (the AI agent layer) is complete, even the interaction model converges — students describe what they want in natural language, and the platform differences disappear entirely.
