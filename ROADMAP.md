@@ -422,7 +422,7 @@ These items have the highest ROI because they are prerequisites for many downstr
 
 | Category | Count | Hours (range) | Cost (range) | Notes |
 |----------|-------|---------------|-------------|-------|
-| **Universal Clients** (remaining) | 6 | 700–1,170 hrs | $10,400–$15,900 | Python, Web, MicroBlocks, Scratch™, MakeCode®, Arduino |
+| **Universal Clients** (remaining) | 5 | 700–1,170 hrs | $10,400–$15,900 (pending re-costing) | Python, Web, MicroBlocks, MakeCode®, Arduino |
 | **Type 1 Firmware** | 6 | 720–1,500 hrs | $10,500–$17,000 | ESP32, micro:bit™, StackChan, RPi, CyberBrick, mBot2 |
 | **Type 2 Protocol Libraries** (remaining) | 3 | 600–950 hrs | $8,000–$13,000 | Powered Up, toio, uGot |
 | **Type 2 Client Wrappers** | 23 | 1,150–2,300 hrs | $16,100–$36,800 | 4 hardware × 6 clients minus 1 shipped |
@@ -481,9 +481,9 @@ Based on dependency analysis, leverage calculations, and community impact:
 | 5 | **MicroBlocks Universal Client** | Client | $1,800 | Natural partner for micro:bit™, on-device |
 | 6 | **LEGO Powered Up Protocol Lib** | Type 2 Lib | $3,200 | Huge user base (Boost, Robot Inventor, all PU hubs) |
 | 7 | **StackChan Firmware** | Type 1 FW | $2,500 | Active community, compelling demo |
-| 8 | **Scratch™ Universal Client** | Client | $2,500 | Largest K-8 programming platform |
+| 8 | **Scratch™ Universal Client** | Client | ✅ Shipped — Done | Largest K-8 programming platform |
 
-**Gen 2b total: ~$11,700** → Unlocks: 12+ new working combinations
+**Gen 2b total (excluding shipped Scratch): ~$9,200 (pending re-costing)** → Unlocks: 12+ new working combinations
 
 ### Medium-Term (Gen 2c)
 
