@@ -366,8 +366,8 @@ These items have the highest ROI because they are prerequisites for many downstr
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  solaria-fw-esp32          ──> Unlocks 6 client connections (Free)  │
-│  solaria-client-python     ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap │
-│  solaria-client-web        ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap │
+│  solaria-client-python     ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
+│  solaria-client-web        ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -384,8 +384,8 @@ These items have the highest ROI because they are prerequisites for many downstr
 │  solaria-fw-rpi            ──> Unlocks 6 client connections (Free)  │
 │  solaria-lib-powered-up    ──> Unlocks 6 wrappers                   │
 │  solaria-lib-toio          ──> Unlocks 6 wrappers                   │
-│  solaria-client-microblocks──> Unlocks 4 Type 1 HW + 5 Type 2 wrap │
-│  solaria-client-scratch    ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap │
+│  solaria-client-microblocks──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
+│  solaria-client-scratch    ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -399,7 +399,7 @@ These items have the highest ROI because they are prerequisites for many downstr
 │                                                                     │
 │  solaria-lib-ugot          ──> Unlocks 6 wrappers                   │
 │  solaria-lib-cyberbrick    ──> Unlocks 6 wrappers                   │
-│  solaria-client-makecode   ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap │
+│  solaria-client-makecode   ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
 │  All Type 2 wrappers      ──> Individual integrations               │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
