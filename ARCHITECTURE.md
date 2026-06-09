@@ -68,17 +68,17 @@ The Solaria ecosystem is built around a four-layer model with a clear separation
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  Layer 3: AI / Agent Layer (Future)                                         │
 │  Natural language → SSP commands. Hardware-agnostic intelligence.           │
-│  GUI Electronics Configuration: visual drag-and-drop hardware setup.       │
+│  GUI Electronics Configuration: visual drag-and-drop hardware setup.        │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 2: Clients                                                           │
-│  App Inventor │ MicroBlocks │ Python │ Scratch™ │ Web (JS) │ MakeCode®        │
+│  App Inventor │ MicroBlocks │ Python │ Scratch™ │ Web (JS) │ MakeCode®      │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  Layer 1: SSP + Bridge Layer                                                │
 │  ┌─────────────────────────────┐  ┌──────────────────────────────────────┐  │
 │  │  TYPE 1: Native SSP FW      │  │  TYPE 2: Protocol Bridge Libraries   │  │
 │  │  (Runs on open hardware)    │  │  (Translates SSP ↔ proprietary)      │  │
 │  │  • ESP32 Solaria Firmware   │  │  • SPIKE Prime protocol lib          │  │
-│  │  • micro:bit™ SSP firmware   │  │  • Powered Up (LWP3) protocol lib    │  │
+│  │  • micro:bit™ SSP firmware  │  │  • Powered Up (LWP3) protocol lib    │  │
 │  │  • StackChan SSP firmware   │  │  • toio protocol lib                 │  │
 │  │  • Raspberry Pi SSP service │  │  • uGot protocol lib                 │  │
 │  │  • CyberBrick SSP firmware  │  │                                      │  │
