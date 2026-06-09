@@ -461,7 +461,7 @@ The hybrid architecture creates dramatically different cost profiles:
 
 Based on dependency analysis, leverage calculations, and community impact:
 
-> **Note (2026-06-06):** Scratch is now shipped (see [Client Platform Roadmap](#client-platform-roadmap)). Client sequencing for remaining platforms is **Python → Web → MicroBlocks**. The cost-leverage ordering below predates the Scratch completion and is pending re-costing; treat the Client Platform Roadmap as authoritative for client priority.
+> **Note (2026-06-09):** Scratch is now shipped (see [Client Platform Roadmap](#client-platform-roadmap)). Client sequencing for remaining platforms is **Python → Web → MicroBlocks**. Gen 2b focuses on hardware expansion (micro:bit, StackChan, LEGO Powered Up, Robosen K1, UBTech Alpha Mini); MicroBlocks and MakeCode clients are Gen 2c. The cost-leverage ordering is pending re-costing for new entries; treat the Client Platform Roadmap as authoritative for client priority.
 
 ### Immediate Priority (Gen 2a)
 
@@ -478,24 +478,66 @@ Based on dependency analysis, leverage calculations, and community impact:
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
 | 4 | **BBC micro:bit™ Firmware** | Type 1 FW | $1,700 | Millions in schools, easy win |
-| 5 | **MicroBlocks Universal Client** | Client | $1,800 | Natural partner for micro:bit™, on-device |
-| 6 | **LEGO Powered Up Protocol Lib** | Type 2 Lib | $3,200 | Huge user base (Boost, Robot Inventor, all PU hubs) |
-| 7 | **StackChan Firmware** | Type 1 FW | $2,500 | Active community, compelling demo |
-| 8 | **Scratch™ Universal Client** | Client | ✅ Shipped — Done | Largest K-8 programming platform |
+| 5 | **LEGO Powered Up Protocol Lib** | Type 2 Lib | $3,200 | Huge user base (Boost, Robot Inventor, all PU hubs) |
+| 6 | **StackChan Firmware** | Type 1 FW | $2,500 | Active community, compelling demo |
+| 7 | **Robosen K1 Protocol Lib** | Type 2 Lib | TBD — pending re-costing | Bipedal humanoid; BLE; 17-servo joint control + actions |
+| 8 | **UBTech Alpha Mini Protocol Lib** | Type 2 Lib | TBD — pending re-costing | Humanoid; WiFi; onboard AI as sensor source |
+| — | **Scratch™ Universal Client** | Client | ✅ Shipped — Done | Largest K-8 programming platform |
 
-**Gen 2b total (excluding shipped Scratch): ~$9,200 (pending re-costing)** → Unlocks: 12+ new working combinations
+**Gen 2b total (excluding shipped Scratch and pending items): ~$7,400 (pending re-costing)** → Unlocks: 12+ new working combinations
+
+#### Robosen K1 (Interstellar Scout) — Protocol Library
+
+The Robosen K1 is a consumer bipedal humanoid robot with 17 servo joints, onboard speaker, and BLE connectivity. The K1 offers bipedal locomotion and expressive joint-based movement (head, arms, legs), introducing students to humanoid kinematics and choreographed motion sequences.
+
+**Integration type:** Protocol Library — communicates with the robot's existing firmware via BLE (no custom firmware required)
+
+**What this enables:**
+- Joint-based control: move individual joints by absolute angle, relative offset, or percentage
+- Pre-built actions: walking, punching, dancing, gestures
+- Audio playback from the robot's onboard speaker
+- Movement recording and playback (record joint positions, replay sequences)
+- Multi-robot coordination: control two or more K1 units simultaneously from a single client program
+
+**Reference implementation:** [RobosenJS](https://github.com/oklemenz/RobosenJS) (Apache-2.0) — Node.js BLE protocol implementation for the K1 series.
+
+**Planned repo:** `solaria-lib-robosen-k1`
+
+#### UBTech Alpha Mini — Protocol Library
+
+The UBTech Alpha Mini is a compact humanoid robot with 14 servo joints, an onboard camera (face detection, object recognition), microphone (speech recognition), speaker (TTS), infrared sensor, touch sensor, and an LED face display. It connects via WiFi (LAN discovery by serial number).
+
+The Alpha Mini is notable because it has limited onboard AI capabilities. Within Solaria, it is still treated as a hub — the client orchestrates all program logic and decision-making — but the hub's onboard AI can be queried as an additional sensor source.
+
+**Integration type:** Protocol Library — communicates with the robot's existing firmware via WiFi (no custom firmware required)
+
+**What this enables:**
+- Joint-based control: 14 servo joints with angle control
+- Pre-built actions: walking, dancing, gestures, expressions
+- Text-to-speech: the robot speaks from client-generated text
+- Onboard AI queries: face detection results, object recognition results, speech recognition events reported back to the client
+- Touch and infrared sensor reading
+- LED face expressions: emotional display
+- Multi-robot coordination: control multiple Alpha Mini units simultaneously from a single client program
+
+**Reference implementation:** [UBTech Alpha Mini Python SDK](https://docs.ubtrobot.com/alphamini/python-sdk-en/guide.html) (official async Python SDK). Community reference: [marklogg/mini_demo](https://github.com/marklogg/mini_demo) (MIT).
+
+**Planned repo:** `solaria-lib-ubtech-alphamini`
 
 ### Medium-Term (Gen 2c)
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
-| 9 | **Raspberry Pi Firmware** | Type 1 FW | $2,700 | Complex robots, Linux ecosystem |
-| 10 | **Sony® toio™ Protocol Lib** | Type 2 Lib | $2,700 | Well-documented, K-6 market |
-| 11 | **MakeCode® Universal Client** | Client | $2,100 | Microsoft ecosystem, micro:bit™ native |
-| 12 | **Powered Up wrappers** (×6) | Wrappers | $6,600 | Wrappers for all clients |
-| 13 | **toio wrappers** (×6) | Wrappers | $5,700 | Wrappers for all clients |
+| 9 | **MicroBlocks Universal Client** | Client | $1,800 | Natural partner for micro:bit™, on-device live coding |
+| 10 | **MakeCode® Universal Client** | Client | $2,100 | Microsoft ecosystem, micro:bit™ native |
+| 11 | **Raspberry Pi Firmware** | Type 1 FW | $2,700 | Complex robots, Linux ecosystem |
+| 12 | **CyberBrick Firmware** | Type 1 FW | TBD | ESP32-C3; ESP-NOW + BLE; Bambu Lab modular platform |
+| 13 | **Makeblock mBot2 Firmware** | Type 1 FW | TBD | ESP32; popular in schools |
+| 14 | **Sony® toio™ Protocol Lib** | Type 2 Lib | $2,700 | Well-documented, K-6 market |
+| 15 | **Powered Up wrappers** (×6) | Wrappers | $6,600 | Wrappers for all clients |
+| 16 | **toio wrappers** (×6) | Wrappers | $5,700 | Wrappers for all clients |
 
-**Gen 2c total: ~$19,800**
+**Gen 2c total (known items): ~$21,600 + TBD for new firmware entries (pending re-costing)**
 
 ### Long-Term (Community-Driven)
 

@@ -43,6 +43,12 @@ Solaria defines the **Solaria Standard Protocol (SSP)** — a shared communicati
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow diagrams and cost implications.
 
+**The client is where the program logic lives.** It runs on the student's device — smartphone, laptop, tablet, or browser — and has access to everything that device can do: camera, microphone, sensors, AI/ML libraries, internet connectivity. The **hub** is the physical robotics hardware: a motor controller, sensor array, microcontroller, or commercial robot. The hub executes commands and reports sensor state; it does not run student logic. Some hubs have limited onboard AI (face detection, speech recognition, object tracking); within Solaria, these are treated as additional sensor inputs — the client remains the decision-maker.
+
+Because the client orchestrates all logic, a single client instance can maintain connections to multiple hubs simultaneously, enabling multi-device coordination from one program.
+
+**SSP (Solaria Standard Protocol)** is transport-agnostic — implementations may use Bluetooth Low Energy, WiFi, USB serial, infrared, or any other byte-stream transport appropriate to the hardware.
+
 ---
 
 ## Supported Hardware
@@ -59,6 +65,8 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 | LEGO Powered Up (LWP3 family) | 💡 Proposed | — |
 | UBTECH® uGot | 💡 Proposed | — |
 | Sony® toio™ | 💡 Proposed | — |
+| Robosen K1 (Interstellar Scout) | 📋 Planned | — |
+| UBTech Alpha Mini | 📋 Planned | — |
 
 > **What's next?** The community decides. [Vote here →](#vote-for-the-next-integration)
 
@@ -77,6 +85,18 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full explanation with data flow d
 | Arduino IDE | 💡 Proposed | C/C++ library for advanced users |
 
 > Solaria focuses on **open-source** client platforms to ensure the widest possible access without licensing barriers.
+
+> Students can begin with simpler block-based environments and advance to more capable platforms as their skills grow. The underlying robot capabilities remain consistent across every Solaria client, so the same hardware works throughout the educational journey.
+
+---
+
+## Core Principles
+
+**Capability parity, not code portability.** Student code looks different on each platform — Scratch is event-driven, App Inventor is stateful, Python is imperative. That's intentional: each platform has its own idioms and strengths. What remains consistent is the set of robot capabilities available: motor control, sensor reading, real-time feedback, and AI integration. Same capabilities, every platform.
+
+**Open and extensible.** SSP is a published specification. Anyone can build a new client or a new hub firmware. The ecosystem grows through community contribution.
+
+**Transport-agnostic.** SSP defines the message format and semantics, not the wire. Implementations choose the transport (BLE, WiFi, USB serial, infrared) appropriate to their hardware and use case.
 
 ---
 

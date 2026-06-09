@@ -16,6 +16,35 @@ To support the vast diversity of robotics hardware — from open-source microcon
 
 ---
 
+## Core Concepts
+
+### Client
+The software environment where the student's program executes. The client:
+- Runs on the student's device (smartphone, laptop, tablet, or browser)
+- Contains all program logic, decision-making, and AI/ML processing
+- Initiates and manages connections to one or more hubs
+- Has access to device-native capabilities (camera, microphone, network, GPU, onboard sensors)
+
+### Hub
+The physical robotics hardware controlled by the client. The hub:
+- Executes motor commands and reports sensor readings
+- Does not run student logic — it acts as a controlled peripheral
+- Implements SSP (or a protocol library that translates SSP ↔ proprietary commands) over one or more transports
+- May be any microcontroller, single-board computer, or commercial robotics kit that participates in SSP communication
+- Some hubs have limited onboard AI (e.g., face detection, speech recognition, object tracking); within Solaria, these are treated as additional sensor inputs available to the client
+
+### SSP (Solaria Standard Protocol)
+The communication contract between client and hub. SSP defines:
+- Message format and command vocabulary (motor, sensor, LED, sound, system commands)
+- State reporting and event patterns
+- Connection lifecycle (discovery, capability handshake, session, disconnect)
+
+SSP is **transport-agnostic**. The same logical protocol operates identically whether the physical layer is Bluetooth Low Energy, WiFi TCP/UDP, USB serial, infrared, or any other byte-stream transport.
+
+A single client instance may maintain concurrent connections to multiple hubs over different transports simultaneously, enabling multi-device coordination from one program.
+
+---
+
 ## Table of Contents
 
 1. [The Hybrid Architecture Model](#the-hybrid-architecture-model)

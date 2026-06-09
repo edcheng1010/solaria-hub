@@ -54,6 +54,14 @@ The first implementation of this vision is the **Bridge Suite**, which successfu
 
 This Gen 1 MVP proves the core architecture: a user can open App Inventor, connect to a closed-ecosystem robot using a Solaria wrapper, and control it using standard blocks. It serves as the foundation upon which the AI overlay will be built.
 
+## Gen 3 Vision
+
+As the ecosystem matures through Gen 2, the interaction model evolves. Gen 3 introduces natural language as the primary interface — students express what they want their robot to do in plain language, and the system generates the appropriate platform-specific logic and SSP commands.
+
+At Gen 3, the choice of client platform becomes a preference rather than a constraint. The same natural language intent — "drive toward the red object and stop when you're 20 cm away" — produces equivalent robot behaviour whether the student is using App Inventor, Scratch, Python, or any future Solaria client. The underlying capabilities are already consistent across platforms (Gen 1–2); the AI layer removes the remaining surface difference in how students express those capabilities.
+
+This is also the point where multi-device orchestration becomes accessible to all students, not just advanced programmers: a natural language prompt can coordinate multiple hubs — a mobile base and a manipulator arm, or two robots working in formation — without the student needing to reason about concurrent connections or message sequencing.
+
 ## Sustainability: Open Core, Hosted Cloud
 
 Solaria follows an **open-core** model. The platform, hardware configurations, integrations, and protocol libraries are fully open-source. Anyone can run Solaria locally, contribute extensions, and build on the ecosystem without restriction.
