@@ -468,6 +468,8 @@ These items have the highest ROI because they are prerequisites for many downstr
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  solaria-fw-esp32          ──> Unlocks 6 client connections (Free)  │
+│  solaria-fw-arduino        ──> Unlocks 6 client connections (Free)  │
+│  solaria-fw-rpi            ──> Unlocks 6 client connections (Free)  │
 │  solaria-client-python     ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
 │  solaria-client-web        ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
 │                                                                     │
@@ -483,10 +485,11 @@ These items have the highest ROI because they are prerequisites for many downstr
 │                                                                     │
 │  solaria-fw-microbit       ──> Unlocks 6 client connections (Free)  │
 │  solaria-fw-stackchan      ──> Unlocks 6 client connections (Free)  │
-│  solaria-fw-rpi            ──> Unlocks 6 client connections (Free)  │
-│  solaria-lib-powered-up    ──> Unlocks 6 wrappers                   │
-│  solaria-lib-toio          ──> Unlocks 6 wrappers                   │
-│  solaria-client-microblocks──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
+│  solaria-lib-robosen-k1    ──> Unlocks 6 wrappers                   │
+│  solaria-lib-ubtech-alphamini ──> Unlocks 6 wrappers                │
+│  solaria-lib-ubtech-alpha1pro ──> Unlocks 6 wrappers                │
+│  solaria-lib-ubtech-ugot   ──> Unlocks 6 wrappers                   │
+│  solaria-lib-sphero        ──> Unlocks 6 wrappers                   │
 │  solaria-client-scratch    ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -499,8 +502,10 @@ These items have the highest ROI because they are prerequisites for many downstr
 │  GEN 2c–2d: Build on demand (community-driven)                      │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  solaria-lib-ugot          ──> Unlocks 6 wrappers                   │
+│  solaria-lib-powered-up    ──> Unlocks 6 wrappers                   │
+│  solaria-lib-toio          ──> Unlocks 6 wrappers                   │
 │  solaria-lib-cyberbrick    ──> Unlocks 6 wrappers                   │
+│  solaria-client-microblocks──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
 │  solaria-client-makecode   ──> Unlocks 4 Type 1 HW + 5 Type 2 wrap  │
 │  All Type 2 wrappers      ──> Individual integrations               │
 │                                                                     │
@@ -563,7 +568,7 @@ The hybrid architecture creates dramatically different cost profiles:
 
 Based on dependency analysis, leverage calculations, and community impact:
 
-> **Note (2026-06-09):** Scratch is now shipped (see [Client Platform Roadmap](#client-platform-roadmap)). Client sequencing for remaining platforms is **Python → Web → MicroBlocks**. Gen 2b focuses on hardware expansion (micro:bit, StackChan, LEGO Powered Up, Robosen K1, UBTech Alpha Mini); MicroBlocks and MakeCode clients are Gen 2c. The cost-leverage ordering is pending re-costing for new entries; treat the Client Platform Roadmap as authoritative for client priority.
+> **Note (2026-06-10):** Scratch is now shipped (see [Client Platform Roadmap](#client-platform-roadmap)). Gen 2a core infrastructure: ESP32, Arduino, Raspberry Pi, Python, Web clients. Gen 2b hardware expansion: micro:bit, StackChan, Robosen K1, Alpha Mini, Alpha 1 Pro, UGOT, Sphero, Bee-Bot; LEGO Powered Up moves to Gen 2c (no physical unit for testing). MicroBlocks and MakeCode clients are Gen 2c. Pending re-costing for new entries; treat the Client Platform Roadmap as authoritative for client priority.
 
 ### Immediate Priority (Gen 2a)
 
@@ -572,8 +577,10 @@ Based on dependency analysis, leverage calculations, and community impact:
 | 1 | **Generic ESP32 Firmware** | Type 1 FW | $2,500 | Highest leverage — unlocks ALL clients for unlimited cheap robots |
 | 2 | **Python Universal Client** | Client | $2,200 | Serves advanced users, universities, enables scripting |
 | 3 | **Web (JS) Universal Client** | Client | $2,200 | Zero-install browser experience, Web Bluetooth |
+| 4 | **Arduino SSP Firmware** | Type 1 FW | TBD | Wide maker adoption; BLE + WiFi + Serial transports; Uno R4, Nano 33 BLE |
+| 5 | **Raspberry Pi SSP Server** | Type 1 FW | TBD | Linux SBC; WiFi + BLE; sufficient compute for trained policy execution and sensor fusion |
 
-**Gen 2a total: ~$7,000** → Unlocks: ESP32 + Python, ESP32 + Web, ESP32 + App Inventor (3 new working combinations)
+**Gen 2a total: ~$7,000 + TBD for Arduino/RPi entries (pending re-costing)** → Unlocks: ESP32 + Python, ESP32 + Web, ESP32 + App Inventor plus Arduino and RPi combinations
 
 > **Forward-Compatibility:** Gen 2a hardware selections were made with future autonomy and swarm capabilities in mind. ESP32-based hubs natively support ESP-NOW for sub-millisecond peer-to-peer communication — one implementation option for future swarm coordination (Level 3). Raspberry Pi hubs have sufficient compute for local ML inference, enabling trained Policy execution and sensor fusion. These capabilities are not activated in Gen 2a but validate the hardware's readiness for Gen 3/4 features.
 
@@ -581,16 +588,54 @@ Based on dependency analysis, leverage calculations, and community impact:
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
-| 4 | **BBC micro:bit™ Firmware** | Type 1 FW | $1,700 | Millions in schools, easy win |
-| 5 | **LEGO Powered Up Protocol Lib** | Type 2 Lib | $3,200 | Huge user base (Boost, Robot Inventor, all PU hubs) |
-| 6 | **StackChan Firmware** | Type 1 FW | $2,500 | Active community, compelling demo |
-| 7 | **Robosen K1 Protocol Lib** | Type 2 Lib | TBD — pending re-costing | Bipedal humanoid; BLE; 17-servo joint control + actions |
-| 8 | **UBTech Alpha Mini Protocol Lib** | Type 2 Lib | TBD — pending re-costing | Humanoid; WiFi; onboard AI as sensor source |
+| 6 | **BBC micro:bit™ Firmware** | Type 1 FW | $1,700 | Millions in schools, BLE UART Service → clean SSP transport |
+| 7 | **StackChan Firmware** | Type 1 FW | $2,500 | Active community, compelling demo |
+| 8 | **Robosen K1 Protocol Lib** | Type 2 Lib | TBD — pending re-costing | Bipedal humanoid; BLE; 17-servo joint control + actions |
+| 9 | **UBTech Alpha Mini Protocol Lib** | Type 2 Lib | TBD — pending re-costing | Humanoid; WiFi; onboard AI as sensor source |
+| 10 | **UBTech Alpha 1 Pro Protocol Lib** | Type 2 Lib | TBD — pending re-costing | 16-DOF humanoid; BT Classic RFCOMM; servo choreography |
+| 11 | **UBTech UGOT Protocol Lib** | Type 2 Lib | TBD — pending re-costing | Modular robot; WiFi gRPC; rich onboard AI vision |
+| 12 | **Sphero (BB-8, R2-D2) Protocol Lib** | Type 2 Lib | TBD — pending re-costing | BLE V2 rolling droids; heading + speed motion model |
+| 13 | **Bee-Bot / Blue-Bot Protocol Lib** | Type 2 Lib | TBD — pending re-costing | K-2 foundational robot; BLE |
 | — | **Scratch™ Universal Client** | Client | ✅ Shipped — Done | Largest K-8 programming platform |
 
-**Gen 2b total (excluding shipped Scratch and pending items): ~$7,400 (pending re-costing)** → Unlocks: 12+ new working combinations
+**Gen 2b total (excluding shipped Scratch, pending items): ~$4,200 + TBD (pending re-costing)** → Unlocks: 15+ new working combinations
 
 > **Gen 2b Advanced Control:** For capable platforms (ESP32, Arduino, Raspberry Pi), Gen 2b introduces **Control Parameters** via SSP. Students can dynamically tune PID gains, impedance parameters, and trajectory profiles on the hub directly from the client interface — without reflashing firmware. This is the foundation for the Control Theory Sandbox in Gen 3.
+
+#### BBC micro:bit — Firmware
+
+The BBC micro:bit is an ARM-based educational microcontroller with built-in BLE, accelerometer, magnetometer, temperature sensor, buttons, LED matrix, and edge connector for motor driver boards. With 73 million students reached globally, it has one of the largest educational technology ecosystems.
+
+The micro:bit's BLE UART Service provides a natural transport for SSP — arbitrary byte sequences can be exchanged over a standard GATT characteristic. The Solaria firmware runs on the micro:bit and implements the SSP hub protocol, while external clients (App Inventor, Scratch, Python) connect via BLE.
+
+**Integration type:** Custom Firmware (SSP hub implementation running on micro:bit)
+
+**Transport:** BLE (UART Service — arbitrary byte exchange over GATT characteristic)
+
+**Capabilities exposed via SSP:**
+- Motor control (via edge connector + motor driver board)
+- Servo control (via edge connector)
+- LED matrix display (5×5, patterns and scrolling text)
+- Accelerometer and magnetometer reading
+- Temperature sensor
+- Button events (A, B, A+B)
+- GPIO pin control (for custom peripherals)
+- Light level sensing
+- Compass heading
+
+**Robot kits supported:**
+- Kitronik Compact Robotics Board (4 motors, 8 servos)
+- 4tronix Bit:Bot XL — line following, ultrasonic, NeoPixels
+- Elecfreaks Cutebot — dual motors, ultrasonic, line tracking
+- Any motor driver board connected via edge connector
+
+**Reference implementations:**
+- [janickr/kaspersmicrobit](https://github.com/janickr/kaspersmicrobit) (28 stars) — Python BLE GATT client
+- [thegecko/microbit-web-bluetooth](https://github.com/thegecko/microbit-web-bluetooth) (55 stars) — Web Bluetooth JS library
+- [microsoft/pxt-microbit](https://github.com/microsoft/pxt-microbit) (803 stars) — Official MakeCode target
+- MIT App Inventor official IoT extensions for micro:bit (Accelerometer, Button, LED, UART)
+
+**Planned repo:** `solaria-firmware-microbit`
 
 #### Robosen K1 (Interstellar Scout) — Protocol Library
 
@@ -630,29 +675,105 @@ The Alpha Mini is notable because it has limited onboard AI capabilities. Within
 
 **Planned repo:** `solaria-lib-ubtech-alphamini`
 
+#### UBTech Alpha 1 Pro — Protocol Library
+
+The UBTech Alpha 1 Pro is a 16-DOF humanoid robot with servo-based joint control across arms (3 joints each) and legs (5 joints each). It connects via Bluetooth Classic (RFCOMM) or USB serial, using a well-documented wire protocol.
+
+Unlike the Alpha Mini, the Alpha 1 Pro has no onboard AI, camera, or speaker — it is a pure servo-driven humanoid focused on movement and choreography. This makes it an excellent platform for teaching kinematics, joint coordination, and bipedal locomotion concepts.
+
+**Integration type:** Protocol Library (no custom firmware — communicates with existing firmware via Bluetooth Classic RFCOMM or USB serial)
+
+**Transport:** Bluetooth Classic (RFCOMM port 6) or USB serial (STM32 CDC Virtual COM Port)
+
+**Capabilities exposed via SSP:**
+- Individual joint control (16 servos, 0–180°, with timing)
+- Simultaneous multi-joint movement (all 16 servos in one command)
+- Angle readback (current position of all servos)
+- Action file playback (pre-recorded choreography sequences)
+- Battery monitoring
+- Servo power management (enable/disable)
+
+**Servo layout:** 16 joints — R shoulder, R upper arm, R lower arm, R hip yaw/roll/pitch, R knee, R ankle, L hip yaw/roll/pitch, L knee, L ankle, L shoulder, L upper arm, L lower arm.
+
+**Reference implementations:**
+- [adampaigge/UBTECH-Alpha-1S-SDK](https://github.com/adampaigge/UBTECH-Alpha-1S-SDK) (MIT) — full reverse-engineered Python SDK with ROS 2 and Isaac Lab integration
+- [alpha-hacks/alpha-bluetooth](https://github.com/alpha-hacks/alpha-bluetooth) (34 stars) — community Python implementation with official protocol documentation
+
+**Planned repo:** `solaria-lib-ubtech-alpha1pro`
+
+#### UBTech UGOT — Protocol Library
+
+The UBTech UGOT is a modular robotics platform with a single controller unit that can be assembled into 7+ robot configurations: mecanum car, balance bot, spider, quadruped dog, wheel-legged walker, transformer, and robotic arm. It is UBTech's education-focused product line designed for STEM classrooms.
+
+UGOT communicates via gRPC over WiFi (port 50051) and has the most extensive onboard AI capabilities in the Solaria ecosystem. Within Solaria, it remains a hub — the client orchestrates program logic — but UGOT's onboard AI provides rich structured sensor data (pose estimation, object recognition, face detection, and more) that the client can query and act upon.
+
+**Integration type:** Protocol Library (no custom firmware — communicates with existing firmware via gRPC over WiFi)
+
+**Transport:** WiFi (gRPC on port 50051, device discovery via Zeroconf)
+
+**Robot configurations supported:** Mecanum car, balance bot, spider, quadruped dog, wheel-legged walker, transformer, robotic arm (3-DOF with inverse kinematics)
+
+**Capabilities exposed via SSP:**
+- Movement (model-specific linear speed, direction, rotation, target angle)
+- AI Vision: human pose estimation, text/OCR recognition, colour tracking, AprilTag/QR detection, face expression recognition, gesture recognition (10 gestures), traffic sign recognition, line/track following
+- Servo and motor control (individual joints, robotic arm IK, clamp)
+- Audio: TTS, speech recognition, playback, sound direction detection
+- Sensors: distance/ultrasonic, IMU (accelerometer, gyroscope), attitude/tilt
+- Display: LED lights (4 positions, 9 colours, breathing/flashing effects)
+
+**Reference implementations:**
+- [ugot PyPI package](https://pypi.org/project/ugot/) (MIT, v0.2.13) — official Python SDK using gRPC + Protobuf. Install: `pip install ugot`
+- [UGOT SDK Documentation](https://docs.ubtrobot.com/ugot/) — full API reference for movement, AI vision, audio, sensors, display, GPIO, servos
+
+**Planned repo:** `solaria-lib-ubtech-ugot`
+
+#### Sphero (BB-8, R2-D2) — Protocol Library
+
+The Sphero BB-8 and R2-D2 are BLE-connected rolling droids using the Sphero V2 protocol. Though Sphero deprecated their official SDKs in 2019, the community has fully reverse-engineered the BLE protocol and maintains robust Python and JavaScript libraries.
+
+These robots introduce a different motion model — heading + speed rolling rather than individual motor or joint control — which demonstrates SSP's flexibility in abstracting diverse locomotion types.
+
+**Integration type:** Protocol Library (communicates with existing firmware via BLE)
+
+**Transport:** BLE (Sphero V2 protocol — SLIP-like encoding with SOP/EOP bytes, TID/SID addressing)
+
+**Capabilities exposed via SSP:**
+- Rolling movement (heading, speed, duration)
+- LED colour control (main LED, back LED)
+- Sensor reading (accelerometer, gyroscope, orientation)
+- Collision detection events
+- Battery level monitoring
+- Animation sequences (R2-D2 waddle, BB-8 nod)
+
+**Reference implementations:**
+- [artificial-intelligence-class/spherov2.py](https://github.com/artificial-intelligence-class/spherov2.py) (MIT, 80 stars) — Python API using `bleak` BLE library
+- [igbopie/spherov2.js](https://github.com/igbopie/spherov2.js) (MIT, 89 stars) — TypeScript V2 API
+- [hybridgroup/gobot](https://github.com/hybridgroup/gobot) (Apache-2.0, 9,423 stars) — Go robotics framework with Sphero driver
+
+**Planned repo:** `solaria-lib-sphero`
+
 ### Medium-Term (Gen 2c)
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
-| 9 | **MicroBlocks Universal Client** | Client | $1,800 | Natural partner for micro:bit™, on-device live coding |
-| 10 | **MakeCode® Universal Client** | Client | $2,100 | Microsoft ecosystem, micro:bit™ native |
-| 11 | **Raspberry Pi Firmware** | Type 1 FW | $2,700 | Complex robots, Linux ecosystem |
-| 12 | **CyberBrick Firmware** | Type 1 FW | TBD | ESP32-C3; ESP-NOW + BLE; Bambu Lab modular platform |
-| 13 | **Makeblock mBot2 Firmware** | Type 1 FW | TBD | ESP32; popular in schools |
-| 14 | **Sony® toio™ Protocol Lib** | Type 2 Lib | $2,700 | Well-documented, K-6 market |
-| 15 | **Powered Up wrappers** (×6) | Wrappers | $6,600 | Wrappers for all clients |
-| 16 | **toio wrappers** (×6) | Wrappers | $5,700 | Wrappers for all clients |
+| 14 | **MicroBlocks Universal Client** | Client | $1,800 | Natural partner for micro:bit™, on-device live coding |
+| 15 | **MakeCode® Universal Client** | Client | $2,100 | Microsoft ecosystem, micro:bit™ native |
+| 16 | **LEGO Powered Up Protocol Lib** | Type 2 Lib | $3,200 | Huge user base (Boost, Robot Inventor, all PU hubs) — no physical unit for testing |
+| 17 | **CyberBrick Firmware** | Type 1 FW | TBD | ESP32-C3; ESP-NOW + BLE; Bambu Lab modular platform |
+| 18 | **Makeblock mBot2 Firmware** | Type 1 FW | TBD | ESP32; popular in schools |
+| 19 | **Sony® toio™ Protocol Lib** | Type 2 Lib | $2,700 | Well-documented, K-6 market |
+| 20 | **Powered Up wrappers** (×6) | Wrappers | $6,600 | Wrappers for all clients |
+| 21 | **toio wrappers** (×6) | Wrappers | $5,700 | Wrappers for all clients |
 
-**Gen 2c total (known items): ~$21,600 + TBD for new firmware entries (pending re-costing)**
+**Gen 2c total (known items): ~$22,100 + TBD for new firmware entries (pending re-costing)**
 
 ### Long-Term (Community-Driven)
 
 | # | Item | Type | Cost | Rationale |
 |---|------|------|------|-----------|
-| 14 | **UBTECH® uGot Protocol Lib** | Type 2 Lib | $4,500 | Asian education market |
-| 15 | **CyberBrick Protocol Lib** | Type 2 Lib | $3,800 | Modular electronics |
-| 16 | **Remaining wrappers** (×12) | Wrappers | $12,000 | Complete the matrix |
-| 17 | **SPIKE Prime wrappers** (×5) | Wrappers | $6,000 | Expand SPIKE to all clients |
+| 22 | **CyberBrick Protocol Lib** | Type 2 Lib | $3,800 | Modular electronics |
+| 23 | **Remaining wrappers** (×12) | Wrappers | $12,000 | Complete the matrix |
+| 24 | **SPIKE Prime wrappers** (×5) | Wrappers | $6,000 | Expand SPIKE to all clients |
 
 **Long-term total: ~$26,300**
 

@@ -57,17 +57,20 @@ Because the client orchestrates all logic, a single client instance can maintain
 | :--- | :---: | :--- | :---: | :---: | :--- |
 | LEGO® SPIKE™ Prime | Protocol Library | BLE | ✅ Shipped | Gen 1 | K-8 |
 | Generic ESP32 "Solaria Firmware" | Firmware | BLE + WiFi | 📋 Planned | Gen 2a | All levels |
+| Arduino (SSP Firmware) | Firmware | BLE + WiFi + Serial | 💡 Proposed | Gen 2a | K-12 to Higher Ed |
+| Raspberry Pi | Firmware | WiFi + BLE + Serial | 💡 Proposed | Gen 2a | K-12 to Higher Ed |
 | BBC micro:bit™ | Firmware | BLE | 📋 Planned | Gen 2b | K-8 |
 | StackChan (M5Stack) | Firmware | BLE + WiFi | 📋 Planned | Gen 2b | Maker / K-12 |
-| LEGO Powered Up (LWP3 family) | Protocol Library | BLE | 💡 Proposed | Gen 2b | K-8 |
 | Robosen K1 (Interstellar Scout) | Protocol Library | BLE | 📋 Planned | Gen 2b | K-12 |
 | UBTech Alpha Mini | Protocol Library | WiFi | 📋 Planned | Gen 2b | K-12 |
+| UBTech Alpha 1 Pro | Protocol Library | BT Classic | 📋 Planned | Gen 2b | K-12 |
+| UBTech UGOT | Protocol Library | WiFi (gRPC) | 📋 Planned | Gen 2b | K-12 |
+| Sphero BB-8 / R2-D2 | Protocol Library | BLE | 📋 Planned | Gen 2b | K-8 |
 | Bee-Bot / Blue-Bot | Protocol Library | BLE | 📋 Planned | Gen 2b | K-2 Foundational |
 | CyberBrick | Firmware | BLE + WiFi + ESP-NOW | 💡 Proposed | Gen 2c | Maker / K-12 |
+| LEGO Powered Up (LWP3 family) | Protocol Library | BLE | 💡 Proposed | Gen 2c | K-8 |
 | Makeblock mBot2 (CyberPi) | Firmware | BLE + WiFi | 💡 Proposed | Gen 2c | K-8 |
-| Raspberry Pi | Firmware | WiFi + BLE + Serial | 💡 Proposed | Gen 2c | K-12 to Higher Ed |
 | Sony® toio™ | Protocol Library | BLE | 💡 Proposed | Gen 2c | K-6 |
-| UBTECH® uGot | Protocol Library | BLE + WiFi | 💡 Proposed | Long-term | K-12 |
 | NAO Robot (SoftBank) | Protocol Library | WiFi | 💡 Proposed | Gen 3 | Higher Ed (HRI) |
 | TurtleBot (ROS) | Protocol Library | WiFi (ROS Bridge) | 💡 Proposed | Gen 3 | Higher Ed (Motion Planning) |
 

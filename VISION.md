@@ -5,7 +5,7 @@
 
 ## The Core Idea: An Agentic AI Overlay
 
-Solaria Hub is not designed to replace existing coding platforms. Instead, it is strategically positioned as an **infrastructure layer**—an intelligent overlay that sits on top of established environments like MIT App Inventor, Scratch™, MakeCode®, and Arduino IDE.
+Solaria Hub is not designed to replace existing coding platforms. Instead, it is an **infrastructure layer** — an intelligent overlay that sits on top of established environments like MIT App Inventor, Scratch™, MakeCode®, and Arduino IDE.
 
 The goal is to augment these platforms with an agentic AI layer that deeply understands the **hardware × software matrix**. By operating as an overlay, Solaria ensures that users can remain in the coding environments they already know and love, while gaining powerful new capabilities to interact with physical hardware.
 
