@@ -53,20 +53,23 @@ Because the client orchestrates all logic, a single client instance can maintain
 
 ## Supported Hardware
 
-| Hardware Platform | Status | Repository |
-| :--- | :---: | :--- |
-| LEGO® SPIKE™ Prime | ✅ Available | [solaria-appinventor-spike-prime](https://github.com/edcheng1010/solaria-appinventor-spike-prime) |
-| BBC micro:bit™ / MicroBlocks | 📋 Planned | — |
-| StackChan (M5Stack) | 📋 Planned | — |
-| Generic ESP32 "Solaria Firmware" | 💡 Proposed | — |
-| Raspberry Pi | 💡 Proposed | — |
-| CyberBrick | 📋 Planned | — |
-| Makeblock mBot2 (CyberPi) | 💡 Proposed | — |
-| LEGO Powered Up (LWP3 family) | 💡 Proposed | — |
-| UBTECH® uGot | 💡 Proposed | — |
-| Sony® toio™ | 💡 Proposed | — |
-| Robosen K1 (Interstellar Scout) | 📋 Planned | — |
-| UBTech Alpha Mini | 📋 Planned | — |
+| Hardware Platform | Type | Transport | Status | Priority | Target Audience |
+| :--- | :---: | :--- | :---: | :---: | :--- |
+| LEGO® SPIKE™ Prime | Protocol Library | BLE | ✅ Shipped | Gen 1 | K-8 |
+| Generic ESP32 "Solaria Firmware" | Firmware | BLE + WiFi | 📋 Planned | Gen 2a | All levels |
+| BBC micro:bit™ | Firmware | BLE | 📋 Planned | Gen 2b | K-8 |
+| StackChan (M5Stack) | Firmware | BLE + WiFi | 📋 Planned | Gen 2b | Maker / K-12 |
+| LEGO Powered Up (LWP3 family) | Protocol Library | BLE | 💡 Proposed | Gen 2b | K-8 |
+| Robosen K1 (Interstellar Scout) | Protocol Library | BLE | 📋 Planned | Gen 2b | K-12 |
+| UBTech Alpha Mini | Protocol Library | WiFi | 📋 Planned | Gen 2b | K-12 |
+| Bee-Bot / Blue-Bot | Protocol Library | BLE | 📋 Planned | Gen 2b | K-2 Foundational |
+| CyberBrick | Firmware | BLE + WiFi + ESP-NOW | 💡 Proposed | Gen 2c | Maker / K-12 |
+| Makeblock mBot2 (CyberPi) | Firmware | BLE + WiFi | 💡 Proposed | Gen 2c | K-8 |
+| Raspberry Pi | Firmware | WiFi + BLE + Serial | 💡 Proposed | Gen 2c | K-12 to Higher Ed |
+| Sony® toio™ | Protocol Library | BLE | 💡 Proposed | Gen 2c | K-6 |
+| UBTECH® uGot | Protocol Library | BLE + WiFi | 💡 Proposed | Long-term | K-12 |
+| NAO Robot (SoftBank) | Protocol Library | WiFi | 💡 Proposed | Gen 3 | Higher Ed (HRI) |
+| TurtleBot (ROS) | Protocol Library | WiFi (ROS Bridge) | 💡 Proposed | Gen 3 | Higher Ed (Motion Planning) |
 
 > **What's next?** The community decides. [Vote here →](#vote-for-the-next-integration)
 
@@ -74,15 +77,15 @@ Because the client orchestrates all logic, a single client instance can maintain
 
 ## Client Platforms
 
-| Client Environment | Status | Notes |
-| :--- | :---: | :--- |
-| MIT App Inventor | ✅ Supported | Via .aix extension |
-| MicroBlocks | 📋 Planned | Open source, block-based |
-| Python | 📋 Planned | Via SDK/library |
-| Scratch™ / TurboWarp | ✅ Supported | Unsandboxed TurboWarp extension via Web Bluetooth — no Scratch Link required. Works on physical SPIKE Prime hubs. |
-| Web (JavaScript) | 💡 Proposed | Via Web Bluetooth SDK |
-| MakeCode® | 💡 Proposed | Open source, Microsoft |
-| Arduino IDE | 💡 Proposed | C/C++ library for advanced users |
+| Client Environment | Language | Status | Notes |
+| :--- | :--- | :---: | :--- |
+| MIT App Inventor | Java | ✅ Supported | Via .aix extension |
+| Scratch™ / TurboWarp | JavaScript | ✅ Supported | Unsandboxed TurboWarp extension via Web Bluetooth — no Scratch Link required. Works on physical SPIKE Prime hubs. |
+| Python | Python | 📋 Planned | Via SDK/library |
+| Web (JavaScript) | JavaScript | 💡 Proposed | Via Web Bluetooth SDK |
+| MicroBlocks | MicroBlocks | 📋 Planned | Open source, block-based, on-device live coding |
+| MakeCode® | TypeScript | 💡 Proposed | Open source, Microsoft ecosystem |
+| Arduino IDE | C/C++ | 💡 Proposed | Library for advanced users and firmware developers |
 
 > Solaria focuses on **open-source** client platforms to ensure the widest possible access without licensing barriers.
 

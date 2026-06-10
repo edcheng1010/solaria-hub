@@ -22,14 +22,13 @@ Configuring hardware is often the most frustrating part of robotics. Solaria pro
 ### 3. Agentic AI Assistance
 At its core, Solaria is an intelligence layer capable of reasoning about physical components. It understands what hardware is connected, what capabilities that hardware possesses, and how to generate the correct Solaria Standard Protocol (SSP) commands to control it. This agentic assistance works across any combination of supported hardware and software.
 
-## Why This Approach? (Augment, Don't Compete)
+## Why an Infrastructure Layer?
 
-The educational technology landscape is highly fragmented. Creating yet another standalone IDE would only add to this fragmentation and force educators to learn a new tool.
+Educational technology is diverse — teachers and students have deeply invested in specific platforms, and every environment has genuine strengths. Solaria is designed as an infrastructure layer that integrates with existing environments rather than replacing them.
 
-By building Solaria as an infrastructure layer, we adopt a philosophy of **augmentation over competition**. 
-- **For users:** Zero switching costs. They use the tools they already know.
-- **For platforms:** Solaria acts as a powerful feature upgrade, making every existing platform a potential integration partner.
-- **For hardware:** Solaria bridges the gap between cheap, ubiquitous hardware and high-level visual programming.
+- **For users:** Zero switching costs. Students work in the tools and languages they already know; Solaria adds hardware capabilities to those environments.
+- **For platforms:** Each supported environment becomes hardware-capable through a purpose-built extension, without changing its core experience or learning model.
+- **For hardware:** The SSP protocol and bridge model mean cheap, widely available microcontrollers and commercial robots can participate in the same educational ecosystem.
 
 ## Supported Targets
 
