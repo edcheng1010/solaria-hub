@@ -43,6 +43,21 @@ SSP is **transport-agnostic**. The same logical protocol operates identically wh
 
 A single client instance may maintain concurrent connections to multiple hubs over different transports simultaneously, enabling multi-device coordination from one program.
 
+### MCP Layer (Gen 3)
+
+The **Model Context Protocol (MCP) layer** is the optional Gen 3 agent interface that sits above SSP. It exposes SSP capabilities as MCP tools so that an LLM agent can discover hubs, read sensor state, and issue commands or Task Delegations in response to natural language input.
+
+The MCP layer is:
+- **Above SSP, not part of SSP.** SSP handles client-to-hub communication; MCP handles agent-to-SSP-client communication.
+- **Client-platform-agnostic.** The `solaria-mcp-server` connects to any SSP-compatible hub regardless of which client platform the student is also using.
+- **Transport-agnostic.** The MCP server communicates with its upstream LLM agent via the standard MCP protocol; it communicates with hubs via standard SSP over whatever transport the hub supports.
+
+```text
+  [LLM Agent] ←— MCP protocol —→ [solaria-mcp-server] ←— SSP —→ [Hub(s)]
+```
+
+This is the concrete mechanism by which Gen 3 natural language intent translates into SSP commands across all hardware.
+
 ---
 
 ## Table of Contents
@@ -233,6 +248,247 @@ Device → client, continuous or on-change:
 ```
 
 > Full specification: [spec/SSP-v0.8.md](spec/SSP-v0.8.md)
+
+---
+
+## SSP Message Categories: Autonomy and Advanced Robotics
+
+The following message categories extend SSP to support hub-side autonomy, advanced control theory, and swarm coordination. These are **additive** — all existing message categories (motor commands, sensor reports, configuration) remain unchanged and fully functional.
+
+### Client → Hub Messages
+
+| Message Category | Purpose | Autonomy Level |
+|:---|:---|:---:|
+| Autonomy Mode Set | Switch hub between Passive (0), Reactive (1), Autonomous (2), or Swarm (3) | All |
+| Plan Upload | Upload a deterministic, ordered sequence of actions with conditions and checkpoints | 2 |
+| Policy Upload | Upload a continuous decision function (reflex rules, behaviour tree, or trained model weights) | 1, 2, 3 |
+| Task Delegation | Send a high-level goal (e.g., "Navigate to X,Y") for local motion planning (TAMP) | 2, 3 |
+| Control Parameters | Dynamically adjust PID gains, trajectory profiles, or force targets on the hub | All |
+| Override Command | Immediately override the hub's local decision with an explicit command | 1, 2, 3 |
+
+### Hub → Client Messages
+
+| Message Category | Purpose | Autonomy Level |
+|:---|:---|:---:|
+| Fused State Report | Report unified state estimates (e.g., IMU+encoder fusion), current autonomy level, and active Policy/Plan status | 1, 2, 3 |
+| Plan Status | Report progress of an uploaded Plan (e.g., "Executing Step 3", "Blocked", "Completed") | 2 |
+| Peer Status Report | Report discovered peers and current peer communication state | 3 |
+
+### Hub ↔ Hub Messages (Peer Protocol & Concurrency)
+
+| Message Category | Purpose | Autonomy Level |
+|:---|:---|:---:|
+| Peer Discovery | Hub announces its presence, identity, and capabilities to neighbouring hubs | 3 |
+| Peer Broadcast | Hub shares local state, sensor data, position, or intentions with peers | 3 |
+| Sync Barrier | Coordinate multi-hub actions; hubs wait for a synchronised signal before proceeding | 3 |
+| Mutex Request/Grant | Request and grant access to shared physical resources (e.g., classroom zones) to prevent deadlocks | 3 |
+
+> **Note:** Hub-to-hub messages use a peer transport layer that is independent of the client-hub transport. A hub may communicate with the client via BLE while communicating with peers via ESP-NOW, or use WiFi for both. The peer protocol follows SSP message semantics but operates on a separate channel.
+
+### Supervisory Architecture
+
+```text
+  [Client] ←——— SSP ———→ [Hub A] ←—— Peer Protocol ——→ [Hub B]
+     ↕                       ↕                               ↕
+  Strategy               Local Plan/Policy               Local Plan/Policy
+  Supervision            + Fused State                   + Fused State
+  Override               + own sensors                   + own sensors
+```
+
+Key properties:
+- The client-to-hub channel (SSP) carries commands, Plan/Policy uploads, Task Delegations, and Fused State reports.
+- The hub-to-hub channel (Peer Protocol) carries peer discovery, state sharing, Sync Barriers, and Mutex management.
+- The client never loses observability — hubs report their peer interactions and autonomous decisions via the standard state report channel.
+- The client can intervene at any time by sending an Override Command or reverting the hub to Passive mode.
+
+---
+
+## Autonomy Level Specification
+
+### Level 0: Passive (Default)
+
+This is the current and default operating mode. The hub:
+- Executes only explicit commands received from the client (teleoperation).
+- Reports raw sensor values to the client on request or at configured intervals.
+- Has no local decision-making capability active.
+- Powers on in this mode. Always returns to this mode on connection loss (fail-safe).
+
+### Level 1: Reactive
+
+The hub runs a simple **Policy** (local reflex rules) uploaded by the client. These rules handle time-critical responses that cannot tolerate network round-trip latency. The hub:
+- Executes local reflex rules with immediate effect (e.g., if obstacle < 5cm → stop).
+- Continues to accept and execute client commands for all non-reflex actions.
+- Reports when a reflex rule fires (via Fused State Report).
+- Client can override any reflex action at any time.
+
+### Level 2: Autonomous
+
+The hub runs either an uploaded **Plan** or a richer **Policy**. The hub:
+- **Plan Execution:** Executes a deterministic sequence of steps. If a step fails, it pauses and reports `Plan Status: Blocked` to the client.
+- **Policy Execution:** Runs a continuous decision loop (behaviour tree, state machine, or trained model), mapping sensor state to actions adaptively.
+- Reports its fused state, decisions, and progress to the client.
+- Accepts client override commands that take immediate precedence.
+- Returns to Passive mode if a Plan completes or errors, or if explicitly stopped by the client.
+
+### Level 3: Swarm
+
+Each hub operates in Autonomous mode (running its own **Policy**) AND participates in peer-to-peer coordination. The hub:
+- Discovers and communicates with neighbouring hubs via the peer protocol.
+- Shares its state and intentions with peers.
+- Uses **Sync Barriers** and **Mutex** requests to coordinate safely in shared physical spaces.
+- Reports peer interactions and collective state to the client.
+- Client retains full authority to recall, pause, or override any individual hub, or dissolve the entire swarm.
+
+### Fail-Safe Behaviour
+
+All autonomy levels implement the following fail-safe rules:
+- **Connection loss to client:** Hub immediately reverts to Level 0 (Passive) and stops all motor output. If a safe-stop reflex is loaded, it executes before halting.
+- **Plan/Policy error:** Hub reverts to Level 0 and reports the error to the client on reconnection.
+- **Peer communication loss (Level 3):** Hub continues its own autonomous behaviour but ceases coordinated actions. It reports the peer loss to the client.
+- **Client override:** Any explicit command from the client takes immediate precedence over local decisions at any autonomy level.
+
+---
+
+## Plan vs. Policy: Execution Models
+
+SSP distinguishes between two fundamentally different types of uploaded behaviour, creating a clean educational progression that maps to established concepts in robotics and AI.
+
+### Plan Upload
+
+A **Plan** is a deterministic, ordered sequence of actions with explicit conditions and checkpoints.
+
+| Property | Description |
+|:---|:---|
+| Structure | Ordered list of steps, each with an action and optional condition/checkpoint |
+| Execution | Sequential — step N completes before step N+1 begins |
+| On failure | Hub pauses, reports `Plan Status: Blocked`, waits for client |
+| Termination | Plan completes when all steps are done, or client stops it |
+| Determinism | High — same plan, same initial state → same execution |
+| Student level | K-9 (middle school): sequential logic, conditionals, loops |
+
+**Example Plan:**
+```text
+Step 1: Move forward 30cm
+Step 2: IF distance_sensor < 10cm THEN report "blocked" and WAIT
+Step 3: Turn left 90°
+Step 4: Move forward 50cm
+Step 5: Report "arrived"
+```
+
+### Policy Upload
+
+A **Policy** is a continuous decision function that maps sensor state to actions.
+
+| Property | Description |
+|:---|:---|
+| Structure | Rules, state machine, behaviour tree, or trained model weights |
+| Execution | Continuous loop — runs indefinitely, re-evaluating on each sensor cycle |
+| On failure | Hub reports error, reverts to Passive |
+| Termination | Never self-terminates — runs until client stops it or switches policy |
+| Determinism | Variable — rule-based policies are deterministic; trained models may be stochastic |
+| Student level | K-12 (behaviour trees, if-then rules) to Higher Ed (RL-trained neural networks) |
+
+**Policy types (educational progression):**
+- **Reflex rules (Level 1, K-9):** Simple if-then pairs. `IF obstacle < 5cm THEN stop.`
+- **State machines (Level 2, K-12):** Multiple states with transitions. `EXPLORING → OBSTACLE_DETECTED → AVOIDING → EXPLORING.`
+- **Behaviour trees (Level 2, K-12):** Hierarchical decision structures with selectors and sequences.
+- **Trained model weights (Level 2–3, Higher Ed):** Neural network weights from reinforcement learning, deployed to the hub for inference.
+
+---
+
+## Advanced Robotics: SSP Extensions
+
+The following SSP extensions support advanced robotics concepts. Each is additive and optional — hubs that do not support a capability simply ignore or report unsupported for the corresponding messages.
+
+### Hierarchical Task Planning (TAMP)
+
+Task and Motion Planning allows the client to delegate high-level goals rather than specifying low-level motor commands.
+
+**Message: Task Delegation (Client → Hub)**
+| Field | Description |
+|:---|:---|
+| goal_type | Type of task (e.g., "navigate", "patrol", "search") |
+| parameters | Goal-specific parameters (e.g., target coordinates, object ID) |
+| constraints | Optional constraints (e.g., max speed, avoid zones) |
+| timeout | Maximum time allowed for task completion |
+
+**Message: Plan Status (Hub → Client)**
+| Field | Description |
+|:---|:---|
+| task_id | Reference to the delegated task |
+| status | One of: Planning, Executing, Blocked, Completed, Failed |
+| progress | Percentage or step indicator |
+| detail | Human-readable status description |
+
+**Educational value:** K-12: "Go to the red zone" — student specifies WHAT, hub figures out HOW. Higher Ed: Students implement the motion planner on the hub (A*, RRT, etc.)
+
+**Roadmap alignment:** Gen 3
+
+### Control Parameters
+
+Allows dynamic tuning of control algorithms on the hub without reflashing firmware.
+
+**Message: Control Parameters (Client → Hub)**
+| Field | Description |
+|:---|:---|
+| controller_id | Which controller to adjust (e.g., "motor_left_pid", "balance") |
+| parameters | Key-value pairs (e.g., `{"kp": 1.2, "ki": 0.01, "kd": 0.5}`) |
+| apply_mode | "immediate" or "on_next_cycle" |
+
+**Educational value:** K-12: Visual PID tuning — adjust sliders, see robot response in real-time. Higher Ed: Implement LQR, MPC, or impedance control; tune parameters experimentally.
+
+**Roadmap alignment:** Gen 2b (available on ESP32, Arduino, Raspberry Pi hubs)
+
+### Sensor Fusion
+
+Hubs with multiple sensors can perform local fusion, providing richer state estimates to the client.
+
+**Message: Fused State Report (Hub → Client)**
+| Field | Description |
+|:---|:---|
+| position_estimate | Fused position (e.g., IMU + encoder + GPS) with confidence |
+| velocity_estimate | Fused velocity with confidence |
+| orientation | Fused orientation (quaternion or Euler) |
+| raw_sources | List of contributing sensors and their individual readings |
+| fusion_method | Algorithm used (e.g., "complementary_filter", "kalman", "ekf") |
+
+**Educational value:** K-12: Compare raw vs. fused readings — understand why fusion helps. Higher Ed: Implement custom Kalman filters, compare fusion algorithms.
+
+**Roadmap alignment:** Gen 3 (requires hubs with multiple complementary sensors)
+
+### Concurrency & Synchronisation (Swarm)
+
+Primitives for safe multi-robot coordination in shared physical spaces.
+
+**Message: Sync Barrier**
+| Field | Description |
+|:---|:---|
+| barrier_id | Unique identifier for this synchronisation point |
+| participants | List of hub IDs that must reach the barrier |
+| action_on_sync | What to do when all participants arrive (e.g., "proceed") |
+| timeout | Maximum wait time before proceeding anyway (safety) |
+
+**Message: Mutex Request/Grant**
+| Field | Description |
+|:---|:---|
+| resource_id | Identifier for the shared resource (e.g., "zone_A") |
+| requester_id | Hub requesting access |
+| priority | Priority level for conflict resolution |
+| duration | Expected hold time |
+
+**Educational value:** K-12: "All robots start at the same time" — visual synchronisation. Higher Ed: Distributed mutex algorithms, deadlock detection.
+
+**Roadmap alignment:** Gen 4
+
+### Control Theory Sandbox
+
+A simulation and visualisation layer in the web client for testing control algorithms before deployment to real hardware.
+
+**Architecture:** Runs entirely in the web client (JavaScript/WebAssembly); simulates hub physics (motor response, sensor noise, latency); students design Plans or Policies in the sandbox, then deploy via Plan Upload or Policy Upload.
+
+**Educational value:** K-12: Safe experimentation — test before running on real robot. Higher Ed: System identification, controller design, Monte Carlo simulation.
+
+**Roadmap alignment:** Gen 3–4 (web client feature, not an SSP message)
 
 ---
 

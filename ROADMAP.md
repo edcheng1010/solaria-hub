@@ -95,6 +95,54 @@ When the AI agent layer is complete, students will describe their intent in plai
 
 **Prerequisites:** At least 3 stable hardware bridges and 2 stable client platforms.
 
+#### SSP Evolution: Hub-Side Autonomy & Execution Models
+
+Generation 3 evolves the Solaria Standard Protocol to support hub-side autonomy modes, enabling students to shift from "remote control" to "programming an agent." This is an additive extension — the existing client-centric model (Level 0 "Passive") remains the default and is fully preserved.
+
+**Autonomy Levels:**
+
+| Level | Name | Description | Client Role | Hub Role | Target |
+|:---:|:---|:---|:---|:---|:---|
+| 0 | Passive | Current model. Hub acts only on explicit client commands (teleoperation). | Full control | Execute commands, report sensors | K-6 |
+| 1 | Reactive | Hub runs a simple **Policy** (local reflex rules, e.g., if obstacle → stop) with zero latency. | High-level direction + override | Execute reflexes locally, report state | K-9 |
+| 2 | Autonomous | Hub runs either an uploaded **Plan** (sequential execution) or a richer **Policy** (behaviour tree, trained model). | Supervise + override | Run decision loop, report decisions and state | K-12 to Higher Ed |
+
+**Plan vs. Policy Execution:**
+
+To support a clean educational progression, Gen 3 introduces two distinct modes of autonomous execution on the hub:
+
+- **Plan Execution (Plan Upload):** The client uploads an ordered sequence of actions with conditions and checkpoints. The hub executes the steps deterministically in order. If a step fails, the hub pauses and reports back. Predictable and ideal for students learning sequential logic (K-9).
+- **Policy Execution (Policy Upload):** The client uploads a decision function — rules, state machine, behaviour tree, or trained RL model weights. The hub runs continuously, mapping sensor state to actions. The hub doesn't "finish" — it keeps running until the client stops or switches the policy. Suited for students exploring reactive AI and machine learning (K-12 to Higher Ed).
+
+**Advanced Robotics Concepts Integration (Gen 3):**
+
+- **Hierarchical Task Planning (TAMP):** The client sends **Task Delegation** messages with high-level goals (e.g., "Navigate to X,Y"). The hub utilises local motion planning algorithms to achieve the sub-task.
+- **Sensor Fusion:** Hubs with multiple sensors (e.g., IMU + encoders) perform local sensor fusion and send a **Fused State Report** back to the client, providing more accurate environmental awareness.
+- **Control Theory Sandbox:** A simulation and visualisation layer in the web client where students test control algorithms (PID tuning, trajectory generation) before deploying to real hardware.
+
+#### Solaria MCP Server (Gen 3)
+
+The Model Context Protocol (MCP) is the interface layer that connects LLM agents to the Solaria ecosystem. A `solaria-mcp-server` exposes SSP capabilities as MCP tools, allowing an LLM agent to discover connected hubs, read sensor state, and issue commands or Task Delegations in response to natural language.
+
+```text
+  [LLM Agent / Claude]
+         ↓  MCP tool calls
+  [solaria-mcp-server]
+         ↓  SSP commands
+  [SSP Client(s)]  ←——→  [Hub A]  [Hub B]  [Hub C]
+```
+
+**What the MCP server exposes as tools:**
+- Hub discovery and capability query
+- Motor and movement commands
+- Sensor read and subscribe
+- Autonomy mode set and Plan/Policy upload
+- Task Delegation (TAMP)
+
+The MCP server is client-platform-agnostic — it connects to any SSP-compatible hub regardless of whether the student is also using App Inventor, Scratch, or Python. It is the concrete mechanism by which Gen 3 natural language intent translates into SSP commands across all hardware.
+
+**Planned repo:** `solaria-mcp-server`
+
 ---
 
 ### Gen 4 — Solaria Flagship Robot 🌱
@@ -111,6 +159,57 @@ A reference hardware design that showcases the full Solaria stack in one cohesiv
 - The "iPhone of the ecosystem" — demonstrates everything Solaria can do
 
 **Estimated cost:** $15,000–$25,000 (PCB design, tooling, small production run, certification)
+
+#### SSP Evolution: Swarm Coordination & Concurrency (Level 3)
+
+Generation 4 introduces direct hub-to-hub peer communication and distributed decision-making, enabling swarm robotics.
+
+| Level | Name | Description | Client Role | Hub Role | Target |
+|:---:|:---|:---|:---|:---|:---|
+| 3 | Swarm | Each hub runs its own **Policy** and shares state for emergent coordination via direct communication. | Set strategy + supervise | Execute tactics locally, coordinate with peers | Higher Ed / Advanced |
+
+**Distributed Decision-Making Model:**
+The client sets high-level goals or strategies. Individual hubs execute tactics locally, making real-time decisions based on their own sensors and information received from peer hubs. The client does not need to micromanage individual hub movements — it operates at the strategic level.
+
+**Hub-to-Hub Peer Communication & Concurrency:**
+Hubs communicate directly with each other without routing through the client. This eliminates the latency bottleneck and enables real-time swarm behaviours. Gen 4 also introduces concurrency primitives for safe multi-robot coordination:
+
+- **Sync Barriers:** Coordinating multi-hub actions where all hubs must reach a specific checkpoint before any proceed.
+- **Mutex Management:** Mechanisms for hubs to request and grant access to shared physical resources (e.g., a specific classroom zone) to prevent collisions and deadlocks.
+
+The peer protocol is transport-agnostic within SSP. Implementations may use ESP-NOW (sub-millisecond latency, available on ESP32 hardware), WiFi mesh networking, BLE mesh, or any future peer-to-peer transport.
+
+**Supervision hierarchy is preserved at every level.** Even in swarm mode, the client can recall, pause, or override any individual hub, or dissolve the entire swarm and revert all hubs to Passive mode. Each hub continues reporting its state and peer interactions to the client — observability is never lost.
+
+**Educational Progression:**
+Swarm coordination represents the culmination of the autonomy progression:
+
+1. Direct control (Level 0) — "I tell the robot exactly what to do"
+2. Local reflexes (Level 1) — "The robot handles safety, I handle navigation"
+3. Autonomous agent (Level 2) — "I program the robot's behaviour, it executes independently"
+4. Swarm intelligence (Level 3) — "I set the goal, the robots figure out how to achieve it together"
+
+#### Educational Use Cases: The Autonomy & Robotics Progression
+
+The evolution of SSP enables a clear educational progression from primary school through university:
+
+**Direct Control (Level 0, K-6):**
+A student uses Scratch blocks to drive a robot around a course. Every movement is an explicit command from the client.
+
+**Plan Upload (Level 2, K-9):**
+A student writes a maze-solving sequence — "move forward, check wall, turn left, move forward…" — and uploads it to the hub. The robot executes the plan autonomously, reporting progress. If it gets stuck, it pauses and reports `Plan Status: Blocked` back to the student.
+
+**Policy Upload — Rules (Level 1–2, K-12):**
+A student programs a safety layer where the robot stops instantly when it detects a cliff (reactive policy on the hub, zero latency). They then add a wall-following behaviour tree that the robot runs continuously.
+
+**Policy Upload — Trained Model (Level 2, Higher Ed):**
+A student trains a reinforcement learning agent in the Control Theory Sandbox (simulated environment). Once the policy converges, they deploy the trained weights to the hub. The robot navigates using the learned policy, with the student monitoring performance via Fused State Reports.
+
+**Swarm Coordination (Level 3, Higher Ed):**
+Students program multiple robots to map a large room collaboratively. The client assigns the overall goal. The robots use Peer Broadcast to share discovered obstacles, Sync Barriers to coordinate sweeps, and Mutex to avoid collisions in narrow passages.
+
+**Control Theory (Gen 2b+, K-12 to Higher Ed):**
+A student adjusts PID gains via sliders in the client interface, watching the robot's step response in real-time. The Control Parameters message updates the hub instantly without reflashing firmware.
 
 ---
 
@@ -143,8 +242,11 @@ These devices have proprietary firmware. A protocol library must be reverse-engi
 | 6 | **LEGO Powered Up (LWP3)** | LEGO Wireless Protocol 3 | BLE | Well-documented | $2,500–$4,000 |
 | 7 | **Sony® toio™** | Published BLE spec | BLE | Fully documented | $2,000–$3,500 |
 | 8 | **UBTECH® uGot** | Proprietary | BLE / WiFi | Undocumented (reverse-eng. needed) | $3,500–$5,500 |
+| 9 | **Bee-Bot / Blue-Bot** | Proprietary BLE | BLE | K-2 foundational robot, widely used in early childhood education | TBD |
+| 10 | **NAO Robot (SoftBank)** | Proprietary WiFi API | WiFi | Premium humanoid for HRI and advanced control research | TBD |
+| 11 | **TurtleBot (ROS)** | ROS Bridge | WiFi (ROS Bridge) | Standard ROS platform bridging Solaria to university robotics curriculum | TBD |
 
-**Total TYPE 2 protocol library investment (remaining 3):** $8,000–$13,000
+**Total TYPE 2 protocol library investment (remaining 3 core + 3 new):** $8,000–$13,000 (new entries TBD)
 
 ---
 
@@ -473,6 +575,8 @@ Based on dependency analysis, leverage calculations, and community impact:
 
 **Gen 2a total: ~$7,000** → Unlocks: ESP32 + Python, ESP32 + Web, ESP32 + App Inventor (3 new working combinations)
 
+> **Forward-Compatibility:** Gen 2a hardware selections were made with future autonomy and swarm capabilities in mind. ESP32-based hubs natively support ESP-NOW for sub-millisecond peer-to-peer communication — one implementation option for future swarm coordination (Level 3). Raspberry Pi hubs have sufficient compute for local ML inference, enabling trained Policy execution and sensor fusion. These capabilities are not activated in Gen 2a but validate the hardware's readiness for Gen 3/4 features.
+
 ### Near-Term (Gen 2b)
 
 | # | Item | Type | Cost | Rationale |
@@ -485,6 +589,8 @@ Based on dependency analysis, leverage calculations, and community impact:
 | — | **Scratch™ Universal Client** | Client | ✅ Shipped — Done | Largest K-8 programming platform |
 
 **Gen 2b total (excluding shipped Scratch and pending items): ~$7,400 (pending re-costing)** → Unlocks: 12+ new working combinations
+
+> **Gen 2b Advanced Control:** For capable platforms (ESP32, Arduino, Raspberry Pi), Gen 2b introduces **Control Parameters** via SSP. Students can dynamically tune PID gains, impedance parameters, and trajectory profiles on the hub directly from the client interface — without reflashing firmware. This is the foundation for the Control Theory Sandbox in Gen 3.
 
 #### Robosen K1 (Interstellar Scout) — Protocol Library
 
